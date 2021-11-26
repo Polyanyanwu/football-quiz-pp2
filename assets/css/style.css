@@ -1,0 +1,14 @@
+/* ensure no margins, border and paddings are added to elements */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  
+  /* default font and color for the entire page */
+  body {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    color: #4c4c4c;
+     background-color: #c3c2d1;
+  }
