@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@300&family=Roboto+Condensed:wght@300&family=Roboto:wght@300&family=Ubuntu&display=swap');
 /* ensure no margins, border and paddings are added to elements */
 * {
     margin: 0;
@@ -11,4 +12,47 @@
     font-weight: 400;
     color: #4c4c4c;
      background-color: #c3c2d1;
+  }
+
+  header {
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 5px;
+  }
+  #title {
+    width: 30%;
+    padding-left: 3%;
+    top: 5px;
+  }
+  header img {
+    /* position: relative; */
+    margin: 0 auto;
+    width: 60%;
+    height: auto;
+  }
+  #title-image{
+    width: 10%;
+    position: relative;
+    /* margin: 0 auto; */
+    left: 8%;
+  }
+  #player-container {
+    top: 5px;
+    right: 2%;
+    position: absolute;
+  }
+  #quiz-level-container{
+    width: 100%;
+    background-color:grey;
+    height: 2em;
+  }
+  #quiz-level {
+    width: 30%;
+    margin: 0 auto;
+    height: 1.8rem;
+
+  }
+  button {
+    cursor: pointer;
   }
