@@ -94,6 +94,7 @@ header img {
   color:red;
   font-size: 100%;
   padding: 0.3rem;
+  text-align: center;
 }
 #detailed-instructions{
   color:khaki;
@@ -103,6 +104,26 @@ header img {
 #detailed-instructions:hover{
   color:khaki;
   background-color: #000;
+}
+#time-container, #answer-area{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.option {
+  border: 1px solid #0f0b49;
+  padding: 0.4rem;
+  margin:1rem;
+  height: 2.4rem;
+  border-radius: 10px;
+  background-color: whitesmoke;
+}
+#option1{
+  float:left;
+}
+.answer-sign{
+float: right;
+color:green;
 }
 /* footer section */
 footer {
