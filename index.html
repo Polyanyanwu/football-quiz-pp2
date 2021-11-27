@@ -18,51 +18,54 @@
             <h1>The Foothball Guru</h1>
         </div>
         <div id="title-image">
-            <img  src="assets/images/foothball.webp"> 
+            <img src="assets/images/foothball.webp">
         </div>
-        <div id= "player-container">
-            Welcome: <span  data-username="?" id = "player">Polycarp Anyanwu</span>
+        <div id="player-container">
+            Welcome: <span data-username="?" id="player">Polycarp Anyanwu</span>
         </div>
         <div id="quiz-level-container">
             <div id="quiz-level">
-            <button>Amature</button>
-            <button>Professional</button>
+                <button data-type="amature" class="btn btn-amature">Amature</button>
+                <button data-type="professional" class="btn btn-prof">Professional</button>
             </div>
         </div>
     </header>
     <main>
-        <section id= "question-area">
-
+        <section id="question-area">
+            <div id="question-container">
+                <h2 id="question">test question</h2>
+            </div>
+            <p id="instruction">Please Select 1 Answer <span id="detailed-instructions"><em>Click for Detailed Instructions</em></span></p>
         </section>
         <section id="answer-area">
-            
+
         </section>
         <section id="footer">
-            
+
         </section>
     </main>
     <footer>
         <div class="contact-us">
-          <span>
-            Contact Us:
-            <a href="https://www.facebook.com/polycarp.anyanwu" target="_blank" rel="noopener"
-              aria-label="Check us out on Facebook">
-              <i class="fab fa-facebook-square"></i>
-            </a>
-            <a href="https://github.com/Polyanyanwu" target="_blank" rel="noopener" aria-label="Check us out on Github"><i
-                class="fab fa-github-square"></i></a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Check us out on Twitter"> <i
-                class="fab fa-twitter-square"></i></a>
-            <a href="http://linkedin.com/in/polycarp-anyanwu-pmp-a4265a11" target="_blank" rel="noopener"
-              aria-label="Check us out on LinkedIn">
-              <i class="fab fa-linkedin"></i>
-            </a>
-          </span>
+            <span>
+                Contact Us:
+                <a href="https://www.facebook.com/polycarp.anyanwu" target="_blank" rel="noopener"
+                    aria-label="Check us out on Facebook">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+                <a href="https://github.com/Polyanyanwu" target="_blank" rel="noopener"
+                    aria-label="Check us out on Github"><i class="fab fa-github-square"></i></a>
+                <a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Check us out on Twitter">
+                    <i class="fab fa-twitter-square"></i></a>
+                <a href="http://linkedin.com/in/polycarp-anyanwu-pmp-a4265a11" target="_blank" rel="noopener"
+                    aria-label="Check us out on LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </span>
         </div>
-      </footer>
-      <!-- Font Awesome script link that was used in the social media links -->
-      <script src="https://kit.fontawesome.com/af901081da.js" crossorigin="anonymous">
-      </script>
+    </footer>
+    <!-- Font Awesome script link that was used in the social media links -->
+    <script src="https://kit.fontawesome.com/af901081da.js" crossorigin="anonymous">
+    </script>
     <script src="assets/js/controller.js" type="module"></script>
 </body>
 
