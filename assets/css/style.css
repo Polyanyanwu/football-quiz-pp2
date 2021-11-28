@@ -201,6 +201,109 @@ color: red;
   padding-right:0.2em;
 }
 
+/* Username modal form */
+/* The Modal (background) */
+/* Modal styling adopted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2 */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 55; /* Sit on top */
+  /* left: 0; */
+  margin: 0 auto;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(189, 177, 231,0.7); /* Fallback color */
+  /* background-color: rgba(0,0,0,0.4); Black w/ opacity */
+  padding-top: 60px;
+}
+/* Modal Content */
+.username-modal-content {
+  position: relative;
+  background-color: #fefefe;
+
+  margin: 20vh auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 40%;
+  height: 40%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  /* -webkit-animation-name: topAnimation;
+  -webkit-animation-duration: 0.4s; */
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes topAnimation {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes topAnimation {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* Full-width input fields */
+input[type=text] {
+  width: 50%;
+  padding: 1rem 2rem;
+  margin: 5% 15%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 120%;
+}
+
+/* Set a style for all buttons */
+.username-container > button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 0 10%;
+  /* border: none; */
+  cursor: pointer;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.username-container > button:hover {
+  opacity: 0.8;
+}
+
+/* The Close Button */
+.close-btn {
+  color:red;
+  float: right;
+  font-size: 1rem;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.username-header {
+  padding: 0.5em 1em;
+  background-image: linear-gradient( rgba(218, 222, 224, 0.7),   rgba(24, 133, 192, 0.7));
+  /* background-color: #5cb85c; */
+  color: green;
+}
+
+.username-container {
+  padding: 0.5rem 1rem;
+}
+
+/* .modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+} */
+
 /* footer section */
 footer {
   text-align: center;
