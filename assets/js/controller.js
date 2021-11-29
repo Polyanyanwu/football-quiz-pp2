@@ -1,3 +1,8 @@
+import { MIN_USER_LENGTH as userLength } from "./config.js";
+
+// Define the variables for DOM elements
+const quizLevel = document.querySelectorAll(".quiz-btn");
+
 const displayUsernameModal = function () {
     console.log("entered display user modal function")
     const player = document.getElementById("player");
@@ -21,8 +26,8 @@ const validateAndSaveUser = function () {
             player.textContent = "Guest";
             modal.style.display = 'none';
         };
-    } else if (username.length < 3) {
-        alert("Your username must be 3 characters and longer");
+    } else if (username.length < userLength) {
+        alert(`Your username must be ${userLength} characters and longer`);
     } else {
         modal.style.display = 'none';
         player.textContent = username;
@@ -33,3 +38,14 @@ const usernameCreateBtn = document.querySelector("#create-user-button");
 
 usernameCloseBtn.addEventListener('click', validateAndSaveUser);
 usernameCreateBtn.addEventListener('click', validateAndSaveUser);
+
+/**
+ * Event listener for selection of the quiz level. Loop through the buttons for the quiz level, remove the class for the active button
+ * on all buttons and insert the class on the clicked quiz level
+ */
+ const changeQuizLevel = function (event) {
+    //  arrow function ideas and forEach obtained from my JavaScript lessons at Udemy.com
+    quizLevel.forEach(btn => btn.classList.remove('active-quiz-level'));
+    event.target.classList.add('active-quiz-level');
+  };
+ quizLevel.forEach(btn => btn.addEventListener('click', changeQuizLevel));
