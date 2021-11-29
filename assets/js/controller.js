@@ -11,7 +11,10 @@ const quizLevel = document.querySelectorAll(".quiz-btn");
 
 const displayUsernameModal = function () {
     //display the initial question from the amateur level
-    displayQuestion("amateur",1);
+    getAndDisplayQuiz();
+    // const quizItem = getQuestionToDisplay();
+    // console.log(quizItem);
+    // displayQuestion(quizItem[0],quizItem[1]);
     const player = document.getElementById("player");
     const modal = document.getElementById("userNameModal");
     if (player.textContent === '?') {
@@ -54,6 +57,7 @@ usernameCreateBtn.addEventListener('click', validateAndSaveUser);
     //  arrow function ideas and forEach obtained from my JavaScript lessons at Udemy.com
     quizLevel.forEach(btn => btn.classList.remove('active-quiz-level'));
     event.target.classList.add('active-quiz-level');
+    getAndDisplayQuiz();
   };
  quizLevel.forEach(btn => btn.addEventListener('click', changeQuizLevel));
 
@@ -71,6 +75,29 @@ const displayQuestion = function (quizLevel, questionId){
     for(let i = 1; i <= totOptions; i++){
         document.getElementById(`option${i}`).textContent = quiz[`option${i}`];
     }
-    
+}
 
+/**
+ * Function checks which level the player is engaged in, picks a random question among the ones that have used property false
+ * function returns the id of the question and the quiz level
+ */
+const getQuestionToDisplay = function (){
+    // check the quiz level (that is which of the quiz level has the active-quiz-level class set)
+    let levelSelected;
+    for(let quizlevel of quizLevel ) {
+        if(quizlevel.classList.contains('active-quiz-level')){
+            levelSelected = quizlevel.dataset.type;
+        }
+    }
+    const unusedQuiz = levelSelected === "professional"? professionalData.filter(data => !data.used): amateurData.filter(data => !data.used);
+    const quizId = Math.floor(Math.random() * unusedQuiz.length) ;
+    return [levelSelected, unusedQuiz[quizId].id];
+}
+
+/**
+ * A function to get and display a quiz item
+ */
+const getAndDisplayQuiz = function (){
+    const quizItem = getQuestionToDisplay();
+    displayQuestion(quizItem[0],quizItem[1]);
 }
