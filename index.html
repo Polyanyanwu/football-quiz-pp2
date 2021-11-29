@@ -38,7 +38,7 @@
             <div id="question-container">
                 <h2 id="question">test question</h2>
             </div>
-            <div class ="line"></div>
+            <div class="line"></div>
             <p id="instruction">Please Select 1 Answer <span id="detailed-instructions"><em>Click for Detailed
                         Instructions</em></span></p>
         </section>
@@ -46,22 +46,26 @@
             <p>Remaining time: <span id="remaining-time"></span></p>
         </div>
         <section id="answer-area">
-            <div class="option">
-                <div id="option1">first option</div>
-                <div class="answer-sign"><i class="fas fa-check"></i></div>
+            <div class="option" data-option="option1">
+                <span id="option1">first option</span>
+                <div class="answer-sign-ok" id="option1-sign-ok"><i class="fas fa-check"></i></div>
+                <div class="answer-sign" id="option1-sign-no"><i class="fas fa-times"></i></div>
             </div>
 
-            <div class="option">
-                <div id="option2">secnon option</div>
-                <div class="answer-sign"><i class="fas fa-times"></i></div>
+            <div class="option" data-option="option2">
+                <span id="option2">second option</span>
+                <div class="answer-sign" id="option2-sign-no"><i class="fas fa-times"></i></div>
+                <div class="answer-sign-ok" id="option2-sign-ok"><i class="fas fa-check"></i></div>
             </div>
-            <div class="option">
-                <div id="option3">Third option</div>
-                <div class="answer-sign"><i class="fas fa-times"></i></div>
+            <div class="option" data-option="option3">
+                <span id="option3">Third option</span>
+                <div class="answer-sign" id="option3-sign-no"><i class="fas fa-times"></i></div>
+                <div class="answer-sign-ok" id="option3-sign-ok"><i class="fas fa-check"></i></div>
             </div>
-            <div class="option">
-                <div id="option4">Fourth option</div>
-                <div class="answer-sign"><i class="fas fa-times"></i></div>
+            <div class="option" data-option="option4">
+                <span id="option4">Fourth option</span>
+                <div class="answer-sign" id="option4-sign-no"><i class="fas fa-times"></i></div>
+                <div class="answer-sign-ok" id="option4-sign-ok"><i class="fas fa-check"></i></div>
             </div>
             <!-- <div id="explanation">
                 <button>View Explanation of Answer</button>
@@ -73,10 +77,11 @@
                 <div id="restart-btn">Restart the Quiz</div>
             </div>
             <div id="answer-box">
-                <div id="correct-answer-container"><span id="correct-answer-icon"><i class="far fa-check-circle"></i></span></span> Correct Answers:
+                <div id="correct-answer-container"><span id="correct-answer-icon"><i
+                            class="far fa-check-circle"></i></span></span> Correct Answers:
                     <span id="corret-answer">5</span></div>
-                <div id="wrong-answer-container"><span id="wrong-answer-icon"><i class="far fa-times-circle"></i></span> Wrong Answers: <span
-                        id="wrong-answer">2</span></div>
+                <div id="wrong-answer-container"><span id="wrong-answer-icon"><i class="far fa-times-circle"></i></span>
+                    Wrong Answers: <span id="wrong-answer">2</span></div>
             </div>
         </section>
     </main>

@@ -75,11 +75,16 @@ header img {
   margin-top: 0.4em;
 }
 
-.quiz-level .quiz-btn:hover {
+.quiz-level .quiz-btn:hover, .option:hover, .option-selected {
   background-color: #07412b;;
-  color:rgba(255, 255, 255, 0.808);
+  /* color:rgba(255, 255, 255, 0.808); */
+  color:rgb(255, 255, 255);
 }
 
+.option-selected {
+  background-color: #07412b !important;
+  color:white;
+}
 /* .btn-amateur {
   box-shadow: 10px 5px 5px rgb(168, 112, 233);
 } */
@@ -139,13 +144,25 @@ button {
   background-color: whitesmoke;
 }
 
-#option1 {
+
+/* #option1 {
   float: left;
+} */
+
+.answer-sign-none {
+  display: none;
 }
 
-.answer-sign {
+.answer-sign-selected {
   float: right;
   color: green;
+  display:block;
+}
+
+.answer-sign-x {
+  float: right;
+  color:red;
+  display: block;
 }
 
 #explanation {

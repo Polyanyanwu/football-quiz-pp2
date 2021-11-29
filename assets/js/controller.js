@@ -8,10 +8,16 @@ import { amateurData } from "./model.js";
 
 // Define the variables for DOM elements
 const quizLevel = document.querySelectorAll(".quiz-btn");
+const answerOptionsBox = document.querySelectorAll(".option");
+const question = document.getElementById("question");
+const answerSignBox = document.querySelectorAll(".answer-sign");
+
 
 const displayUsernameModal = function () {
     //display the initial question from the amateur level
     getAndDisplayQuiz();
+    answerOptionListener();
+    checkAnswer();
     // const quizItem = getQuestionToDisplay();
     // console.log(quizItem);
     // displayQuestion(quizItem[0],quizItem[1]);
@@ -71,10 +77,15 @@ const displayQuestion = function (quizLevel, questionId){
     //question ID is the index of the question in the array of questions
 
     const quiz = quizLevel === "professional"?professionalData[questionId]: amateurData[questionId];
-    document.getElementById("question").textContent = quiz.question;
+    question.textContent = quiz.question;
     for(let i = 1; i <= totOptions; i++){
         document.getElementById(`option${i}`).textContent = quiz[`option${i}`];
     }
+    question.dataset.quizId = questionId;
+    question.dataset.quizLevel = quizLevel;
+    removeSelectionFromOptions();
+    removeAnswerMarks();
+    
 }
 
 /**
@@ -100,4 +111,100 @@ const getQuestionToDisplay = function (){
 const getAndDisplayQuiz = function (){
     const quizItem = getQuestionToDisplay();
     displayQuestion(quizItem[0],quizItem[1]);
+}
+
+const removeSelectionFromOptions = function (){
+    answerOptionsBox.forEach(option => option.classList.remove('option-selected'));
+}
+const removeAnswerMarks = function (){  
+    for(let i=1; i<= totOptions; i++){
+
+        document.getElementById(`option${i}-sign-no`).classList.remove('answer-sign-selected');
+        document.getElementById(`option${i}-sign-no`).classList.remove('answer-sign-x');
+        document.getElementById(`option${i}-sign-no`).classList.add('answer-sign-none');
+
+        document.getElementById(`option${i}-sign-ok`).classList.remove('answer-sign-selected');
+        document.getElementById(`option${i}-sign-ok`).classList.remove('answer-sign-x');
+        document.getElementById(`option${i}-sign-ok`).classList.add('answer-sign-none');
+    }
+
+  //  answerSignBox.forEach(option => option.textContent="");
+}
+
+const markAllOptionsX = function (){
+    for(let i=1; i<= totOptions; i++){
+        document.getElementById(`option${i}-sign-no`).classList.add('answer-sign-x');
+    }
+}
+const answerOptionListener = function (){
+    answerOptionsBox.forEach(option => option.addEventListener('click', function(event){
+        removeSelectionFromOptions();
+        // if user clicks the span, highlight the parent div instaed of only the span by adding the class option-selected
+        event.target.localName==="span"?event.target.parentNode.classList.add('option-selected'): event.target.classList.add('option-selected');
+    }));
+}
+
+const getClickedOption = function (){
+    let optionClicked = false;
+    let answer = "";
+    let optionSelected;
+    for(let option of answerOptionsBox) {   
+        optionClicked = option.classList.contains('option-selected');
+        if(optionClicked){
+           answer = option.dataset.option; 
+           optionSelected = option;
+           break;
+        }
+    };
+    if(!optionClicked){
+        alert('Please chose an answer before clicking submit answer');
+    }else{
+        const questionId =  Number(question.dataset.quizId);
+        const quizLevel = question.dataset.quizLevel;
+        // console.log(questionId,quizLevel );
+        // console.log (amateurData[questionId].answer + " answer ===" + answer);
+        let correctAnswer = false;
+        if(quizLevel === "amateur"){
+            console.log("at amature");
+            correctAnswer = amateurData[questionId].answer === answer;
+        }else{
+            correctAnswer = professionalData[questionId].answer === answer;
+        }
+    //     correctAnswer = quizLevel === "professional"? professionalData[questionId].answer === answer: amateurData[questionId].answer === answer;
+        console.log("correct answer==="+ correctAnswer);
+        removeAnswerMarks();
+        if(correctAnswer){
+            // correct answer
+            console.log(optionSelected.dataset.option);
+            // mark all as x 
+            markAllOptionsX();
+            document.getElementById(`${optionSelected.dataset.option}-sign-ok`).classList.add('answer-sign-selected');
+            document.getElementById(`${optionSelected.dataset.option}-sign-no`).classList.remove('answer-sign-x');
+
+        }else{
+            markAllOptionsX();
+            if(quizLevel === "professional"){
+                document.getElementById(`${professionalData[questionId].answer}-sign-ok`).classList.add('answer-sign-selected');
+                document.getElementById(`${professionalData[questionId].answer}-sign-no`).classList.remove('answer-sign-x');
+            }else{
+                document.getElementById(`${amateurData[questionId].answer}-sign-ok`).classList.add('answer-sign-selected');
+                document.getElementById(`${amateurData[questionId].answer}-sign-no`).classList.remove('answer-sign-x');
+            }
+
+            
+        }
+    }
+}
+
+const checkAnswer = function (){
+    const answerBtn = document.getElementById('submit-answer-btn');
+    answerBtn.addEventListener('click',getClickedOption);
+}
+
+const markAnswer = function (){
+    const questionId =  question.dataset.quizId;
+    const quizLevel = question.dataset.quizLevel;
+    const correct = quizLevel === "professional"? professionalData[questionId].answer === getClickedOption(): amateurData[questionId].answer === getClickedOption();
+    console.log("correct answer==="+correct);
+
 }
