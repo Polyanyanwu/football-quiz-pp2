@@ -12,7 +12,7 @@ body {
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
   color: #4c4c4c;
-  background-color: #c3c2d1;
+  background-color: #c3c3d1;
 }
 
 header {
@@ -55,22 +55,27 @@ header img {
   /* background-color: grey; */
   height: 3em;
   background-image: linear-gradient( rgba(218, 222, 224, 0.7),   rgba(24, 133, 192, 0.7));
+  /* display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; */
 }
 
-#quiz-level {
-  width: 30%;
+.quiz-level {
+  /* display:flex; */
+  width: 40%;
   margin: 0 auto;
   height: 1.8rem;
-  padding-top: 0.5rem;
+  
+  /* padding: 0.5rem 1rem 0 1rem; */
 }
 
-#quiz-level .btn {
-  cursor: pointer;
-  padding-left: 2rem;
-  box-shadow: 10px 5px 5px rgb(198, 238, 89);
-  width: 30%;
+.quiz-level .btn {
+  padding: 0.4em;
+  /* box-shadow: 10px 5px 5px rgb(198, 238, 89); */
+  width: 46%;
   font-size: 110%;
   border-radius: 10px;
+  margin-top:0.4em;
 }
 
 .btn:hover {
@@ -102,6 +107,9 @@ header img {
   text-align: center;
 }
 
+button {
+  cursor: pointer;
+}
 #detailed-instructions {
   color: khaki;
   cursor: pointer;
@@ -141,47 +149,49 @@ header img {
 }
 
 
-#answer-total {
+#command-btn {
   margin: 0 auto;
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
 }
-#answer-total div {
+#command-btn div {
   display:flex;
-  width: 50%;
-  padding: 0 5%;
-  /* text-align: right; */
-
-text-align: center;
+  width: 31%;
+  padding: 0.2em;
+  text-align: center;
   font-size: 100%;
   border: 0.4em solid  rgb(202, 110, 182);;
   border-radius: 10px;
-  width: 15em;
-  height: 3em;
+  /* height: 3em; */
   letter-spacing: 1px;
   text-align: center;
-  line-height: 2em;
   position: relative;
   margin: 0.2em;
+  cursor: pointer;
 }
-#answer-total  button {
+#command-btn  button {
     background-color:  #c3c2d1;
-  /* font-size: 100%;
-  border: 0.4em solid yellowgreen;
-  border-radius: 10px;
-  width: 15em;
-  height: 3em;
-  letter-spacing: 1px;
-  text-align: center;
-  line-height: 2em;
-  position: relative;
-  margin: 0.5em; */
 }
-#answer-total  button:hover, #answer-total div:hover {
+#command-btn  button:hover, #command-btn div:hover {
   background-color:  yellowgreen;
   color: white;
+}
+
+#answer-box {
+  background-color: whitesmoke;
+  display:inline-block;
+  width: 100%;
+  border-radius: 10px;
+}
+#correct-answer-container {
+  float: left;
+  margin: 0.5rem;
+}
+#wrong-answer-container {
+  float: right;
+  margin: 0.5rem;
 }
 #correct-answer {
   color: green;
@@ -207,7 +217,7 @@ color: red;
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 55; /* Sit on top */
+  z-index: 5; /* Sit on top */
   /* left: 0; */
   margin: 0 auto;
   top: 0;
@@ -229,20 +239,20 @@ color: red;
   width: 40%;
   height: 40%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  /* -webkit-animation-name: topAnimation;
-  -webkit-animation-duration: 0.4s; */
-  animation-name: animatetop;
-  animation-duration: 0.4s
+  -webkit-animation-name: topAnimation;
+  -webkit-animation-duration: 0.6s;
+  animation-name: topAnimation;
+  animation-duration: 0.6s
 }
 
 /* Add Animation */
 @-webkit-keyframes topAnimation {
-  from {top:-300px; opacity:0} 
+  from {top:-400px; opacity:0} 
   to {top:0; opacity:1}
 }
 
 @keyframes topAnimation {
-  from {top:-300px; opacity:0}
+  from {top:-400px; opacity:0}
   to {top:0; opacity:1}
 }
 
@@ -263,8 +273,6 @@ input[type=text] {
   color: white;
   padding: 14px 20px;
   margin: 0 10%;
-  /* border: none; */
-  cursor: pointer;
   width: 80%;
   border-radius: 10px;
 }
@@ -284,7 +292,7 @@ input[type=text] {
 .close-btn:focus {
   color: #000;
   text-decoration: none;
-  cursor: pointer;
+   /* cursor: pointer; */
 }
 
 .username-header {

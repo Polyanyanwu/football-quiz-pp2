@@ -24,10 +24,13 @@
             Welcome: <span data-username="?" id="player">?</span>
         </div>
         <div id="quiz-level-container">
-            <div id="quiz-level">
-                <button data-type="amature" class="btn btn-amature">Amature</button>
+            <div class="quiz-level">
+                <button data-type="amateur" class="btn btn-amateur">Amateur</button>
                 <button data-type="professional" class="btn btn-prof">Professional</button>
             </div>
+            <!-- <div class="quiz-level">
+                
+            </div> -->
         </div>
     </header>
     <main>
@@ -63,15 +66,16 @@
                 <button>View Explanation of Answer</button>
                 <button>Restart</button>
             </div> -->
-            <div id="answer-total">
+            <div id="command-btn">
+                <div id="submit-answer-btn">Submit Answer</div>
                 <div id="explanation-btn">View Explanation of Answer</div>
-                <!-- <div id="explanation-btn" class="btn"> <button>View Explanation of Answer</button></div> -->
                 <div id="restart-btn">Restart the Quiz</div>
-                <div><span id="correct-answer-icon"><i class="far fa-check-circle"></i></span></span> Correct Answers:
+            </div>
+            <div id="answer-box">
+                <div id="correct-answer-container"><span id="correct-answer-icon"><i class="far fa-check-circle"></i></span></span> Correct Answers:
                     <span id="corret-answer">5</span></div>
-                <div><span id="wrong-answer-icon"><i class="far fa-times-circle"></i></span> Wrong Answers: <span
+                <div id="wrong-answer-container"><span id="wrong-answer-icon"><i class="far fa-times-circle"></i></span> Wrong Answers: <span
                         id="wrong-answer">2</span></div>
-
             </div>
         </section>
     </main>
