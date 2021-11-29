@@ -1,10 +1,17 @@
 import { MIN_USER_LENGTH as userLength } from "./config.js";
+import  {TOTAL_PROF_QUUESTIONS as totProfQuestions} from "./config.js";
+import  {TOTAL_AMATEUR_QUESTIONS as totAmateurQuestions} from "./config.js";
+import  {TOTAL_ANSWER_OPTIONS as totOptions} from "./config.js";
+
+import { professionalData } from "./model.js";
+import { amateurData } from "./model.js";
 
 // Define the variables for DOM elements
 const quizLevel = document.querySelectorAll(".quiz-btn");
 
 const displayUsernameModal = function () {
-    console.log("entered display user modal function")
+    //display the initial question from the amateur level
+    displayQuestion("amateur",1);
     const player = document.getElementById("player");
     const modal = document.getElementById("userNameModal");
     if (player.textContent === '?') {
@@ -49,3 +56,21 @@ usernameCreateBtn.addEventListener('click', validateAndSaveUser);
     event.target.classList.add('active-quiz-level');
   };
  quizLevel.forEach(btn => btn.addEventListener('click', changeQuizLevel));
+
+ /**
+  * 
+  * @param {the level of the quiz} quizLevel 
+  * @param {the question index to display} questionId 
+  * function that takes a question and its options and displays to the DOM
+  */
+const displayQuestion = function (quizLevel, questionId){
+    //question ID is the index of the question in the array of questions
+
+    const quiz = quizLevel === "professional"?professionalData[questionId]: amateurData[questionId];
+    document.getElementById("question").textContent = quiz.question;
+    for(let i = 1; i <= totOptions; i++){
+        document.getElementById(`option${i}`).textContent = quiz[`option${i}`];
+    }
+    
+
+}
