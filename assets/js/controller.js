@@ -15,6 +15,7 @@ const restartQuiz = document.querySelector("#restart-btn");
 const nextQuiz = document.querySelector("#next-quix-btn");
 const correctAnswerEl = document.querySelector("#corret-answer");
 const wrongAnswerEl = document.querySelector("#wrong-answer");
+const answerBtnEl = document.getElementById('submit-answer-btn');
 
 
 
@@ -118,6 +119,7 @@ const getQuestionToDisplay = function (){
 const getAndDisplayQuiz = function (){
     const quizItem = getQuestionToDisplay();
     displayQuestion(quizItem[0],quizItem[1]);
+    answerBtnEl.style.pointerEvents = 'auto';
 }
 
 const removeSelectionFromOptions = function (){
@@ -134,8 +136,6 @@ const removeAnswerMarks = function (){
         document.getElementById(`option${i}-sign-ok`).classList.remove('answer-sign-x');
         document.getElementById(`option${i}-sign-ok`).classList.add('answer-sign-none');
     }
-
-  //  answerSignBox.forEach(option => option.textContent="");
 }
 
 const markAllOptionsX = function (){
@@ -168,11 +168,8 @@ const getClickedOption = function (){
     }else{
         const questionId =  Number(question.dataset.quizId);
         const quizLevel = question.dataset.quizLevel;
-        // console.log(questionId,quizLevel );
-        // console.log (amateurData[questionId].answer + " answer ===" + answer);
         let correctAnswer = false;
         if(quizLevel === "amateur"){
-            console.log("at amature");
             correctAnswer = amateurData[questionId].answer === answer;
         }else{
             correctAnswer = professionalData[questionId].answer === answer;
@@ -204,15 +201,13 @@ const getClickedOption = function (){
 }
 
 const checkAnswer = function (){
-    const answerBtn = document.getElementById('submit-answer-btn');
-    answerBtn.addEventListener('click',getClickedOption);
+    answerBtnEl.addEventListener('click',getClickedOption);
 }
 
 const markAnswer = function (){
     const questionId =  question.dataset.quizId;
     const quizLevel = question.dataset.quizLevel;
     const correct = quizLevel === "professional"? professionalData[questionId].answer === getClickedOption(): amateurData[questionId].answer === getClickedOption();
-    console.log("correct answer==="+correct);
 
 }
 
@@ -241,4 +236,5 @@ const totalAnswers = function (correct){
         if(isNaN(ans)) ans = 0;
         wrongAnswerEl.textContent = ++ans;
     }
+    answerBtnEl.style.pointerEvents = 'none';
 }
