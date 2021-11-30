@@ -155,7 +155,7 @@ button {
 
 .answer-sign-selected {
   float: right;
-  color: green;
+  color:white;
   display:block;
 }
 
@@ -181,7 +181,7 @@ button {
 
 #command-btn div {
   display: flex;
-  width: 30%;
+  width: 22%;
   padding: 0.2em;
   text-align: center;
   font-size: 100%;
@@ -238,7 +238,7 @@ button {
 }
 
 #correct-answer-icon {
-  color: green;
+  color:white;
   font-size: 150%;
   padding-right: 0.2em;
 }

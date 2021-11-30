@@ -11,6 +11,8 @@ const quizLevel = document.querySelectorAll(".quiz-btn");
 const answerOptionsBox = document.querySelectorAll(".option");
 const question = document.getElementById("question");
 const answerSignBox = document.querySelectorAll(".answer-sign");
+const restartQuiz = document.querySelector("#restart-btn");
+const nextQuiz = document.querySelector("#next-quix-btn");
 
 
 const displayUsernameModal = function () {
@@ -18,6 +20,7 @@ const displayUsernameModal = function () {
     getAndDisplayQuiz();
     answerOptionListener();
     checkAnswer();
+    getNextQuestion();
     // const quizItem = getQuestionToDisplay();
     // console.log(quizItem);
     // displayQuestion(quizItem[0],quizItem[1]);
@@ -85,6 +88,7 @@ const displayQuestion = function (quizLevel, questionId){
     question.dataset.quizLevel = quizLevel;
     removeSelectionFromOptions();
     removeAnswerMarks();
+    updateMasterDatabase(quizLevel, questionId);
     
 }
 
@@ -207,4 +211,14 @@ const markAnswer = function (){
     const correct = quizLevel === "professional"? professionalData[questionId].answer === getClickedOption(): amateurData[questionId].answer === getClickedOption();
     console.log("correct answer==="+correct);
 
+}
+
+const updateMasterDatabase = function(quizLevel, id){
+    quizLevel === "professional"? professionalData[id].used= true: amateurData[id].used = true;
+}
+
+const getNextQuestion = function(){
+    nextQuiz.addEventListener('click', function(){
+        getAndDisplayQuiz();
+    })
 }
