@@ -3,6 +3,8 @@ import  {TOTAL_PROF_QUUESTIONS as totProfQuestions} from "./config.js";
 import  {TOTAL_AMATEUR_QUESTIONS as totAmateurQuestions} from "./config.js";
 import  {TOTAL_ANSWER_OPTIONS as totOptions} from "./config.js";
 import  {QUIZ_TIMEOUT_SEC as quizTimeout} from "./config.js";
+import  {PLAY_INSTRUCTION as playInstruction} from "./config.js";
+
 
 
 import { professionalData } from "./model.js";
@@ -24,8 +26,8 @@ const explanationBtnEl = document.getElementById('explanation-btn');
 const explanationQuestionEl = document.getElementById('explanation-question');
 const answerExplanationEl = document.getElementById('answer-explanation');
 const closeExplainBtnEl = document.querySelectorAll(".close-explanation-button");
-
-
+const detailedInstructionEl = document.querySelector("#detailed-instructions");
+const explanationContentEl = document.querySelector("#explanation-content");
 
 
 const displayUsernameModal = function () {
@@ -284,6 +286,14 @@ const startQuizTimer = function () {
     const timer = setInterval(tick, 1000);
     return timer;
   };
+/**
+ * Explanation of answers event listener
+ */
+ const closeExplanationModal = function(){
+    closeExplainBtnEl.forEach(btn => btn.addEventListener('click', function(){
+        explanationModalEl.style.display = 'none';
+      }))
+}
 
   explanationBtnEl.addEventListener('click', function(){
     explanationModalEl.style.display = 'block';
@@ -293,11 +303,15 @@ const startQuizTimer = function () {
     explanationQuestionEl.textContent = quizLevel==="professional"? professionalData[questionId].question: amateurData[questionId].question;
     answerExplanationEl.textContent = quizLevel==="professional"? professionalData[questionId].explan: amateurData[questionId].explan;
   })
+  closeExplanationModal();
+;
 
-  closeExplainBtnEl.forEach(btn => btn.addEventListener('click', function(){
-    explanationModalEl.style.display = 'none';
-  }));
 
-//   closeExplainBtnEl.addEventListener('click',function(){
-//     explanationModalEl.style.display = 'none';
-//   })
+
+detailedInstructionEl.addEventListener('click',function(){
+    explanationModalEl.style.display = 'block';
+    explanationQuestionEl.textContent = "Detailed Instructions";
+    answerExplanationEl.textContent  = playInstruction; 
+    closeExplanationModal();
+    explanationContentEl.style.width = '60%';}
+);
