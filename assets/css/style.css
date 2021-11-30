@@ -75,7 +75,7 @@ header img {
   margin-top: 0.4em;
 }
 
-.quiz-level .quiz-btn:hover, .option:hover, .option-selected {
+.quiz-level .quiz-btn:hover, .option:hover, .option-selected, #detailed-instructions:hover {
   background-color: #07412b;;
   /* color:rgba(255, 255, 255, 0.808); */
   color:rgb(255, 255, 255);
@@ -124,10 +124,10 @@ button {
 .line {
   border-top: 1px solid rgb(202, 110, 182);
 }
-#detailed-instructions:hover {
+/* #detailed-instructions:hover {
   color: khaki;
   background-color: #000;
-}
+} */
 
 #time-container,
 #answer-area {

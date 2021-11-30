@@ -199,6 +199,7 @@ const getClickedOption = function (){
             document.getElementById(`${optionSelected.dataset.option}-sign-ok`).classList.add('answer-sign-selected');
             document.getElementById(`${optionSelected.dataset.option}-sign-no`).classList.remove('answer-sign-x');
             totalAnswers(true);
+            playSound(true);
         }else{
             markAllOptionsX();
             if(quizLevel === "professional"){
@@ -211,7 +212,7 @@ const getClickedOption = function (){
                 document.getElementById(`${amateurData[questionId].answer}-sign-no`).classList.remove('answer-sign-x');
             }
             totalAnswers(false);
-            
+            playSound(false);
         }
     }
 }
@@ -307,11 +308,17 @@ const startQuizTimer = function () {
 ;
 
 
-
 detailedInstructionEl.addEventListener('click',function(){
     explanationModalEl.style.display = 'block';
     explanationQuestionEl.textContent = "Detailed Instructions";
     answerExplanationEl.textContent  = playInstruction; 
     closeExplanationModal();
-    explanationContentEl.style.width = '60%';}
+    explanationContentEl.style.width = '60%';
+    explanationContentEl.style.height = '50%'
+}
 );
+
+const playSound = function(correctAnswer){
+    let audio = correctAnswer? new Audio('../assets/media/SFXProducer.mp3'): new Audio('../assets/media/SFXProducerError.mp3');
+    audio.play();
+}
