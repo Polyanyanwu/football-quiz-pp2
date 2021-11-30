@@ -332,8 +332,12 @@ input[type=text] {
   color: white;
   padding: 14px 20px;
   margin: 0 10%;
-  width: 80%;
+  width: 100%;
   border-radius: 10px;
+  bottom: 0.5em;
+  position: absolute;
+  left: -10%;
+  font-size: 120%;
 }
 
 .username-container>button:hover {
@@ -356,13 +360,16 @@ input[type=text] {
 
 .username-header {
   padding: 0.5em 1em;
-  background-image: linear-gradient(rgba(218, 222, 224, 0.7), rgba(24, 133, 192, 0.7));
+  /* background-image: linear-gradient(rgba(218, 222, 224, 0.7), rgba(24, 133, 192, 0.7)); */
+  background-color:  #04AA6D;
   /* background-color: #5cb85c; */
-  color: green;
+  color:white;
 }
 
 .username-container {
   padding: 0.5rem 1rem;
+  line-height: 1.5rem;
+  font-size: 120%;
 }
 
 /* .modal-footer {

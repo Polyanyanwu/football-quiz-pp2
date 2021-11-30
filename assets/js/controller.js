@@ -19,6 +19,11 @@ const correctAnswerEl = document.querySelector("#corret-answer");
 const wrongAnswerEl = document.querySelector("#wrong-answer");
 const answerBtnEl = document.getElementById('submit-answer-btn');
 const timerEl = document.getElementById('remaining-time');
+const explanationModalEl = document.getElementById("explanation-modal");
+const explanationBtnEl = document.getElementById('explanation-btn');
+const explanationQuestionEl = document.getElementById('explanation-question');
+const answerExplanationEl = document.getElementById('answer-explanation');
+const closeExplainBtnEl = document.querySelectorAll(".close-explanation-button");
 
 
 
@@ -279,3 +284,20 @@ const startQuizTimer = function () {
     const timer = setInterval(tick, 1000);
     return timer;
   };
+
+  explanationBtnEl.addEventListener('click', function(){
+    explanationModalEl.style.display = 'block';
+    // display the question
+    const questionId =  Number(question.dataset.quizId);
+    const quizLevel = question.dataset.quizLevel;
+    explanationQuestionEl.textContent = quizLevel==="professional"? professionalData[questionId].question: amateurData[questionId].question;
+    answerExplanationEl.textContent = quizLevel==="professional"? professionalData[questionId].explan: amateurData[questionId].explan;
+  })
+
+  closeExplainBtnEl.forEach(btn => btn.addEventListener('click', function(){
+    explanationModalEl.style.display = 'none';
+  }));
+
+//   closeExplainBtnEl.addEventListener('click',function(){
+//     explanationModalEl.style.display = 'none';
+//   })
