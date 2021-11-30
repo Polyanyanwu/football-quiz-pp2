@@ -1,14 +1,30 @@
-import { MIN_USER_LENGTH as userLength } from "./config.js";
-import  {TOTAL_PROF_QUUESTIONS as totProfQuestions} from "./config.js";
-import  {TOTAL_AMATEUR_QUESTIONS as totAmateurQuestions} from "./config.js";
-import  {TOTAL_ANSWER_OPTIONS as totOptions} from "./config.js";
-import  {QUIZ_TIMEOUT_SEC as quizTimeout} from "./config.js";
-import  {PLAY_INSTRUCTION as playInstruction} from "./config.js";
+import {
+    MIN_USER_LENGTH as userLength
+} from "./config.js";
+import {
+    TOTAL_PROF_QUUESTIONS as totProfQuestions
+} from "./config.js";
+import {
+    TOTAL_AMATEUR_QUESTIONS as totAmateurQuestions
+} from "./config.js";
+import {
+    TOTAL_ANSWER_OPTIONS as totOptions
+} from "./config.js";
+import {
+    QUIZ_TIMEOUT_SEC as quizTimeout
+} from "./config.js";
+import {
+    PLAY_INSTRUCTION as playInstruction
+} from "./config.js";
 
 
 
-import { professionalData } from "./model.js";
-import { amateurData } from "./model.js";
+import {
+    professionalData
+} from "./model.js";
+import {
+    amateurData
+} from "./model.js";
 
 // Define the variables for DOM elements
 const quizLevel = document.querySelectorAll(".quiz-btn");
@@ -79,68 +95,69 @@ usernameCreateBtn.addEventListener('click', validateAndSaveUser);
  * Event listener for selection of the quiz level. Loop through the buttons for the quiz level, remove the class for the active button
  * on all buttons and insert the class on the clicked quiz level
  */
- const changeQuizLevel = function (event) {
+const changeQuizLevel = function (event) {
     //  arrow function ideas and forEach obtained from my JavaScript lessons at Udemy.com
     quizLevel.forEach(btn => btn.classList.remove('active-quiz-level'));
     event.target.classList.add('active-quiz-level');
     getAndDisplayQuiz();
-  };
- quizLevel.forEach(btn => btn.addEventListener('click', changeQuizLevel));
+};
+quizLevel.forEach(btn => btn.addEventListener('click', changeQuizLevel));
 
- /**
-  * 
-  * @param {the level of the quiz} quizLevel 
-  * @param {the question index to display} questionId 
-  * function that takes a question and its options and displays to the DOM
-  */
-const displayQuestion = function (quizLevel, questionId){
+/**
+ * 
+ * @param {the level of the quiz} quizLevel 
+ * @param {the question index to display} questionId 
+ * function that takes a question and its options and displays to the DOM
+ */
+const displayQuestion = function (quizLevel, questionId) {
     //question ID is the index of the question in the array of questions
 
-    const quiz = quizLevel === "professional"?professionalData[questionId]: amateurData[questionId];
+    const quiz = quizLevel === "professional" ? professionalData[questionId] : amateurData[questionId];
     question.textContent = quiz.question;
-    for(let i = 1; i <= totOptions; i++){
+    for (let i = 1; i <= totOptions; i++) {
         document.getElementById(`option${i}`).textContent = quiz[`option${i}`];
     }
     question.dataset.quizId = questionId;
     question.dataset.quizLevel = quizLevel;
     removeSelectionFromOptions();
     removeAnswerMarks();
-    updateMasterDatabase(quizLevel, questionId);
-    
+    // updateMasterDatabase(quizLevel, questionId);
+    console.log(amateurData);
+
 }
 
 /**
  * Function checks which level the player is engaged in, picks a random question among the ones that have used property false
  * function returns the id of the question and the quiz level
  */
-const getQuestionToDisplay = function (){
+const getQuestionToDisplay = function () {
     // check the quiz level (that is which of the quiz level has the active-quiz-level class set)
     let levelSelected;
-    for(let quizlevel of quizLevel ) {
-        if(quizlevel.classList.contains('active-quiz-level')){
+    for (let quizlevel of quizLevel) {
+        if (quizlevel.classList.contains('active-quiz-level')) {
             levelSelected = quizlevel.dataset.type;
         }
     }
-    const unusedQuiz = levelSelected === "professional"? professionalData.filter(data => !data.used): amateurData.filter(data => !data.used);
-    const quizId = Math.floor(Math.random() * unusedQuiz.length) ;
+    const unusedQuiz = levelSelected === "professional" ? professionalData.filter(data => !data.used) : amateurData.filter(data => !data.used);
+    const quizId = Math.floor(Math.random() * unusedQuiz.length);
     return [levelSelected, unusedQuiz[quizId].id];
 }
 
 /**
  * A function to get and display a quiz item
  */
-const getAndDisplayQuiz = function (){
+const getAndDisplayQuiz = function () {
     const quizItem = getQuestionToDisplay();
-    displayQuestion(quizItem[0],quizItem[1]);
+    displayQuestion(quizItem[0], quizItem[1]);
     // enable submit answer button after loading new question
     answerBtnEl.style.pointerEvents = 'auto';
 }
 
-const removeSelectionFromOptions = function (){
+const removeSelectionFromOptions = function () {
     answerOptionsBox.forEach(option => option.classList.remove('option-selected'));
 }
-const removeAnswerMarks = function (){  
-    for(let i=1; i<= totOptions; i++){
+const removeAnswerMarks = function () {
+    for (let i = 1; i <= totOptions; i++) {
 
         document.getElementById(`option${i}-sign-no`).classList.remove('answer-sign-selected');
         document.getElementById(`option${i}-sign-no`).classList.remove('answer-sign-x');
@@ -152,46 +169,46 @@ const removeAnswerMarks = function (){
     }
 }
 
-const markAllOptionsX = function (){
-    for(let i=1; i<= totOptions; i++){
+const markAllOptionsX = function () {
+    for (let i = 1; i <= totOptions; i++) {
         document.getElementById(`option${i}-sign-no`).classList.add('answer-sign-x');
     }
 }
-const answerOptionListener = function (){
-    answerOptionsBox.forEach(option => option.addEventListener('click', function(event){
+const answerOptionListener = function () {
+    answerOptionsBox.forEach(option => option.addEventListener('click', function (event) {
         removeSelectionFromOptions();
         // if user clicks the span, highlight the parent div instaed of only the span by adding the class option-selected
-        event.target.localName==="span"?event.target.parentNode.classList.add('option-selected'): event.target.classList.add('option-selected');
+        event.target.localName === "span" ? event.target.parentNode.classList.add('option-selected') : event.target.classList.add('option-selected');
     }));
 }
 
-const getClickedOption = function (){
+const getClickedOption = function () {
     let optionClicked = false;
     let answer = "";
     let optionSelected;
-    for(let option of answerOptionsBox) {   
+    for (let option of answerOptionsBox) {
         optionClicked = option.classList.contains('option-selected');
-        if(optionClicked){
-           answer = option.dataset.option; 
-           optionSelected = option;
-           break;
+        if (optionClicked) {
+            answer = option.dataset.option;
+            optionSelected = option;
+            break;
         }
     };
-    if(!optionClicked){
+    if (!optionClicked) {
         alert('Please chose an answer before clicking submit answer');
-    }else{
-        const questionId =  Number(question.dataset.quizId);
+    } else {
+        const questionId = Number(question.dataset.quizId);
         const quizLevel = question.dataset.quizLevel;
         let correctAnswer = false;
-        if(quizLevel === "amateur"){
+        if (quizLevel === "amateur") {
             correctAnswer = amateurData[questionId].answer === answer;
-        }else{
+        } else {
             correctAnswer = professionalData[questionId].answer === answer;
         }
-    //     correctAnswer = quizLevel === "professional"? professionalData[questionId].answer === answer: amateurData[questionId].answer === answer;
-        console.log("correct answer==="+ correctAnswer);
+        //     correctAnswer = quizLevel === "professional"? professionalData[questionId].answer === answer: amateurData[questionId].answer === answer;
+        console.log("correct answer===" + correctAnswer);
         removeAnswerMarks();
-        if(correctAnswer){
+        if (correctAnswer) {
             // correct answer
             console.log(optionSelected.dataset.option);
             // mark all as x 
@@ -200,13 +217,13 @@ const getClickedOption = function (){
             document.getElementById(`${optionSelected.dataset.option}-sign-no`).classList.remove('answer-sign-x');
             totalAnswers(true);
             playSound(true);
-        }else{
+        } else {
             markAllOptionsX();
-            if(quizLevel === "professional"){
+            if (quizLevel === "professional") {
                 document.getElementById(`${professionalData[questionId].answer}-sign-ok`).classList.add('answer-sign-selected');
                 document.getElementById(`${professionalData[questionId].answer}-sign-ok`).style.color = '#008000';
                 document.getElementById(`${professionalData[questionId].answer}-sign-no`).classList.remove('answer-sign-x');
-            }else{
+            } else {
                 document.getElementById(`${amateurData[questionId].answer}-sign-ok`).classList.add('answer-sign-selected');
                 document.getElementById(`${amateurData[questionId].answer}-sign-ok`).style.color = '#008000';
                 document.getElementById(`${amateurData[questionId].answer}-sign-no`).classList.remove('answer-sign-x');
@@ -214,26 +231,27 @@ const getClickedOption = function (){
             totalAnswers(false);
             playSound(false);
         }
+        updateMasterDatabase(quizLevel, questionId);
     }
 }
 
-const checkAnswer = function (){
-    answerBtnEl.addEventListener('click',getClickedOption);
+const checkAnswer = function () {
+    answerBtnEl.addEventListener('click', getClickedOption);
 }
 
-const markAnswer = function (){
-    const questionId =  question.dataset.quizId;
+const markAnswer = function () {
+    const questionId = question.dataset.quizId;
     const quizLevel = question.dataset.quizLevel;
-    const correct = quizLevel === "professional"? professionalData[questionId].answer === getClickedOption(): amateurData[questionId].answer === getClickedOption();
+    const correct = quizLevel === "professional" ? professionalData[questionId].answer === getClickedOption() : amateurData[questionId].answer === getClickedOption();
 
 }
 
-const updateMasterDatabase = function(quizLevel, id){
-    quizLevel === "professional"? professionalData[id].used= true: amateurData[id].used = true;
+const updateMasterDatabase = function (quizLevel, id) {
+    quizLevel === "professional" ? professionalData[id].used = true : amateurData[id].used = true;
 }
 
-const getNextQuestion = function(){
-    nextQuiz.addEventListener('click', function(){
+const getNextQuestion = function () {
+    nextQuiz.addEventListener('click', function () {
         getAndDisplayQuiz();
     })
 }
@@ -241,16 +259,16 @@ const getNextQuestion = function(){
  * Function to tally the correct and wrong answers and display to the user
  * @param {Boolean value if true then correct answer tally else wrong answer tally} correct 
  */
-const totalAnswers = function (correct){
-    if(correct){
+const totalAnswers = function (correct) {
+    if (correct) {
         let ans = Number(correctAnswerEl.textContent);
         console.log(ans);
-        if(isNaN(ans)) ans = 0;
+        if (isNaN(ans)) ans = 0;
         correctAnswerEl.textContent = ++ans;
-    }else{
+    } else {
         let ans = Number(wrongAnswerEl.textContent);
         console.log(ans);
-        if(isNaN(ans)) ans = 0;
+        if (isNaN(ans)) ans = 0;
         wrongAnswerEl.textContent = ++ans;
     }
     // disable answer button to prevent submitting more than once
@@ -263,62 +281,84 @@ const totalAnswers = function (correct){
  */
 const startQuizTimer = function () {
     const tick = function () {
-      const min = String(Math.trunc(time / 60)).padStart(2, 0);
-      const sec = String(time % 60).padStart(2, 0);
-  
-      // In each call, print the remaining time to UI
-      timerEl.textContent = `${min}:${sec}`;
-  
-      // When 0 seconds, stop timer and display performance
-      if (time === 0) {
-          alert("time up");
-          clearInterval(timer);
-        // labelWelcome.textContent = 'Log in to get started';
-        // containerApp.style.opacity = 0;
-      }
-      // Decrease 1s
-      time--;
+        const min = String(Math.trunc(time / 60)).padStart(2, 0);
+        const sec = String(time % 60).padStart(2, 0);
+
+        // In each call, print the remaining time to UI
+        timerEl.textContent = `${min}:${sec}`;
+
+        // When 0 seconds, stop timer and display performance
+        if (time === 0) {
+            alert("time up");
+            clearInterval(timer);
+            // labelWelcome.textContent = 'Log in to get started';
+            // containerApp.style.opacity = 0;
+        }
+        // Decrease 1s
+        time--;
     };
-  
+
     // set the total time read from the config file 
     let time = quizTimeout;
     // Call the timer every second
     tick();
     const timer = setInterval(tick, 1000);
     return timer;
-  };
+};
 /**
  * Explanation of answers event listener
  */
- const closeExplanationModal = function(){
-    closeExplainBtnEl.forEach(btn => btn.addEventListener('click', function(){
+const closeExplanationModal = function () {
+    closeExplainBtnEl.forEach(btn => btn.addEventListener('click', function () {
         explanationModalEl.style.display = 'none';
-      }))
+    }))
 }
 
-  explanationBtnEl.addEventListener('click', function(){
+explanationBtnEl.addEventListener('click', function () {
     explanationModalEl.style.display = 'block';
     // display the question
-    const questionId =  Number(question.dataset.quizId);
+    const questionId = Number(question.dataset.quizId);
     const quizLevel = question.dataset.quizLevel;
-    explanationQuestionEl.textContent = quizLevel==="professional"? professionalData[questionId].question: amateurData[questionId].question;
-    answerExplanationEl.textContent = quizLevel==="professional"? professionalData[questionId].explan: amateurData[questionId].explan;
-  })
-  closeExplanationModal();
-;
+    explanationQuestionEl.textContent = quizLevel === "professional" ? professionalData[questionId].question : amateurData[questionId].question;
+    answerExplanationEl.textContent = quizLevel === "professional" ? professionalData[questionId].explan : amateurData[questionId].explan;
+})
+closeExplanationModal();;
 
 
-detailedInstructionEl.addEventListener('click',function(){
+detailedInstructionEl.addEventListener('click', function () {
     explanationModalEl.style.display = 'block';
     explanationQuestionEl.textContent = "Detailed Instructions";
-    answerExplanationEl.textContent  = playInstruction; 
+    answerExplanationEl.textContent = playInstruction;
     closeExplanationModal();
     explanationContentEl.style.width = '60%';
     explanationContentEl.style.height = '50%'
-}
-);
+});
 
-const playSound = function(correctAnswer){
-    let audio = correctAnswer? new Audio('../assets/media/SFXProducer.mp3'): new Audio('../assets/media/SFXProducerError.mp3');
+const playSound = function (correctAnswer) {
+    let audio = correctAnswer ? new Audio('../assets/media/SFXProducer.mp3') : new Audio('../assets/media/SFXProducerError.mp3');
     audio.play();
 }
+
+/**
+ * Event function for restarting the quiz. Clears all questions ready to be selected by marking used property false;
+ * Restarts the totalling of correct and wrong answer
+ * displays a new question
+ * restarts the quiz timer
+ */
+restartQuiz.addEventListener('click', function () {
+    console.log("before restart", amateurData);
+    if (confirm("Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?")) {
+        professionalData.filter(data => data.used).forEach(el => el.used = false);
+        amateurData.filter(data => data.used).forEach(el => el.used = false);
+
+        //restart numbering
+        correctAnswerEl.textContent = 0;
+        wrongAnswerEl.textContent = 0;
+        // display new question
+        getAndDisplayQuiz();
+         // restart timer
+        startQuizTimer();
+        alert('Quiz has restarted');
+    };
+
+})

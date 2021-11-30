@@ -114,7 +114,7 @@ export const professionalData = [{
 
 export const amateurData = [{
         id: 0,
-        used: true,
+        used: false,
         question: "In which country was football invented?",
         option1: "England",
         option2: "Brazil",

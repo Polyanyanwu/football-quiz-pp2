@@ -14,14 +14,16 @@
 <body>
     <!-- heder has the title and soccer image -->
     <header>
-        <div id="title">
-            <h1>The Football Guru</h1>
-        </div>
-        <div id="title-image">
-            <img src="assets/images/football.webp" alt="Football image">
-        </div>
-        <div id="player-container">
-            Welcome: <span data-username="?" id="player">?</span>
+        <div id= "logo">
+            <div id="title">
+                <h1>The Football Guru</h1>
+            </div>
+            <div id="title-image">
+                <img src="assets/images/football.webp" alt="Football image">
+            </div>
+            <div id="player-container">
+                Welcome: <span data-username="?" id="player">?</span>
+            </div>
         </div>
         <div id="quiz-level-container">
             <div class="quiz-level">
@@ -76,7 +78,7 @@
                 <div id="next-quix-btn"><i class="fas fa-arrow-right"></i>Next Question </div>
                 <div id="explanation-btn"><i class="fas fa-binoculars"></i>View Explanation of Answer</div>
                 <div id="restart-btn"><i class="fas fa-power-off"></i>Restart the Quiz</div>
-                
+
             </div>
             <div id="answer-box">
                 <div id="correct-answer-container"><span id="correct-answer-icon"><i
@@ -111,11 +113,12 @@
             <!-- Modal content for View Explanation-->
             <div class="username-modal-content" id="explanation-content">
                 <div class="username-header">
-                    <span class="close-btn username-close close-explanation-button"><i class="far fa-times-circle"></i></span>
+                    <span class="close-btn username-close close-explanation-button"><i
+                            class="far fa-times-circle"></i></span>
                     <h2><span id="explanation-question"></span></h2>
                 </div>
                 <div class="username-container">
-                    <p id ="answer-explanation"></p>
+                    <p id="answer-explanation"></p>
                     <button type="submit" class="close-explanation-button">Close</button>
                 </div>
                 <!-- <div class="modal-footer">
