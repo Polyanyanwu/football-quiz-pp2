@@ -13,6 +13,9 @@ const question = document.getElementById("question");
 const answerSignBox = document.querySelectorAll(".answer-sign");
 const restartQuiz = document.querySelector("#restart-btn");
 const nextQuiz = document.querySelector("#next-quix-btn");
+const correctAnswerEl = document.querySelector("#corret-answer");
+const wrongAnswerEl = document.querySelector("#wrong-answer");
+
 
 
 const displayUsernameModal = function () {
@@ -184,7 +187,7 @@ const getClickedOption = function (){
             markAllOptionsX();
             document.getElementById(`${optionSelected.dataset.option}-sign-ok`).classList.add('answer-sign-selected');
             document.getElementById(`${optionSelected.dataset.option}-sign-no`).classList.remove('answer-sign-x');
-
+            totalAnswers(true);
         }else{
             markAllOptionsX();
             if(quizLevel === "professional"){
@@ -194,7 +197,7 @@ const getClickedOption = function (){
                 document.getElementById(`${amateurData[questionId].answer}-sign-ok`).classList.add('answer-sign-selected');
                 document.getElementById(`${amateurData[questionId].answer}-sign-no`).classList.remove('answer-sign-x');
             }
-
+            totalAnswers(false);
             
         }
     }
@@ -221,4 +224,21 @@ const getNextQuestion = function(){
     nextQuiz.addEventListener('click', function(){
         getAndDisplayQuiz();
     })
+}
+/**
+ * Function to tally the correct and wrong answers and display to the user
+ * @param {Boolean value if true then correct answer tally else wrong answer tally} correct 
+ */
+const totalAnswers = function (correct){
+    if(correct){
+        let ans = Number(correctAnswerEl.textContent);
+        console.log(ans);
+        if(isNaN(ans)) ans = 0;
+        correctAnswerEl.textContent = ++ans;
+    }else{
+        let ans = Number(wrongAnswerEl.textContent);
+        console.log(ans);
+        if(isNaN(ans)) ans = 0;
+        wrongAnswerEl.textContent = ++ans;
+    }
 }
