@@ -2,6 +2,8 @@ import { MIN_USER_LENGTH as userLength } from "./config.js";
 import  {TOTAL_PROF_QUUESTIONS as totProfQuestions} from "./config.js";
 import  {TOTAL_AMATEUR_QUESTIONS as totAmateurQuestions} from "./config.js";
 import  {TOTAL_ANSWER_OPTIONS as totOptions} from "./config.js";
+import  {QUIZ_TIMEOUT_SEC as quizTimeout} from "./config.js";
+
 
 import { professionalData } from "./model.js";
 import { amateurData } from "./model.js";
@@ -16,6 +18,8 @@ const nextQuiz = document.querySelector("#next-quix-btn");
 const correctAnswerEl = document.querySelector("#corret-answer");
 const wrongAnswerEl = document.querySelector("#wrong-answer");
 const answerBtnEl = document.getElementById('submit-answer-btn');
+const timerEl = document.getElementById('remaining-time');
+
 
 
 
@@ -48,12 +52,14 @@ const validateAndSaveUser = function () {
         if (confirm("Confirm exiting without a username, in this case your name will be 'Guest'")) {
             player.textContent = "Guest";
             modal.style.display = 'none';
+            startQuizTimer(); // start timing the quiz
         };
     } else if (username.length < userLength) {
         alert(`Your username must be ${userLength} characters and longer`);
     } else {
         modal.style.display = 'none';
         player.textContent = username;
+        startQuizTimer(); // start timing the quiz
     }
 }
 const usernameCloseBtn = document.querySelector(".username-close");
@@ -119,6 +125,7 @@ const getQuestionToDisplay = function (){
 const getAndDisplayQuiz = function (){
     const quizItem = getQuestionToDisplay();
     displayQuestion(quizItem[0],quizItem[1]);
+    // enable submit answer button after loading new question
     answerBtnEl.style.pointerEvents = 'auto';
 }
 
@@ -189,9 +196,11 @@ const getClickedOption = function (){
             markAllOptionsX();
             if(quizLevel === "professional"){
                 document.getElementById(`${professionalData[questionId].answer}-sign-ok`).classList.add('answer-sign-selected');
+                document.getElementById(`${professionalData[questionId].answer}-sign-ok`).style.color = '#008000';
                 document.getElementById(`${professionalData[questionId].answer}-sign-no`).classList.remove('answer-sign-x');
             }else{
                 document.getElementById(`${amateurData[questionId].answer}-sign-ok`).classList.add('answer-sign-selected');
+                document.getElementById(`${amateurData[questionId].answer}-sign-ok`).style.color = '#008000';
                 document.getElementById(`${amateurData[questionId].answer}-sign-no`).classList.remove('answer-sign-x');
             }
             totalAnswers(false);
@@ -236,5 +245,37 @@ const totalAnswers = function (correct){
         if(isNaN(ans)) ans = 0;
         wrongAnswerEl.textContent = ++ans;
     }
+    // disable answer button to prevent submitting more than once
     answerBtnEl.style.pointerEvents = 'none';
 }
+/**
+ * Function to display the time remaining for the quiz. The total seconds is read from the config.js
+ * Ideas and code snippets from Jonas Schmedtmann @ Udemy Javascript class
+ * @returns 
+ */
+const startQuizTimer = function () {
+    const tick = function () {
+      const min = String(Math.trunc(time / 60)).padStart(2, 0);
+      const sec = String(time % 60).padStart(2, 0);
+  
+      // In each call, print the remaining time to UI
+      timerEl.textContent = `${min}:${sec}`;
+  
+      // When 0 seconds, stop timer and display performance
+      if (time === 0) {
+          alert("time up");
+          clearInterval(timer);
+        // labelWelcome.textContent = 'Log in to get started';
+        // containerApp.style.opacity = 0;
+      }
+      // Decrease 1s
+      time--;
+    };
+  
+    // set the total time read from the config file 
+    let time = quizTimeout;
+    // Call the timer every second
+    tick();
+    const timer = setInterval(tick, 1000);
+    return timer;
+  };

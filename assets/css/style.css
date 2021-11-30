@@ -224,7 +224,7 @@ button {
 }
 
 #correct-answer {
-  color: green;
+  color: #008000;
 }
 
 #wrong-answer {
@@ -237,6 +237,11 @@ button {
   padding-right: 0.2em;
 }
 
+#remaining-time{
+  color: red;
+  font-size: 100%;
+  padding: 0.2em;
+}
 #correct-answer-icon {
   color:green;
   font-size: 150%;
