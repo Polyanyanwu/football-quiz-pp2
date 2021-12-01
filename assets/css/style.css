@@ -469,4 +469,11 @@ footer {
   border: 0.2em solid rgb(202, 110, 182);
   margin: 0.5% auto;
 }
+/* answer total area reduce to single column */
+#answer-box{
+  font-size: 80%;
+}
+#wrong-answer-container {
+  float: left;
+}
 }
