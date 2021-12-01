@@ -159,7 +159,11 @@ const getAndDisplayQuiz = function () {
     displayQuestion(quizItem[0], quizItem[1]);
     // enable submit answer button after loading new question
     enableAnswerOptionsAndSubmit();
-    //  answerBtnEl.style.pointerEvents = 'auto';
+    //  remove View Result from DOM until Time out
+    viewResultBtnEl.style.display="none";
+    // enable the command buttons for next question and display result
+    enableCommandBtns();
+
 }
 
 const removeSelectionFromOptions = function () {
@@ -355,6 +359,7 @@ const checkAlreadySubmitted = () => {
 const disableAnswerOptionsAndSubmit = () => {
     answerOptionsBox.forEach(option => option.style.pointerEvents = 'none');
     answerBtnEl.style.pointerEvents = 'none';
+    answerBtnEl.style.border =  '3px solid #0f0b49';
 }
 
 /**
@@ -363,6 +368,7 @@ const disableAnswerOptionsAndSubmit = () => {
 const enableAnswerOptionsAndSubmit = () => {
     answerOptionsBox.forEach(option => option.style.pointerEvents = 'auto');
     answerBtnEl.style.pointerEvents = 'auto';
+    answerBtnEl.style.border =  '0.4em solid rgb(202, 110, 182)';
 }
 
 explanationBtnEl.addEventListener('click', function () {
@@ -449,8 +455,39 @@ const displayQuizResult = function () {
     closeExplanationModal();
     explanationContentEl.style.width = '60%';
     explanationContentEl.style.height = '50%'
+    // display the button to enable the user to display the result again
+    viewResultBtnEl.style.display="inline";
+    //disable next question and view answer buttons
+    disablebCommandBtns();
+    disableAnswerOptionsAndSubmit();
 }
 
 viewResultBtnEl.addEventListener('click', () => {
     displayQuizResult();
 })
+
+/**
+ * Disable all buttons after displaying result except the explanation, restart quiz and view result button
+ */
+const disablebCommandBtns = () => {
+    nextQuiz.style.pointerEvents = 'none';
+    nextQuiz.style.border =  '3px solid #0f0b49';
+    explanationBtnEl.style.pointerEvents = 'none';
+    explanationBtnEl.style.border =  '3px solid #0f0b49';
+    answerBtnEl.style.pointerEvents = 'none';
+    answerBtnEl.style.border =  '3px solid #0f0b49';
+   
+}
+
+/**
+ * Enable command buttons after starting to display questions
+ */
+ const enableCommandBtns = () => {
+    nextQuiz.style.pointerEvents = 'auto';
+    explanationBtnEl.style.pointerEvents = 'auto';
+    explanationBtnEl.style.border =  '0.4em solid rgb(202, 110, 182)';
+    nextQuiz.style.border =  '0.4em solid rgb(202, 110, 182)';
+    answerBtnEl.style.pointerEvents = 'auto';
+    answerBtnEl.style.border =  '0.4em solid rgb(202, 110, 182)';
+}
+

@@ -1,4 +1,4 @@
-export const QUIZ_TIMEOUT_SEC = 60;
+export const QUIZ_TIMEOUT_SEC = 30;
 export const TOTAL_QUESTIONS_PER_SESSION = 10;
 export const MIN_USER_LENGTH = 3;
 export const TOTAL_PROF_QUUESTIONS = 10;
