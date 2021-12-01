@@ -91,6 +91,7 @@ As expected for projects of this nature several bugs were identified in the caus
 3. It was challenging to get the Font Awesome to be displayed for the marking of the correct answer with a √ and wrong answer with an x. To resolve this I had to setup two divs' having the two Font Awesome for each answer option and used CSS class to control the display from JavaScript.
 
 4. It was observed that the user could still click on answer options after the submission of the answer. This was not desirable and was removed by adding a function to disable clicks on the divs containing the answer options after a user had submitted. The divs are enabled when a new question is loaded.
+5. Modal content was not scrolling when desired on small screens, the scroll ability was added by setting overflow-y property on the modal and modal content.
 
 ## Deployment
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:

@@ -461,5 +461,12 @@ footer {
   #player-container{
     width: 38%;
   }
-
+/* Command button area */
+#command-btn div {
+  width: 45%;
+  padding: 1%;
+  font-size: 90%;
+  border: 0.2em solid rgb(202, 110, 182);
+  margin: 0.5% auto;
+}
 }
