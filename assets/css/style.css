@@ -43,13 +43,13 @@ header {
   letter-spacing: 3px;
   display: flex;
   position: relative;
-  margin: 0 auto;
+  margin: 1rem auto;
 
 }
 
 header img {
   /* position: relative; */
-  margin: 0 auto;
+  margin: 0.2rem auto;
   width: 15%;
   height: auto;
   /* top: 0.5rem; */
@@ -70,9 +70,11 @@ header img {
   display: flex;
   width: 32%;
   position: relative;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
-
+#player {
+  margin-left: 0.5rem;
+}
 #quiz-level-container {
   clear:both;
   width: 100%;
@@ -82,7 +84,7 @@ header img {
 
 .quiz-level {
   /* display:flex; */
-  width: 40%;
+  width: 60%;
   margin: 0 auto;
   height: 1.8rem;
 }
@@ -437,4 +439,34 @@ footer {
   color: #252525;
   font-size: 150%;
   text-decoration: none;
+}
+
+/* Media queries 
+ For larger to medium screens size from 1060px width and down. The point that our Title and football logo gets distorted */
+ @media screen and (max-width: 1060px) {
+  #title {
+    width: 80%;
+ 
+  }
+
+  #title-image{
+    width: 50%;
+    left:6%;
+    margin: 0 auto;
+  }
+  header img {
+    margin-bottom: 0;
+  }
+
+  h1{
+    font-size: 130%;
+  }
+
+  .quiz-level {
+    width: 80%;
+}
+  #player-container{
+    width: 38%;
+  }
+
 }

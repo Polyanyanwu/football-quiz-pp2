@@ -81,6 +81,11 @@ The footer has the links to take the user back to any of the three main sections
 
 * ### Bugs
 As expected for projects of this nature several bugs were identified in the cause of the impleentation and fixed accordingly.
+1. Submit Answer had two issues. The first one was it tried to process the submission even when an answer had not been selected. This was resolved by first checking that one of the Options has the "option-selected" class before processing the submission, if not an alert message is displayed for the user to first select and answer before submitting. The second issue was submitting the same answer more than once. The solution was disabling click on the div was being used as the Submit Answer and re-enabling it when a new question is loaded.
+            
+2. The timer for tracking the elapsed time for the quiz kept running even after getting to 0 secods left. It was resolved by calling the function clearInterval().
+
+3. It was challenging to get the Font Awesome to be displayed for the marking of the correct answer with a √ and wrong answer with an x. To resolve this I had to setup two divs' having the two Font Awesome for each answer option and used CSS class to control the display from JavaScript.
 
 ## Deployment
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:

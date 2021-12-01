@@ -356,7 +356,7 @@ restartQuiz.addEventListener('click', function () {
         wrongAnswerEl.textContent = 0;
         // display new question
         getAndDisplayQuiz();
-         // restart timer
+        // restart timer
         startQuizTimer();
         alert('Quiz has restarted');
     };
