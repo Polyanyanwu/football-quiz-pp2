@@ -8,6 +8,13 @@ import {
     TOTAL_AMATEUR_QUESTIONS as totAmateurQuestions
 } from "./config.js";
 import {
+    TOTAL_QUESTIONS_PER_SESSION as totQuizPerSession
+} from "./config.js";
+import {
+    PASS_CUTOFF_MARK as passCutOffMark
+} from "./config.js";
+
+import {
     TOTAL_ANSWER_OPTIONS as totOptions
 } from "./config.js";
 import {
@@ -150,7 +157,7 @@ const getAndDisplayQuiz = function () {
     displayQuestion(quizItem[0], quizItem[1]);
     // enable submit answer button after loading new question
     enableAnswerOptionsAndSubmit();
-  //  answerBtnEl.style.pointerEvents = 'auto';
+    //  answerBtnEl.style.pointerEvents = 'auto';
 }
 
 const removeSelectionFromOptions = function () {
@@ -209,7 +216,6 @@ const getClickedOption = function () {
         removeAnswerMarks();
         if (correctAnswer) {
             // correct answer
-            console.log(optionSelected.dataset.option);
             // mark all as x 
             markAllOptionsX();
             document.getElementById(`${optionSelected.dataset.option}-sign-ok`).classList.add('answer-sign-selected');
@@ -251,32 +257,47 @@ const updateMasterDatabase = function (quizLevel, id) {
 
 const getNextQuestion = function () {
     nextQuiz.addEventListener('click', function () {
-    // check if user has answered the question before clicking next or user just desires to leave that question unanswered.
-    // The app will permit the user to go next question after confirmation.
-    if(!checkAlreadySubmitted()){
-        if(!confirm('You clicked Next Question without answering this current question. Are you sure you want to skip this question?')){
-            return;
+        // check if user has answered the question before clicking next or user just desires to leave that question unanswered.
+        // The app will permit the user to go next question after confirmation.
+        if (!checkAlreadySubmitted()) {
+            if (!confirm('You clicked Next Question without answering this current question. Are you sure you want to skip this question?')) {
+                return;
+            }
         }
-    }
         getAndDisplayQuiz();
     })
+}
+
+/**
+ * function to return the total correct and total wrong answers.
+ * @returns an array of the correct and wrong answer total
+ */
+const getTotalfromEl = () => {
+    let correctAns = Number(correctAnswerEl.textContent);
+    if (isNaN(correctAns)) correctAns = 0;
+    let wrongAns = Number(wrongAnswerEl.textContent);
+    if (isNaN(wrongAns)) wrongAns = 0;
+    return [correctAns, wrongAns];
 }
 /**
  * Function to tally the correct and wrong answers and display to the user
  * @param {Boolean value if true then correct answer tally else wrong answer tally} correct 
  */
 const totalAnswers = function (correct) {
-    if (correct) {
-        let ans = Number(correctAnswerEl.textContent);
-        console.log(ans);
-        if (isNaN(ans)) ans = 0;
-        correctAnswerEl.textContent = ++ans;
-    } else {
-        let ans = Number(wrongAnswerEl.textContent);
-        console.log(ans);
-        if (isNaN(ans)) ans = 0;
-        wrongAnswerEl.textContent = ++ans;
-    }
+    // if (correct) {
+    //     let ans = Number(correctAnswerEl.textContent);
+    //     if (isNaN(ans)) ans = 0;
+    //     correctAnswerEl.textContent = ++ans;
+    // } else {
+    //     let ans = Number(wrongAnswerEl.textContent);
+    //     if (isNaN(ans)) ans = 0;
+    //     wrongAnswerEl.textContent = ++ans;
+    // }
+
+    // destructure the array and get the individual items
+    let [correctAns, wrongAns] = getTotalfromEl();
+    correct ? correctAnswerEl.textContent = ++correctAns : wrongAnswerEl.textContent = ++wrongAns;
+
     // disable answer button to prevent submitting more than once
     disableAnswerOptionsAndSubmit();
     // answerBtnEl.style.pointerEvents = 'none';
@@ -296,7 +317,8 @@ const startQuizTimer = function () {
 
         // When 0 seconds, stop timer and display performance
         if (time === 0) {
-            alert("time up");
+            displayQuizResult();
+            // alert("time up");
             clearInterval(timer);
             // labelWelcome.textContent = 'Log in to get started';
             // containerApp.style.opacity = 0;
@@ -322,30 +344,30 @@ const closeExplanationModal = function () {
 }
 
 const checkAlreadySubmitted = () => {
-    return answerBtnEl.style.pointerEvents === 'none'?true: false;
+    return answerBtnEl.style.pointerEvents === 'none' ? true : false;
 }
 
 /**
  * Disable user from clicking an answer option and submit answer button after submission
  */
 const disableAnswerOptionsAndSubmit = () => {
- answerOptionsBox.forEach(option => option.style.pointerEvents = 'none');  
- answerBtnEl.style.pointerEvents = 'none';
+    answerOptionsBox.forEach(option => option.style.pointerEvents = 'none');
+    answerBtnEl.style.pointerEvents = 'none';
 }
 
 /**
  * Enable user to click an answer option and submit answer button after display of question
  */
- const enableAnswerOptionsAndSubmit = () => {
-    answerOptionsBox.forEach(option => option.style.pointerEvents = 'auto');  
+const enableAnswerOptionsAndSubmit = () => {
+    answerOptionsBox.forEach(option => option.style.pointerEvents = 'auto');
     answerBtnEl.style.pointerEvents = 'auto';
-   }
+}
 
 explanationBtnEl.addEventListener('click', function () {
     // Check if user has submitted answer before permitting view of explanation
-    if(!checkAlreadySubmitted()){
-       alert('Please submit your answer before checking the explanation');
-       return; 
+    if (!checkAlreadySubmitted()) {
+        alert('Please submit your answer before checking the explanation');
+        return;
     }
     explanationModalEl.style.display = 'block';
     // display the question
@@ -378,7 +400,6 @@ const playSound = function (correctAnswer) {
  * restarts the quiz timer
  */
 restartQuiz.addEventListener('click', function () {
-    console.log("before restart", amateurData);
     if (confirm("Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?")) {
         professionalData.filter(data => data.used).forEach(el => el.used = false);
         amateurData.filter(data => data.used).forEach(el => el.used = false);
@@ -392,5 +413,31 @@ restartQuiz.addEventListener('click', function () {
         startQuizTimer();
         alert('Quiz has restarted');
     };
-
 })
+
+/**
+ * Function to compute and display the quiz result in a modal window. I'm reusing the modal window for explanation of answer 
+ */
+const displayQuizResult = function () {
+    const resultDiv = document.createElement('div');
+    const [correctAns, wrongAns] = getTotalfromEl();
+    let result = `
+    <p>Total questions answered correctly: <span class="red-text">${correctAns}</span></p>
+    <p>Total wrong answers: <span class="red-text">${wrongAns}</span></p>
+    <p>Total questions in quiz: <span class="red-text">${totQuizPerSession}</span></p>
+    <p>Percent obtained: <span class="red-text">${ Math.round(correctAns/totQuizPerSession*100, 2)}%</span></p>
+    <p>Pass Cut Off Percentage: <span class="red-text">${passCutOffMark}%</span></p>`;
+
+    Math.round(correctAns / totQuizPerSession * 100, 2) >= passCutOffMark ?
+        result += ` <p>Final Grade: <span class="green-text"><em>PASS</em></span></p>` :
+        result += ` <p>Final Grade: <span class="red-text"><em>FAIL</em></span></p>`;
+    resultDiv.innerHTML = result;
+    resultDiv.style.textAlign = 'center';
+    explanationModalEl.style.display = 'block';
+    explanationQuestionEl.textContent = "Quiz Result";
+    answerExplanationEl.insertAdjacentElement('beforebegin', resultDiv);
+    closeExplanationModal();
+    explanationContentEl.style.width = '60%';
+    explanationContentEl.style.height = '50%'
+
+}

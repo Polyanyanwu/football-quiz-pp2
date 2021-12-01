@@ -168,6 +168,7 @@ button {
 #answer-area {
   width: 70%;
   margin: 0 auto;
+  background-color: #e8e8f3;
 }
 
 .option {
@@ -358,6 +359,14 @@ input[type=text] {
   font-size: 120%;
 }
 
+.red-text{
+  color: red;
+  font-weight: bold;
+}
+.green-text{
+  color:green;
+  font-weight: bold;
+}
 /* Set a style for all buttons */
 .username-container>button {
   background-color: #04AA6D;

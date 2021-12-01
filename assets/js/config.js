@@ -1,9 +1,10 @@
-export const QUIZ_TIMEOUT_SEC = 300;
+export const QUIZ_TIMEOUT_SEC = 60;
 export const TOTAL_QUESTIONS_PER_SESSION = 10;
 export const MIN_USER_LENGTH = 3;
 export const TOTAL_PROF_QUUESTIONS = 10;
 export const TOTAL_AMATEUR_QUESTIONS = 6;
 export const TOTAL_ANSWER_OPTIONS = 4;
+export const PASS_CUTOFF_MARK = 70;
 export const PLAY_INSTRUCTION = `The Quiz is composed of two levels, the Amateur and the Professional. 
 The difference between the two is that the professional has more difficult to guess questions.
 Click on the desired level of play and a question will be loaded automatically.
