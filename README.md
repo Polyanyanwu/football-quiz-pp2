@@ -28,7 +28,10 @@ The Site is is presented in three sections:
 
 
 ### 3. The Question & Answer Area
+The user clicks on the Next Question button to navigate to the next random question from the system. The question is picked randomly from the quiz level database that the user currently selected. If a user clicks on the Next Question without submitting answer for the currently displayed question, a Confirmation message is displayed to ensure the user really want to navigate to another question. If the answer is Ok, the next question is displayed, if not no action is taken.
 
+#### Submission of Answer
+If a user clicks the Submit Answer Button, the application will check if user has selected an answer option, if not a message is displayed informing the user to first select and answer before clicking the Submit Answer Button. If an answer option was already selected, the application will check if the answer is correct and increment the correct or wrong answer totals and also play an appropriate sound.
 
 ### 4. The Footer Area
 
@@ -86,6 +89,8 @@ As expected for projects of this nature several bugs were identified in the caus
 2. The timer for tracking the elapsed time for the quiz kept running even after getting to 0 secods left. It was resolved by calling the function clearInterval().
 
 3. It was challenging to get the Font Awesome to be displayed for the marking of the correct answer with a √ and wrong answer with an x. To resolve this I had to setup two divs' having the two Font Awesome for each answer option and used CSS class to control the display from JavaScript.
+
+4. It was observed that the user could still click on answer options after the submission of the answer. This was not desirable and was removed by adding a function to disable clicks on the divs containing the answer options after a user had submitted. The divs are enabled when a new question is loaded.
 
 ## Deployment
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:
