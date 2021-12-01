@@ -49,6 +49,8 @@ const answerExplanationEl = document.getElementById('answer-explanation');
 const closeExplainBtnEl = document.querySelectorAll(".close-explanation-button");
 const detailedInstructionEl = document.querySelector("#detailed-instructions");
 const explanationContentEl = document.querySelector("#explanation-content");
+const viewResultBtnEl = document.querySelector("#view-result-btn");
+
 
 
 const displayUsernameModal = function () {
@@ -127,7 +129,7 @@ const displayQuestion = function (quizLevel, questionId) {
     removeSelectionFromOptions();
     removeAnswerMarks();
     // updateMasterDatabase(quizLevel, questionId);
-    console.log(amateurData);
+    // console.log(amateurData);
 
 }
 
@@ -431,13 +433,24 @@ const displayQuizResult = function () {
     Math.round(correctAns / totQuizPerSession * 100, 2) >= passCutOffMark ?
         result += ` <p>Final Grade: <span class="green-text"><em>PASS</em></span></p>` :
         result += ` <p>Final Grade: <span class="red-text"><em>FAIL</em></span></p>`;
+
     resultDiv.innerHTML = result;
     resultDiv.style.textAlign = 'center';
     explanationModalEl.style.display = 'block';
     explanationQuestionEl.textContent = "Quiz Result";
-    answerExplanationEl.insertAdjacentElement('beforebegin', resultDiv);
+// Check if a result div has already exists and remove it
+    const divExists = answerExplanationEl.firstChild;
+    if (divExists) {
+        if (answerExplanationEl.firstChild.localName === 'div') {
+            answerExplanationEl.firstChild.remove();
+        }
+    }
+    answerExplanationEl.insertAdjacentElement('afterbegin', resultDiv);
     closeExplanationModal();
     explanationContentEl.style.width = '60%';
     explanationContentEl.style.height = '50%'
-
 }
+
+viewResultBtnEl.addEventListener('click', () => {
+    displayQuizResult();
+})
