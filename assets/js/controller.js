@@ -52,7 +52,7 @@ const explanationContentEl = document.querySelector("#explanation-content");
 const viewResultBtnEl = document.querySelector("#view-result-btn");
 const correctAudioEl = document.querySelector("#correct-audio");
 const wrongAudioEl = document.querySelector("#wrong-audio");
-
+const winAudioEl = document.querySelector("#win-audio");
 
 const displayUsernameModal = function () {
     //display the initial question from the amateur level
@@ -161,7 +161,7 @@ const getAndDisplayQuiz = function () {
     // enable submit answer button after loading new question
     enableAnswerOptionsAndSubmit();
     //  remove View Result from DOM until Time out
-    viewResultBtnEl.style.display="none";
+    viewResultBtnEl.style.display = "none";
     // enable the command buttons for next question and display result
     enableCommandBtns();
 
@@ -228,7 +228,7 @@ const getClickedOption = function () {
             document.getElementById(`${optionSelected.dataset.option}-sign-ok`).classList.add('answer-sign-selected');
             document.getElementById(`${optionSelected.dataset.option}-sign-no`).classList.remove('answer-sign-x');
             totalAnswers(true);
-            playSound(true);
+            playSound('correct');
         } else {
             markAllOptionsX();
             if (quizLevel === "professional") {
@@ -241,7 +241,7 @@ const getClickedOption = function () {
                 document.getElementById(`${amateurData[questionId].answer}-sign-no`).classList.remove('answer-sign-x');
             }
             totalAnswers(false);
-            playSound(false);
+            playSound('wrong');
         }
         updateMasterDatabase(quizLevel, questionId);
     }
@@ -360,7 +360,7 @@ const checkAlreadySubmitted = () => {
 const disableAnswerOptionsAndSubmit = () => {
     answerOptionsBox.forEach(option => option.style.pointerEvents = 'none');
     answerBtnEl.style.pointerEvents = 'none';
-    answerBtnEl.style.border =  '3px solid #0f0b49';
+    answerBtnEl.style.border = '3px solid #0f0b49';
 }
 
 /**
@@ -369,7 +369,7 @@ const disableAnswerOptionsAndSubmit = () => {
 const enableAnswerOptionsAndSubmit = () => {
     answerOptionsBox.forEach(option => option.style.pointerEvents = 'auto');
     answerBtnEl.style.pointerEvents = 'auto';
-    answerBtnEl.style.border =  '0.4em solid rgb(202, 110, 182)';
+    answerBtnEl.style.border = '0.4em solid rgb(202, 110, 182)';
 }
 
 explanationBtnEl.addEventListener('click', function () {
@@ -397,13 +397,31 @@ detailedInstructionEl.addEventListener('click', function () {
     explanationContentEl.style.height = '50%'
 });
 
-const playSound = function (correctAnswer) {
-    
- //   let audio = correctAnswer ? new Audio('../assets/media/SFXProducer.mp3') : new Audio('../assets/media/SFXProducerError.mp3');
-    correctAnswer ? correctAudioEl.play(): wrongAudioEl.play();
+const playSound = function (type) {
+    switch (type) {
+        case 'correct': {
+            correctAudioEl.play();
+            break;
+        }
+        case 'wrong': {
+            wrongAudioEl.play();
+            break;
+        }
+        case 'win': {
+            winAudioEl.play();
+        }
+    }
+    //   let audio = correctAnswer ? new Audio('../assets/media/SFXProducer.mp3') : new Audio('../assets/media/SFXProducerError.mp3');
+    // correctAnswer ? correctAudioEl.play(): wrongAudioEl.play();
     // audio.play();
 }
 
+const playWinSound = function () {
+    document.querySelector("#win-audio").play();
+    //   let audio = correctAnswer ? new Audio('../assets/media/SFXProducer.mp3') : new Audio('../assets/media/SFXProducerError.mp3');
+
+    // audio.play();
+}
 /**
  * Event function for restarting the quiz. Clears all questions ready to be selected by marking used property false;
  * Restarts the totalling of correct and wrong answer
@@ -439,15 +457,17 @@ const displayQuizResult = function () {
     <p>Percent obtained: <span class="red-text">${ Math.round(correctAns/totQuizPerSession*100, 2)}%</span></p>
     <p>Pass Cut Off Percentage: <span class="red-text">${passCutOffMark}%</span></p>`;
 
-    Math.round(correctAns / totQuizPerSession * 100, 2) >= passCutOffMark ?
-        result += ` <p>Final Grade: <span class="green-text"><em>PASS</em></span></p>` :
+    if (Math.round(correctAns / totQuizPerSession * 100, 2) >= passCutOffMark) {
+        result += ` <p>Final Grade: <span class="green-text"><em>PASS</em></span></p>`;
+        playSound('win');
+    } else {
         result += ` <p>Final Grade: <span class="red-text"><em>FAIL</em></span></p>`;
-
+    }
     resultDiv.innerHTML = result;
     resultDiv.style.textAlign = 'center';
     explanationModalEl.style.display = 'block';
     explanationQuestionEl.textContent = "Quiz Result";
-// Check if a result div has already exists and remove it
+    // Check if a result div has already exists and remove it
     const divExists = answerExplanationEl.firstChild;
     if (divExists) {
         if (answerExplanationEl.firstChild.localName === 'div') {
@@ -459,7 +479,7 @@ const displayQuizResult = function () {
     explanationContentEl.style.width = '60%';
     explanationContentEl.style.height = '50%'
     // display the button to enable the user to display the result again
-    viewResultBtnEl.style.display="inline";
+    viewResultBtnEl.style.display = "inline";
     //disable next question and view answer buttons
     disablebCommandBtns();
     disableAnswerOptionsAndSubmit();
@@ -474,23 +494,22 @@ viewResultBtnEl.addEventListener('click', () => {
  */
 const disablebCommandBtns = () => {
     nextQuiz.style.pointerEvents = 'none';
-    nextQuiz.style.border =  '3px solid #0f0b49';
+    nextQuiz.style.border = '3px solid #0f0b49';
     explanationBtnEl.style.pointerEvents = 'none';
-    explanationBtnEl.style.border =  '3px solid #0f0b49';
+    explanationBtnEl.style.border = '3px solid #0f0b49';
     answerBtnEl.style.pointerEvents = 'none';
-    answerBtnEl.style.border =  '3px solid #0f0b49';
-   
+    answerBtnEl.style.border = '3px solid #0f0b49';
+
 }
 
 /**
  * Enable command buttons after starting to display questions
  */
- const enableCommandBtns = () => {
+const enableCommandBtns = () => {
     nextQuiz.style.pointerEvents = 'auto';
     explanationBtnEl.style.pointerEvents = 'auto';
-    explanationBtnEl.style.border =  '0.4em solid rgb(202, 110, 182)';
-    nextQuiz.style.border =  '0.4em solid rgb(202, 110, 182)';
+    explanationBtnEl.style.border = '0.4em solid rgb(202, 110, 182)';
+    nextQuiz.style.border = '0.4em solid rgb(202, 110, 182)';
     answerBtnEl.style.pointerEvents = 'auto';
-    answerBtnEl.style.border =  '0.4em solid rgb(202, 110, 182)';
+    answerBtnEl.style.border = '0.4em solid rgb(202, 110, 182)';
 }
-
