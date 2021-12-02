@@ -349,19 +349,19 @@ const totalAnswers = function (correct) {
  */
 const startQuizTimer = function () {
     const tick = function () {
-        const min = String(Math.trunc(time / 60)).padStart(2, 0);
+        const hour = String(Math.trunc(time / 3600)).padStart(2, 0);
+        const min = String(Math.trunc((time % 3600)/60)).padStart(2, 0);
+        // const min = String(Math.trunc(time / 60)).padStart(2, 0);
         const sec = String(time % 60).padStart(2, 0);
 
-        // In each call, print the remaining time to UI
+        // In each call, print the remaining time to UI, include hour if it is greater than 0
+        hour > 0 ? timerEl.textContent = `${hour}:${min}:${sec}`:
         timerEl.textContent = `${min}:${sec}`;
 
         // When 0 seconds, stop timer and display performance
         if (time === 0) {
             displayQuizResult();
-            // alert("time up");
             clearInterval(timer);
-            // labelWelcome.textContent = 'Log in to get started';
-            // containerApp.style.opacity = 0;
         }
         // Decrease 1s
         time--;

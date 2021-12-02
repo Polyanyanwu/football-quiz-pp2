@@ -184,6 +184,7 @@ button {
   height: 2.4rem;
   border-radius: 10px;
   background-color: whitesmoke;
+  cursor: pointer;
 }
 
 
@@ -562,4 +563,16 @@ footer {
   #wrong-answer-container {
     float: left;
   }
+
+  .username-modal-content,
+.confirm-content {
+  width: 80%;
+  height: 50%;
+}
+.username-header h2{
+  font-size: 120%;
+}
+.confirm-content button{
+  width: 45%;
+}
 }
