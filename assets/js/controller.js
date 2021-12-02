@@ -80,11 +80,21 @@ const validateAndSaveUser = function () {
     username = username.length > 0 ? username.trim() : username;
     const player = document.getElementById("player");
     if (username.length === 0) {
-        if (confirm("Confirm exiting without a username, in this case your name will be 'Guest'")) {
-            player.textContent = "Guest";
-            modal.style.display = 'none';
-            startQuizTimer(); // start timing the quiz
-        };
+
+        functionConfirm("Confirm exiting without a username, in this case your name will be 'Guest'",
+            function yes() {
+                player.textContent = "Guest";
+                modal.style.display = 'none';
+                startQuizTimer(); // start timing the quiz
+            },
+            function no() {});
+
+
+        // if (confirm("Confirm exiting without a username, in this case your name will be 'Guest'")) {
+        //     player.textContent = "Guest";
+        //     modal.style.display = 'none';
+        //     startQuizTimer(); // start timing the quiz
+        // };
     } else if (username.length < userLength) {
         alert(`Your username must be ${userLength} characters and longer`);
     } else {
@@ -267,12 +277,19 @@ const getNextQuestion = function () {
         // check if user has answered the question before clicking next or user just desires to leave that question unanswered.
         // The app will permit the user to go next question after confirmation.
         if (!checkAlreadySubmitted()) {
-            if (!confirm('You clicked Next Question without answering this current question. Are you sure you want to skip this question?')) {
-                return;
-            }
-        }
-        getAndDisplayQuiz();
-    })
+
+            functionConfirm("You clicked Next Question without answering this current question. Are you sure you want to skip this question?",
+                function yes() {
+                    getAndDisplayQuiz();
+                },
+                function no() {
+                    return
+                });
+        } else {
+            getAndDisplayQuiz();
+        };
+
+    });
 }
 
 /**
@@ -429,19 +446,22 @@ const playWinSound = function () {
  * restarts the quiz timer
  */
 restartQuiz.addEventListener('click', function () {
-    if (confirm("Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?")) {
-        professionalData.filter(data => data.used).forEach(el => el.used = false);
-        amateurData.filter(data => data.used).forEach(el => el.used = false);
 
-        //restart numbering
-        correctAnswerEl.textContent = 0;
-        wrongAnswerEl.textContent = 0;
-        // display new question
-        getAndDisplayQuiz();
-        // restart timer
-        startQuizTimer();
-        alert('Quiz has restarted');
-    };
+    functionConfirm("Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?",
+        function yes() {
+            professionalData.filter(data => data.used).forEach(el => el.used = false);
+            amateurData.filter(data => data.used).forEach(el => el.used = false);
+            //restart numbering
+            correctAnswerEl.textContent = 0;
+            wrongAnswerEl.textContent = 0;
+            // display new question
+            getAndDisplayQuiz();
+            // restart timer
+            startQuizTimer();
+            alert('Quiz has restarted');
+            return true;
+        },
+        function no() {});
 })
 
 /**
@@ -512,4 +532,19 @@ const enableCommandBtns = () => {
     nextQuiz.style.border = '0.4em solid rgb(202, 110, 182)';
     answerBtnEl.style.pointerEvents = 'auto';
     answerBtnEl.style.border = '0.4em solid rgb(202, 110, 182)';
+}
+
+// https://www.tutorialspoint.com/How-to-create-a-dialog-with-yes-and-no-options-in-JavaScript
+function functionConfirm(msg, myYes, myNo) {
+    var confirmBox = $("#confirm");
+    confirmBox.find(".confirm-message").text(msg);
+    confirmBox
+        .find(".confirm-yes,.confirm-no")
+        .unbind()
+        .click(function () {
+            confirmBox.hide();
+        });
+    confirmBox.find(".confirm-yes").click(myYes);
+    confirmBox.find(".confirm-no").click(myNo);
+    confirmBox.show();
 }

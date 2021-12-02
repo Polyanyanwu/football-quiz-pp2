@@ -305,7 +305,8 @@ button {
 /* Username modal form */
 /* The Modal (background) */
 /* Modal styling adopted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2 */
-.modal {
+.modal,
+#confirm {
   display: none;
   /* Hidden by default */
   position: fixed;
@@ -321,8 +322,13 @@ button {
   padding-top: 60px;
 }
 
+#confirm {
+  z-index: 10;
+}
+
 /* Modal Content */
-.username-modal-content {
+.username-modal-content,
+.confirm-content {
   position: relative;
   background-color: #fefefe;
   overflow-y: auto;
@@ -331,14 +337,45 @@ button {
   border: 1px solid #888;
   width: 40%;
   height: 40%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   -webkit-animation-name: topAnimation;
   -webkit-animation-duration: 0.6s;
   animation-name: topAnimation;
   animation-duration: 0.6s
 }
 
-/* Add Animation */
+
+.confirm-content button {
+  width: 47.5%;
+  line-height: 2rem;
+  text-align: center;
+  margin: 5% 1%;
+  color: white;
+  font-size: 100%;
+  border-radius: 10%;
+  height: 2rem;
+}
+
+.confirm-content .username-header {
+  margin: 5% 2%;
+  font-size: 120%;
+}
+
+.confirm-yes {
+  background-color: green;
+}
+
+.confirm-no {
+  background-color: red;
+}
+.confirm-message {
+  padding: 0.5em 1em;
+  font-size: 110%;
+  font-style: italic;
+}
+
+/* Add Animation
 @-webkit-keyframes topAnimation {
   from {
     top: -400px;
@@ -384,6 +421,8 @@ input[type=text] {
   font-weight: bold;
 }
 
+
+
 /* Set a style for all buttons */
 .username-container>button {
   background-color: #04AA6D;
@@ -420,8 +459,9 @@ input[type=text] {
 .username-header {
   padding: 0.5em 1em;
   /* background-image: linear-gradient(rgba(218, 222, 224, 0.7), rgba(24, 133, 192, 0.7)); */
-  background-color: #04AA6D;
+  background-color: blue;
   /* background-color: #5cb85c; */
+  text-align: center;
   color: white;
 }
 
