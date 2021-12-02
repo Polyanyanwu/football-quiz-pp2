@@ -306,7 +306,7 @@ button {
 /* The Modal (background) */
 /* Modal styling adopted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2 */
 .modal,
-#confirm {
+#confirm, #alert {
   display: none;
   /* Hidden by default */
   position: fixed;
@@ -355,6 +355,10 @@ button {
   font-size: 100%;
   border-radius: 10%;
   height: 2rem;
+}
+.confirm-content .confirm-ok{
+  width:98%;
+  background-color:green;
 }
 
 .confirm-content .username-header {

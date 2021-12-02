@@ -96,7 +96,12 @@ const validateAndSaveUser = function () {
         //     startQuizTimer(); // start timing the quiz
         // };
     } else if (username.length < userLength) {
-        alert(`Your username must be ${userLength} characters and longer`);
+
+       
+        alertMe(`Your username must be ${userLength} characters and longer`), function yes(){
+            return;
+        }
+        // alert(`Your username must be ${userLength} characters and longer`);
     } else {
         modal.style.display = 'none';
         player.textContent = username;
@@ -219,7 +224,10 @@ const getClickedOption = function () {
         }
     };
     if (!optionClicked) {
-        alert('Please chose an answer before clicking submit answer');
+
+        alertMe("Please chose an answer before clicking submit answer"), function yes(){
+            return;
+        }
     } else {
         const questionId = Number(question.dataset.quizId);
         const quizLevel = question.dataset.quizLevel;
@@ -392,7 +400,9 @@ const enableAnswerOptionsAndSubmit = () => {
 explanationBtnEl.addEventListener('click', function () {
     // Check if user has submitted answer before permitting view of explanation
     if (!checkAlreadySubmitted()) {
-        alert('Please submit your answer before checking the explanation');
+        alertMe("Please submit your answer before checking the explanation"), function yes(){
+            return;
+        }
         return;
     }
     explanationModalEl.style.display = 'block';
@@ -458,7 +468,10 @@ restartQuiz.addEventListener('click', function () {
             getAndDisplayQuiz();
             // restart timer
             startQuizTimer();
-            alert('Quiz has restarted');
+            alertMe("Quiz has restarted"), function yes(){
+                return true;
+            }
+            // alert('Quiz has restarted');
             return true;
         },
         function no() {});
@@ -535,8 +548,8 @@ const enableCommandBtns = () => {
 }
 
 // https://www.tutorialspoint.com/How-to-create-a-dialog-with-yes-and-no-options-in-JavaScript
-function functionConfirm(msg, myYes, myNo) {
-    var confirmBox = $("#confirm");
+const  functionConfirm = function(msg, myYes, myNo) {
+    let confirmBox = $("#confirm");
     confirmBox.find(".confirm-message").text(msg);
     confirmBox
         .find(".confirm-yes,.confirm-no")
@@ -547,4 +560,17 @@ function functionConfirm(msg, myYes, myNo) {
     confirmBox.find(".confirm-yes").click(myYes);
     confirmBox.find(".confirm-no").click(myNo);
     confirmBox.show();
+}
+
+const alertMe =  (msg, myYes)=> {
+    const alertBox = $("#alert");
+    alertBox.find(".confirm-message").text(msg);
+    alertBox
+        .find(".confirm-ok")
+        .unbind()
+        .click(function () {
+            alertBox.hide();
+        });
+        alertBox.find(".confirm-ok").click(myYes);
+        alertBox.show();
 }
