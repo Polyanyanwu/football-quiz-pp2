@@ -53,6 +53,9 @@ const viewResultBtnEl = document.querySelector("#view-result-btn");
 const correctAudioEl = document.querySelector("#correct-audio");
 const wrongAudioEl = document.querySelector("#wrong-audio");
 const winAudioEl = document.querySelector("#win-audio");
+const quizCountEl = document.querySelector("#quiz-count");
+
+let quizCount = 0;
 
 const displayUsernameModal = function () {
     //display the initial question from the amateur level
@@ -179,6 +182,8 @@ const getAndDisplayQuiz = function () {
     viewResultBtnEl.style.display = "none";
     // enable the command buttons for next question and display result
     enableCommandBtns();
+    // display question count
+    quizCountEl.textContent = `${quizCount+1} of ${totQuizPerSession}`;
 
 }
 
@@ -262,6 +267,7 @@ const getClickedOption = function () {
             playSound('wrong');
         }
         updateMasterDatabase(quizLevel, questionId);
+        quizCount++;
     }
 }
 
@@ -465,12 +471,15 @@ restartQuiz.addEventListener('click', function () {
             correctAnswerEl.textContent = 0;
             wrongAnswerEl.textContent = 0;
             // display new question
+            quizCount = 0;
             getAndDisplayQuiz();
             // restart timer
-            startQuizTimer();
+
             alertMe("Quiz has restarted"), function yes(){
                 return true;
             }
+           
+            startQuizTimer();
             // alert('Quiz has restarted');
             return true;
         },
@@ -500,6 +509,8 @@ const displayQuizResult = function () {
     resultDiv.style.textAlign = 'center';
     explanationModalEl.style.display = 'block';
     explanationQuestionEl.textContent = "Quiz Result";
+    // clear any existing content on the div
+    answerExplanationEl.textContent="";
     // Check if a result div has already exists and remove it
     const divExists = answerExplanationEl.firstChild;
     if (divExists) {

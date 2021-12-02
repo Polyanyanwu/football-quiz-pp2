@@ -170,7 +170,11 @@ button {
 #answer-area {
   width: 70%;
   margin: 0 auto;
-  background-color: #e8e8f3;
+  /* background-color: #e8e8f3; */
+}
+#quiz-count, #time-container {
+  padding:0 5px;
+  background-color: #e8e8f3; 
 }
 
 .option {
@@ -306,7 +310,8 @@ button {
 /* The Modal (background) */
 /* Modal styling adopted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2 */
 .modal,
-#confirm, #alert {
+#confirm,
+#alert {
   display: none;
   /* Hidden by default */
   position: fixed;
@@ -356,9 +361,10 @@ button {
   border-radius: 10%;
   height: 2rem;
 }
-.confirm-content .confirm-ok{
-  width:98%;
-  background-color:green;
+
+.confirm-content .confirm-ok {
+  width: 98%;
+  background-color: green;
 }
 
 .confirm-content .username-header {
@@ -373,6 +379,7 @@ button {
 .confirm-no {
   background-color: red;
 }
+
 .confirm-message {
   padding: 0.5em 1em;
   font-size: 110%;
