@@ -50,7 +50,8 @@ const closeExplainBtnEl = document.querySelectorAll(".close-explanation-button")
 const detailedInstructionEl = document.querySelector("#detailed-instructions");
 const explanationContentEl = document.querySelector("#explanation-content");
 const viewResultBtnEl = document.querySelector("#view-result-btn");
-
+const correctAudioEl = document.querySelector("#correct-audio");
+const wrongAudioEl = document.querySelector("#wrong-audio");
 
 
 const displayUsernameModal = function () {
@@ -397,8 +398,10 @@ detailedInstructionEl.addEventListener('click', function () {
 });
 
 const playSound = function (correctAnswer) {
-    let audio = correctAnswer ? new Audio('../assets/media/SFXProducer.mp3') : new Audio('../assets/media/SFXProducerError.mp3');
-    audio.play();
+    
+ //   let audio = correctAnswer ? new Audio('../assets/media/SFXProducer.mp3') : new Audio('../assets/media/SFXProducerError.mp3');
+    correctAnswer ? correctAudioEl.play(): wrongAudioEl.play();
+    // audio.play();
 }
 
 /**
