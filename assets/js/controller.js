@@ -268,6 +268,8 @@ const getClickedOption = function () {
         }
         updateMasterDatabase(quizLevel, questionId);
         quizCount++;
+
+        if(quizCount >= totQuizPerSession) displayQuizResult();
     }
 }
 
