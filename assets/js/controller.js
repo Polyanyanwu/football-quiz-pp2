@@ -1,3 +1,4 @@
+"use strict";
 import {
     MIN_USER_LENGTH as userLength
 } from "./config.js";
@@ -56,6 +57,7 @@ const winAudioEl = document.querySelector("#win-audio");
 const quizCountEl = document.querySelector("#quiz-count");
 
 let quizCount = 0;
+let time = quizTimeout;
 
 const displayUsernameModal = function () {
     //display the initial question from the amateur level
@@ -88,7 +90,7 @@ const validateAndSaveUser = function () {
             function yes() {
                 player.textContent = "Guest";
                 modal.style.display = 'none';
-                startQuizTimer(false); // start timing the quiz
+                startQuizTimer(); // start timing the quiz
             },
             function no() {});
 
@@ -108,7 +110,7 @@ const validateAndSaveUser = function () {
     } else {
         modal.style.display = 'none';
         player.textContent = username;
-        startQuizTimer(false); // start timing the quiz
+        startQuizTimer(); // start timing the quiz
     }
 }
 const usernameCloseBtn = document.querySelector(".username-close");
@@ -348,13 +350,12 @@ const totalAnswers = function (correct) {
  * starting a new timing (e.g when the quiz is restarted)
  * @returns 
  */
-const startQuizTimer = function (alreadyRunning) {
+const startQuizTimer = function () {
     const tick = function () {
         const hour = String(Math.trunc(time / 3600)).padStart(2, 0);
         const min = String(Math.trunc((time % 3600)/60)).padStart(2, 0);
         // const min = String(Math.trunc(time / 60)).padStart(2, 0);
         const sec = String(time % 60).padStart(2, 0);
-
         // In each call, print the remaining time to UI, include hour if it is greater than 0
         hour > 0 ? timerEl.textContent = `${hour}:${min}:${sec}`:
         timerEl.textContent = `${min}:${sec}`;
@@ -367,11 +368,6 @@ const startQuizTimer = function (alreadyRunning) {
         // Decrease 1s
         time--;
     };
-    if(alreadyRunning){
-        clearInterval(timer);
-    }
-    // set the total time read from the config file 
-    let time = quizTimeout;
     // Call the timer every second
     tick();
     const timer = setInterval(tick, 1000);
@@ -405,7 +401,7 @@ const disableAnswerOptionsAndSubmit = () => {
 const enableAnswerOptionsAndSubmit = () => {
     answerOptionsBox.forEach(option => option.style.pointerEvents = 'auto');
     answerBtnEl.style.pointerEvents = 'auto';
-    answerBtnEl.style.border = '0.4em solid rgb(202, 110, 182)';
+    answerBtnEl.style.border = '2px solid rgb(202, 110, 182)';
 }
 
 explanationBtnEl.addEventListener('click', function () {
@@ -483,8 +479,9 @@ restartQuiz.addEventListener('click', function () {
             alertMe("Quiz has restarted"), function yes(){
                 return true;
             }
-           
-            startQuizTimer(true);
+            // restart the quiz timer to timout value
+            time = quizTimeout;
+            // startQuizTimer(true);
             // alert('Quiz has restarted');
             return true;
         },
@@ -557,10 +554,10 @@ const disablebCommandBtns = () => {
 const enableCommandBtns = () => {
     nextQuiz.style.pointerEvents = 'auto';
     explanationBtnEl.style.pointerEvents = 'auto';
-    explanationBtnEl.style.border = '0.4em solid rgb(202, 110, 182)';
-    nextQuiz.style.border = '0.4em solid rgb(202, 110, 182)';
+    explanationBtnEl.style.border = '2px solid rgb(202, 110, 182)';
+    nextQuiz.style.border = '2px solid rgb(202, 110, 182)';
     answerBtnEl.style.pointerEvents = 'auto';
-    answerBtnEl.style.border = '0.4em solid rgb(202, 110, 182)';
+    answerBtnEl.style.border = '2px solid rgb(202, 110, 182)';
 }
 
 // https://www.tutorialspoint.com/How-to-create-a-dialog-with-yes-and-no-options-in-JavaScript

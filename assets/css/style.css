@@ -214,8 +214,8 @@ button {
 }
 
 
-#command-btn {
-  margin: 0 auto;
+#command-btn-container {
+  /* margin: 0 auto; */
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -223,37 +223,39 @@ button {
   background-color: #e8e8f3;
 }
 
-#command-btn div {
-  display: flex;
-  width: 22%;
+.command-btns {
+    display: flex;
+    width: 25%;
+    padding-bottom: 0.5rem;
+}
+
+.command-btn {
+  background-color: #c3c2d1;
   padding: 0.2em;
   text-align: center;
   font-size: 100%;
-  border: 0.4em solid rgb(202, 110, 182);
-  ;
+  border: 2px solid rgb(202, 110, 182);
   border-radius: 10px;
-  /* height: 3em; */
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
   text-align: center;
   position: relative;
-  margin: 0 0.5em 0.6em 0.5em;
-  cursor: pointer;
+  margin: 2px auto;
+  /* cursor: pointer; */
+}
+.command-btn:hover {
+  background-color: yellowgreen;
+  color: white;
 }
 
-#command-btn button {
-  background-color: #c3c2d1;
-}
-
-#command-btn button:hover,
-#view-result-btn:hover,
-#command-btn div:hover {
+/* #command-btn-container button:hover, */
+#view-result-btn:hover {
   background-color: yellowgreen;
   color: white;
 }
 
 #view-result-btn {
   height: auto;
-  border: 5px solid rgb(202, 110, 182);
+  border: 2px solid rgb(202, 110, 182);
   border-radius: 5px;
   margin: 1rem auto;
   padding: 0.2rem;
@@ -545,15 +547,17 @@ footer {
   #player-container {
     width: 38%;
   }
-
+  .command-btns {
+    width: 50%;
+}
   /* Command button area */
-  #command-btn div {
+  /* #command-btn-container div {
     width: 45%;
     padding: 1%;
     font-size: 90%;
     border: 0.2em solid rgb(202, 110, 182);
     margin: 0.5% auto;
-  }
+  } */
 
   /* answer total area reduce to single column */
   #answer-box {
