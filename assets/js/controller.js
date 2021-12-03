@@ -88,7 +88,7 @@ const validateAndSaveUser = function () {
             function yes() {
                 player.textContent = "Guest";
                 modal.style.display = 'none';
-                startQuizTimer(); // start timing the quiz
+                startQuizTimer(false); // start timing the quiz
             },
             function no() {});
 
@@ -108,7 +108,7 @@ const validateAndSaveUser = function () {
     } else {
         modal.style.display = 'none';
         player.textContent = username;
-        startQuizTimer(); // start timing the quiz
+        startQuizTimer(false); // start timing the quiz
     }
 }
 const usernameCloseBtn = document.querySelector(".username-close");
@@ -344,10 +344,11 @@ const totalAnswers = function (correct) {
 }
 /**
  * Function to display the time remaining for the quiz. The total seconds is read from the config.js
- * Ideas and code snippets from Jonas Schmedtmann @ Udemy Javascript class
+ * Ideas and code snippets from Jonas Schmedtmann @ Udemy Javascript class. If the timer was running before, reset it before 
+ * starting a new timing (e.g when the quiz is restarted)
  * @returns 
  */
-const startQuizTimer = function () {
+const startQuizTimer = function (alreadyRunning) {
     const tick = function () {
         const hour = String(Math.trunc(time / 3600)).padStart(2, 0);
         const min = String(Math.trunc((time % 3600)/60)).padStart(2, 0);
@@ -366,7 +367,9 @@ const startQuizTimer = function () {
         // Decrease 1s
         time--;
     };
-
+    if(alreadyRunning){
+        clearInterval(timer);
+    }
     // set the total time read from the config file 
     let time = quizTimeout;
     // Call the timer every second
@@ -481,7 +484,7 @@ restartQuiz.addEventListener('click', function () {
                 return true;
             }
            
-            startQuizTimer();
+            startQuizTimer(true);
             // alert('Quiz has restarted');
             return true;
         },

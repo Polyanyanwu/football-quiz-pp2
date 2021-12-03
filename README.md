@@ -100,6 +100,7 @@ As expected for projects of this nature several bugs were identified in the caus
 5. Modal content was not scrolling when desired on small screens, the scroll ability was added by setting overflow-y property on the modal and modal content.
 6. When a user clicks the View Result button, the previous result displayed was not cleared resulting into multiple display of the result. The fix was to remove the div element I was inserting for the result, if it exists, before inserting a new div.
 7. The audio alert was done with new audio() statement in the JavaScript. This didn't work in the Chrome browser, it was fixed by creating audio elements in the html and playing from the JavaScript.
+8. After restarting the quiz the timer runs both the old and new timer; fixed by clearing the timerInterval if it is a reatrt of quiz.
 
 ## Deployment
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:
