@@ -1,13 +1,11 @@
+/*jshint esversion: 6 */
+/*jshint -W030 */  //ignore warnings due to use of tenary operator
 "use strict";
+
 import {
     MIN_USER_LENGTH as userLength
 } from "./config.js";
-import {
-    TOTAL_PROF_QUUESTIONS as totProfQuestions
-} from "./config.js";
-import {
-    TOTAL_AMATEUR_QUESTIONS as totAmateurQuestions
-} from "./config.js";
+
 import {
     TOTAL_QUESTIONS_PER_SESSION as totQuizPerSession
 } from "./config.js";
@@ -36,7 +34,6 @@ import {
 const quizLevel = document.querySelectorAll(".quiz-btn");
 const answerOptionsBox = document.querySelectorAll(".option");
 const question = document.getElementById("question");
-const answerSignBox = document.querySelectorAll(".answer-sign");
 const restartQuiz = document.querySelector("#restart-btn");
 const nextQuiz = document.querySelector("#next-quix-btn");
 const correctAnswerEl = document.querySelector("#corret-answer");
@@ -49,12 +46,14 @@ const explanationQuestionEl = document.getElementById('explanation-question');
 const answerExplanationEl = document.getElementById('answer-explanation');
 const closeExplainBtnEl = document.querySelectorAll(".close-explanation-button");
 const detailedInstructionEl = document.querySelector("#detailed-instructions");
-const explanationContentEl = document.querySelector("#explanation-content");
+// const explanationContentEl = document.querySelector("#explanation-content");
 const viewResultBtnEl = document.querySelector("#view-result-btn");
 const correctAudioEl = document.querySelector("#correct-audio");
 const wrongAudioEl = document.querySelector("#wrong-audio");
 const winAudioEl = document.querySelector("#win-audio");
 const quizCountEl = document.querySelector("#quiz-count");
+const usernameCloseBtn = document.querySelector(".username-close");
+const usernameCreateBtn = document.querySelector("#create-user-button");
 
 let quizCount = 0;
 let time = quizTimeout;
@@ -74,10 +73,9 @@ const displayUsernameModal = function () {
         // call function to display modal and request player name
         modal.style.display = "block";
     }
-}
+};
+
 document.addEventListener("DOMContentLoaded", displayUsernameModal);
-
-
 
 const validateAndSaveUser = function () {
     let username = document.getElementById("username").value;
@@ -94,31 +92,20 @@ const validateAndSaveUser = function () {
             },
             function no() {});
 
-
-        // if (confirm("Confirm exiting without a username, in this case your name will be 'Guest'")) {
-        //     player.textContent = "Guest";
-        //     modal.style.display = 'none';
-        //     startQuizTimer(); // start timing the quiz
-        // };
     } else if (username.length < userLength) {
 
-       
-        alertMe(`Your username must be ${userLength} characters and longer`), function yes(){
-            return;
-        }
+        alertMe(`Your username must be ${userLength} characters and longer`),
+            function yes() {};
         // alert(`Your username must be ${userLength} characters and longer`);
     } else {
         modal.style.display = 'none';
         player.textContent = username;
         startQuizTimer(); // start timing the quiz
     }
-}
-const usernameCloseBtn = document.querySelector(".username-close");
-const usernameCreateBtn = document.querySelector("#create-user-button");
+};
 
 usernameCloseBtn.addEventListener('click', validateAndSaveUser);
 usernameCreateBtn.addEventListener('click', validateAndSaveUser);
-
 /**
  * Event listener for selection of the quiz level. Loop through the buttons for the quiz level, remove the class for the active button
  * on all buttons and insert the class on the clicked quiz level
@@ -152,7 +139,7 @@ const displayQuestion = function (quizLevel, questionId) {
     // updateMasterDatabase(quizLevel, questionId);
     // console.log(amateurData);
 
-}
+};
 
 /**
  * Function checks which level the player is engaged in, picks a random question among the ones that have used property false
@@ -169,7 +156,7 @@ const getQuestionToDisplay = function () {
     const unusedQuiz = levelSelected === "professional" ? professionalData.filter(data => !data.used) : amateurData.filter(data => !data.used);
     const quizId = Math.floor(Math.random() * unusedQuiz.length);
     return [levelSelected, unusedQuiz[quizId].id];
-}
+};
 
 /**
  * A function to get and display a quiz item
@@ -187,11 +174,11 @@ const getAndDisplayQuiz = function () {
     // display question count
     quizCountEl.textContent = `${quizCount+1} of ${totQuizPerSession}`;
 
-}
+};
 
 const removeSelectionFromOptions = function () {
     answerOptionsBox.forEach(option => option.classList.remove('option-selected'));
-}
+};
 const removeAnswerMarks = function () {
     for (let i = 1; i <= totOptions; i++) {
 
@@ -203,20 +190,20 @@ const removeAnswerMarks = function () {
         document.getElementById(`option${i}-sign-ok`).classList.remove('answer-sign-x');
         document.getElementById(`option${i}-sign-ok`).classList.add('answer-sign-none');
     }
-}
+};
 
 const markAllOptionsX = function () {
     for (let i = 1; i <= totOptions; i++) {
         document.getElementById(`option${i}-sign-no`).classList.add('answer-sign-x');
     }
-}
+};
 const answerOptionListener = function () {
     answerOptionsBox.forEach(option => option.addEventListener('click', function (event) {
         removeSelectionFromOptions();
         // if user clicks the span, highlight the parent div instaed of only the span by adding the class option-selected
         event.target.localName === "span" ? event.target.parentNode.classList.add('option-selected') : event.target.classList.add('option-selected');
     }));
-}
+};
 
 const getClickedOption = function () {
     let optionClicked = false;
@@ -229,12 +216,13 @@ const getClickedOption = function () {
             optionSelected = option;
             break;
         }
-    };
+    }
     if (!optionClicked) {
 
-        alertMe("Please chose an answer before clicking submit answer"), function yes(){
-            return;
-        }
+        alertMe("Please chose an answer before clicking submit answer"),
+            function yes() {
+                return;
+            };
     } else {
         const questionId = Number(question.dataset.quizId);
         const quizLevel = question.dataset.quizLevel;
@@ -273,24 +261,24 @@ const getClickedOption = function () {
         updateMasterDatabase(quizLevel, questionId);
         quizCount++;
 
-        if(quizCount >= totQuizPerSession) displayQuizResult();
+        if (quizCount >= totQuizPerSession) displayQuizResult();
     }
-}
+};
 
 const checkAnswer = function () {
     answerBtnEl.addEventListener('click', getClickedOption);
-}
+};
 
-const markAnswer = function () {
-    const questionId = question.dataset.quizId;
-    const quizLevel = question.dataset.quizLevel;
-    const correct = quizLevel === "professional" ? professionalData[questionId].answer === getClickedOption() : amateurData[questionId].answer === getClickedOption();
+// const markAnswer = function () {
+//     const questionId = question.dataset.quizId;
+//     const quizLevel = question.dataset.quizLevel;
+//     const correct = quizLevel === "professional" ? professionalData[questionId].answer === getClickedOption() : amateurData[questionId].answer === getClickedOption();
 
-}
+// };
 
 const updateMasterDatabase = function (quizLevel, id) {
     quizLevel === "professional" ? professionalData[id].used = true : amateurData[id].used = true;
-}
+};
 
 const getNextQuestion = function () {
     nextQuiz.addEventListener('click', function () {
@@ -303,14 +291,14 @@ const getNextQuestion = function () {
                     getAndDisplayQuiz();
                 },
                 function no() {
-                    return
+                    return;
                 });
         } else {
             getAndDisplayQuiz();
-        };
+        }
 
     });
-}
+};
 
 /**
  * function to return the total correct and total wrong answers.
@@ -322,7 +310,7 @@ const getTotalfromEl = () => {
     let wrongAns = Number(wrongAnswerEl.textContent);
     if (isNaN(wrongAns)) wrongAns = 0;
     return [correctAns, wrongAns];
-}
+};
 /**
  * Function to tally the correct and wrong answers and display to the user
  * @param {Boolean value if true then correct answer tally else wrong answer tally} correct 
@@ -345,7 +333,7 @@ const totalAnswers = function (correct) {
     // disable answer button to prevent submitting more than once
     disableAnswerOptionsAndSubmit();
     // answerBtnEl.style.pointerEvents = 'none';
-}
+};
 /**
  * Function to display the time remaining for the quiz. The total seconds is read from the config.js
  * Ideas and code snippets from Jonas Schmedtmann @ Udemy Javascript class. If the timer was running before, reset it before 
@@ -355,12 +343,12 @@ const totalAnswers = function (correct) {
 const startQuizTimer = function () {
     const tick = function () {
         const hour = String(Math.trunc(time / 3600)).padStart(2, 0);
-        const min = String(Math.trunc((time % 3600)/60)).padStart(2, 0);
+        const min = String(Math.trunc((time % 3600) / 60)).padStart(2, 0);
         // const min = String(Math.trunc(time / 60)).padStart(2, 0);
         const sec = String(time % 60).padStart(2, 0);
         // In each call, print the remaining time to UI, include hour if it is greater than 0
-        hour > 0 ? timerEl.textContent = `${hour}:${min}:${sec}`:
-        timerEl.textContent = `${min}:${sec}`;
+        hour > 0 ? timerEl.textContent = `${hour}:${min}:${sec}` :
+            timerEl.textContent = `${min}:${sec}`;
 
         // When 0 seconds, stop timer and display performance
         if (time === 0) {
@@ -381,12 +369,12 @@ const startQuizTimer = function () {
 const closeExplanationModal = function () {
     closeExplainBtnEl.forEach(btn => btn.addEventListener('click', function () {
         explanationModalEl.style.display = 'none';
-    }))
-}
+    }));
+};
 
 const checkAlreadySubmitted = () => {
     return answerBtnEl.style.pointerEvents === 'none' ? true : false;
-}
+};
 
 /**
  * Disable user from clicking an answer option and submit answer button after submission
@@ -395,7 +383,7 @@ const disableAnswerOptionsAndSubmit = () => {
     answerOptionsBox.forEach(option => option.style.pointerEvents = 'none');
     answerBtnEl.style.pointerEvents = 'none';
     answerBtnEl.style.border = '3px solid #0f0b49';
-}
+};
 
 /**
  * Enable user to click an answer option and submit answer button after display of question
@@ -404,14 +392,15 @@ const enableAnswerOptionsAndSubmit = () => {
     answerOptionsBox.forEach(option => option.style.pointerEvents = 'auto');
     answerBtnEl.style.pointerEvents = 'auto';
     answerBtnEl.style.border = '2px solid rgb(202, 110, 182)';
-}
+};
 
 explanationBtnEl.addEventListener('click', function () {
     // Check if user has submitted answer before permitting view of explanation
     if (!checkAlreadySubmitted()) {
-        alertMe("Please submit your answer before checking the explanation"), function yes(){
-            return;
-        }
+        alertMe("Please submit your answer before checking the explanation"),
+            function yes() {
+                return;
+            };
         return;
     }
     explanationModalEl.style.display = 'block';
@@ -420,17 +409,33 @@ explanationBtnEl.addEventListener('click', function () {
     const quizLevel = question.dataset.quizLevel;
     explanationQuestionEl.textContent = quizLevel === "professional" ? professionalData[questionId].question : amateurData[questionId].question;
     answerExplanationEl.textContent = quizLevel === "professional" ? professionalData[questionId].explan : amateurData[questionId].explan;
-})
-closeExplanationModal();;
+});
+closeExplanationModal();
 
 
 detailedInstructionEl.addEventListener('click', function () {
     explanationModalEl.style.display = 'block';
     explanationQuestionEl.textContent = "Detailed Instructions";
-    answerExplanationEl.textContent = playInstruction;
+
+    answerExplanationEl.textContent = "";
+    // Check if a result div has already exists and remove it
+    const explainDiv = document.createElement('div');
+    const divExists = answerExplanationEl.firstChild;
+    if (divExists) {
+        if (answerExplanationEl.firstChild.localName === 'div') {
+            answerExplanationEl.firstChild.remove();
+        }
+    }
+    explainDiv.innerHTML = playInstruction;
+    explainDiv.textAlign = 'center';
+    answerExplanationEl.insertAdjacentElement('afterbegin', explainDiv);
+
+
+    // answerExplanationEl.textContent = playInstruction;
     closeExplanationModal();
-  //  explanationContentEl.style.width = '60%';
- //   explanationContentEl.style.height = '50%'
+    // console.log ('explanation content width===' + explanationContentEl.style.width );
+    //  explanationContentEl.style.width =  '60%';
+    //   explanationContentEl.style.height = '50%'
 });
 
 const playSound = function (type) {
@@ -450,14 +455,8 @@ const playSound = function (type) {
     //   let audio = correctAnswer ? new Audio('../assets/media/SFXProducer.mp3') : new Audio('../assets/media/SFXProducerError.mp3');
     // correctAnswer ? correctAudioEl.play(): wrongAudioEl.play();
     // audio.play();
-}
+};
 
-const playWinSound = function () {
-    document.querySelector("#win-audio").play();
-    //   let audio = correctAnswer ? new Audio('../assets/media/SFXProducer.mp3') : new Audio('../assets/media/SFXProducerError.mp3');
-
-    // audio.play();
-}
 /**
  * Event function for restarting the quiz. Clears all questions ready to be selected by marking used property false;
  * Restarts the totalling of correct and wrong answer
@@ -478,9 +477,10 @@ restartQuiz.addEventListener('click', function () {
             getAndDisplayQuiz();
             // restart timer
 
-            alertMe("Quiz has restarted"), function yes(){
-                return true;
-            }
+            alertMe("Quiz has restarted"),
+                function yes() {
+                    return true;
+                };
             // restart the quiz timer to timout value
             time = quizTimeout;
             // startQuizTimer(true);
@@ -488,7 +488,7 @@ restartQuiz.addEventListener('click', function () {
             return true;
         },
         function no() {});
-})
+});
 
 /**
  * Function to compute and display the quiz result in a modal window. I'm reusing the modal window for explanation of answer 
@@ -514,7 +514,7 @@ const displayQuizResult = function () {
     explanationModalEl.style.display = 'block';
     explanationQuestionEl.textContent = "Quiz Result";
     // clear any existing content on the div
-    answerExplanationEl.textContent="";
+    answerExplanationEl.textContent = "";
     // Check if a result div has already exists and remove it
     const divExists = answerExplanationEl.firstChild;
     if (divExists) {
@@ -531,11 +531,11 @@ const displayQuizResult = function () {
     //disable next question and view answer buttons
     disablebCommandBtns();
     disableAnswerOptionsAndSubmit();
-}
+};
 
 viewResultBtnEl.addEventListener('click', () => {
     displayQuizResult();
-})
+});
 
 /**
  * Disable all buttons after displaying result except the explanation, restart quiz and view result button
@@ -548,7 +548,7 @@ const disablebCommandBtns = () => {
     answerBtnEl.style.pointerEvents = 'none';
     answerBtnEl.style.border = '3px solid #0f0b49';
 
-}
+};
 
 /**
  * Enable command buttons after starting to display questions
@@ -560,10 +560,10 @@ const enableCommandBtns = () => {
     nextQuiz.style.border = '2px solid rgb(202, 110, 182)';
     answerBtnEl.style.pointerEvents = 'auto';
     answerBtnEl.style.border = '2px solid rgb(202, 110, 182)';
-}
+};
 
 // https://www.tutorialspoint.com/How-to-create-a-dialog-with-yes-and-no-options-in-JavaScript
-const  functionConfirm = function(msg, myYes, myNo) {
+const functionConfirm = function (msg, myYes, myNo) {
     let confirmBox = $("#confirm");
     confirmBox.find(".confirm-message").text(msg);
     confirmBox
@@ -575,9 +575,9 @@ const  functionConfirm = function(msg, myYes, myNo) {
     confirmBox.find(".confirm-yes").click(myYes);
     confirmBox.find(".confirm-no").click(myNo);
     confirmBox.show();
-}
+};
 
-const alertMe =  (msg, myYes)=> {
+const alertMe = (msg, myYes) => {
     const alertBox = $("#alert");
     alertBox.find(".confirm-message").text(msg);
     alertBox
@@ -586,6 +586,6 @@ const alertMe =  (msg, myYes)=> {
         .click(function () {
             alertBox.hide();
         });
-        alertBox.find(".confirm-ok").click(myYes);
-        alertBox.show();
-}
+    alertBox.find(".confirm-ok").click(myYes);
+    alertBox.show();
+};

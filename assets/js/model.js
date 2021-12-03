@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+"use strict";
 export const professionalData = [{
         id: 0, // uniquely identify this question in the professional data
         used: false, // already displayed will be true and used to filter

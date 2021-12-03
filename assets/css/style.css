@@ -342,7 +342,6 @@ button {
   width: 60%;
   height: 60%;
   border-radius: 10px;
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   -webkit-animation-name: topAnimation;
   -webkit-animation-duration: 0.6s;
   animation-name: topAnimation;
@@ -385,32 +384,7 @@ button {
   font-style: italic;
 }
 
-/* Add Animation
-@-webkit-keyframes topAnimation {
-  from {
-    top: -400px;
-    opacity: 0
-  }
 
-  to {
-    top: 0;
-    opacity: 1
-  }
-}
-
-@keyframes topAnimation {
-  from {
-    top: -400px;
-    opacity: 0
-  }
-
-  to {
-    top: 0;
-    opacity: 1
-  }
-}
-
-/* Full-width input fields */
 input[type=text] {
   width: 50%;
   padding: 0.5rem;

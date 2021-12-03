@@ -11,7 +11,6 @@
     <title>The Football Guru</title>
     <meta name="author" content="Polycarp Anyanwu" />
     <meta name="description" content="The Football Guru tests and educates you on knowledge of football" />
-    <link rel="preconnect">
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
@@ -39,7 +38,7 @@
     <main>
         <section id="question-area">
             <div id="question-container">
-                <h2 id="question">test question</h2>
+                <h2 id="question">question</h2>
             </div>
             <div class="line"></div>
             <p id="instruction">Please Select 1 Answer <span id="detailed-instructions"><em>Click for Detailed
@@ -49,7 +48,7 @@
             <p>Remaining time: <span id="remaining-time"></span> Question: <span id="quiz-count"></span><button
                     id="view-result-btn"> View Result</button> </p>
         </div>
-        <section id="answer-area">
+        <div id="answer-area">
             <div class="option" data-option="option1">
                 <span id="option1">first option</span>
                 <div class="answer-sign-ok" id="option1-sign-ok"><i class="fas fa-check"></i></div>
@@ -71,34 +70,35 @@
                 <div class="answer-sign" id="option4-sign-no"><i class="fas fa-times"></i></div>
                 <div class="answer-sign-ok" id="option4-sign-ok"><i class="fas fa-check"></i></div>
             </div>
-            <!-- <div id="explanation">
-                <button>View Explanation of Answer</button>
-                <button>Restart</button>
-            </div> -->
+
             <div id="command-btn-container">
-                <div class= "command-btns">
-                    <button id="submit-answer-btn" class = "command-btn"><i class="fas fa-marker"></i>Submit Answer</button>
-                   
+                <div class="command-btns">
+                    <button id="submit-answer-btn" class="command-btn"><i class="fas fa-marker"></i>Submit
+                        Answer</button>
+
                 </div>
-                <div class= "command-btns">
-                    <button id="next-quix-btn" class = "command-btn"><i class="fas fa-arrow-right"></i>Next Question </button>
+                <div class="command-btns">
+                    <button id="next-quix-btn" class="command-btn"><i class="fas fa-arrow-right"></i>Next Question
+                    </button>
                 </div>
-                <div class= "command-btns">
-                    <button id="explanation-btn" class = "command-btn"><i class="fas fa-binoculars"></i>View Explanation of Answer</button>
-                   
+                <div class="command-btns">
+                    <button id="explanation-btn" class="command-btn"><i class="fas fa-binoculars"></i>View Explanation
+                        of Answer</button>
+
                 </div>
-                <div class= "command-btns">
-                    <button id="restart-btn" class = "command-btn"><i class="fas fa-power-off"></i>Restart the Quiz</button>
+                <div class="command-btns">
+                    <button id="restart-btn" class="command-btn"><i class="fas fa-power-off"></i>Restart the
+                        Quiz</button>
                 </div>
             </div>
             <div id="answer-box">
                 <div id="correct-answer-container"><span id="correct-answer-icon"><i
-                            class="far fa-check-circle"></i></span></span> Correct Answers:
+                            class="far fa-check-circle"></i></span> Correct Answers:
                     <span id="corret-answer">0</span></div>
                 <div id="wrong-answer-container"><span id="wrong-answer-icon"><i class="far fa-times-circle"></i></span>
                     Wrong Answers: <span id="wrong-answer">0</span></div>
             </div>
-        </section>
+        </div>
     </main>
     <!-- modal boxes -->
     <section>
@@ -123,7 +123,7 @@
                 <div class="username-header">
                     <span class="close-btn username-close close-explanation-button"><i
                             class="far fa-times-circle"></i></span>
-                    <h2><span id="explanation-question"></span></h2>
+                    <h2><span id="explanation-question">Explanation text</span></h2>
                 </div>
                 <div class="username-container">
                     <p id="answer-explanation"></p>
@@ -153,7 +153,7 @@
             </div>
         </div>
     </section>
-    <section>
+    <div>
         <!-- Audio elements -->
         <audio id="correct-audio">
             <source src="assets/media/SFXProducer.mp3" type="audio/mpeg">
@@ -164,7 +164,7 @@
         <audio id="win-audio">
             <source src="assets/media/mixkit_conference_audience_clapping.wav" type="audio/wav">
         </audio>
-    </section>
+    </div>
     <footer>
         <div class="contact-us">
             <span>
@@ -185,10 +185,9 @@
         </div>
     </footer>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" rel="preconnect"></script>
     <!-- Font Awesome script link that was used in the social media links -->
-    <script src="https://kit.fontawesome.com/af901081da.js" crossorigin="anonymous">
-    </script>
+    <script src="https://kit.fontawesome.com/af901081da.js" crossorigin="anonymous" rel="preconnect"></script>
     <script src="assets/js/controller.js" type="module"></script>
 </body>
 
