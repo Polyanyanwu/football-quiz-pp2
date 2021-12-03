@@ -66,6 +66,8 @@ The footer has the links to take the user back to any of the three main sections
 
     ![CSS Validation Result](/docs/css_validation.png)
 
+* ### Validity of the JavaScript
+
 * ### Accessibility & Performance Testing
 
     Performance test was carried out using Lighthouse tool provided by the Chrome Development tool. Initial performance result pointed to deficiencies in the size and type of images on the site - most were .jpg and .png. The images were converted to .webp using  [cloud convert](https://cloudconvert.com/) and then  [tiny png](https://tinypng.com/) was used to compress the images further. Issue of non-caching of static images was also observed. Cache Control was added to the header with properties content="max-age=31536000" and content="public". After these changes to the images and caching, the Lighthouse produced the result below:
@@ -81,6 +83,10 @@ The footer has the links to take the user back to any of the three main sections
     Using the Chrome Development tools, the responsiveness of the site to various screen sizes was simulated. This led to the adjustment of the CSS until the site supports numerous device widths from the smallest hand held devices to full computer monitor screens.
     ![Responsive Screens](/docs/various_screen_sizes.png)
     The first image above shows a full screen of two image columns and two video columns dsiplayed on a laptop computer screen. The images below the laptop screen are simulations on the ipad - portrait (with single image column) and small screen of Moto G4 and Iphone X displaying single column for both video and images.
+
+* ### Functionality Test
+
+    Guided by the User Story and application design, extensive tests of the functionality was carried out. The detailed test script and result is available at  [Functionality Test](docs/Testing.md)
 
 * ### Bugs
 As expected for projects of this nature several bugs were identified in the cause of the impleentation and fixed accordingly.

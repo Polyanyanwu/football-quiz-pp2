@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Enable static images cached to speed up performance -->
+    <meta name="Cache-Control" content="public">
+    <meta name="Cache-Control" content="max-age=31536000">
     <title>The Football Guru</title>
     <meta name="author" content="Polycarp Anyanwu" />
     <meta name="description" content="The Football Guru tests and educates you on knowledge of football" />
+    <link rel="preconnect">
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
@@ -45,7 +49,8 @@
                         Instructions</em></span></p>
         </section>
         <div id="time-container">
-            <p>Remaining time: <span id="remaining-time"></span> Question: <span id ="quiz-count"></span><button id="view-result-btn"> View Result</button> </p> 
+            <p>Remaining time: <span id="remaining-time"></span> Question: <span id="quiz-count"></span><button
+                    id="view-result-btn"> View Result</button> </p>
         </div>
         <section id="answer-area">
             <div class="option" data-option="option1">
