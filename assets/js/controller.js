@@ -251,7 +251,9 @@ const getClickedOption = function () {
             // mark all as x 
             markAllOptionsX();
             document.getElementById(`${optionSelected.dataset.option}-sign-ok`).classList.add('answer-sign-selected');
+            document.getElementById(`${optionSelected.dataset.option}-sign-ok`).style.color = '#fff';
             document.getElementById(`${optionSelected.dataset.option}-sign-no`).classList.remove('answer-sign-x');
+
             totalAnswers(true);
             playSound('correct');
         } else {
@@ -427,8 +429,8 @@ detailedInstructionEl.addEventListener('click', function () {
     explanationQuestionEl.textContent = "Detailed Instructions";
     answerExplanationEl.textContent = playInstruction;
     closeExplanationModal();
-    explanationContentEl.style.width = '60%';
-    explanationContentEl.style.height = '50%'
+  //  explanationContentEl.style.width = '60%';
+ //   explanationContentEl.style.height = '50%'
 });
 
 const playSound = function (type) {
@@ -522,8 +524,8 @@ const displayQuizResult = function () {
     }
     answerExplanationEl.insertAdjacentElement('afterbegin', resultDiv);
     closeExplanationModal();
-    explanationContentEl.style.width = '60%';
-    explanationContentEl.style.height = '50%'
+    // explanationContentEl.style.width = '60%';
+    // explanationContentEl.style.height = '50%'
     // display the button to enable the user to display the result again
     viewResultBtnEl.style.display = "inline";
     //disable next question and view answer buttons

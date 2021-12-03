@@ -200,6 +200,7 @@ button {
   float: right;
   color: white;
   display: block;
+  /* color: #008000; */
 }
 
 .answer-sign-x {
@@ -215,7 +216,6 @@ button {
 
 
 #command-btn-container {
-  /* margin: 0 auto; */
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -225,8 +225,8 @@ button {
 
 .command-btns {
     display: flex;
-    width: 25%;
-    padding-bottom: 0.5rem;
+    width: 23%;
+    padding: 0 1%;
 }
 
 .command-btn {
@@ -310,20 +310,16 @@ button {
 }
 
 /* Username modal form */
-/* The Modal (background) */
 /* Modal styling adopted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2 */
 .modal,
 #confirm,
 #alert {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 5;
   margin: 0 auto;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
   overflow-y: initial !important;
   background-color: rgba(189, 177, 231, 0.7);
@@ -343,8 +339,8 @@ button {
   margin: 20vh auto;
   padding: 0;
   border: 1px solid #888;
-  width: 40%;
-  height: 40%;
+  width: 60%;
+  height: 60%;
   border-radius: 10px;
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   -webkit-animation-name: topAnimation;
@@ -417,7 +413,7 @@ button {
 /* Full-width input fields */
 input[type=text] {
   width: 50%;
-  padding: 1rem 2rem;
+  padding: 0.5rem;
   margin: 5% 15%;
   display: inline-block;
   border: 1px solid #ccc;
@@ -439,7 +435,8 @@ input[type=text] {
 
 /* Set a style for all buttons */
 .username-container>button {
-  background-color: #04AA6D;
+  /* background-color: #04AA6D; */
+  background-color:green;
   color: white;
   padding: 14px 20px;
   margin: 0 auto;
@@ -458,16 +455,17 @@ input[type=text] {
 
 /* The Close Button */
 .close-btn {
-  color: red;
+  color:white;
   float: right;
   font-size: 1rem;
 }
 
 .close-btn:hover,
 .close-btn:focus {
-  color: #000;
+  /* color: #000; */
+  color:red;
   text-decoration: none;
-  /* cursor: pointer; */
+  cursor: pointer;
 }
 
 .username-header {
@@ -548,20 +546,12 @@ footer {
     width: 38%;
   }
   .command-btns {
-    width: 50%;
+    width: 48%;
+    margin: 0 auto;
 }
-  /* Command button area */
-  /* #command-btn-container div {
-    width: 45%;
-    padding: 1%;
-    font-size: 90%;
-    border: 0.2em solid rgb(202, 110, 182);
-    margin: 0.5% auto;
-  } */
-
   /* answer total area reduce to single column */
   #answer-box {
-    font-size: 80%;
+    font-size: 100%;
   }
 
   #wrong-answer-container {
@@ -579,4 +569,30 @@ footer {
 .confirm-content button{
   width: 45%;
 }
+
+input[type=text] {
+  width: 80%;
+  margin: 5% 0;
+  font-size: 100%;
+}
+.username-container > button{
+  width: 90%;
+  font-size: 100%;
+}
+.username-modal-content, .confirm-content {
+  width: 80%;
+}
+}
+
+/*For larger to medium screens size from 1060px width and down. The point that our Title and football logo gets distorted */
+@media screen and (max-width: 450px) {
+  .contact-us span a {
+    margin: 0 5px;
+    font-size: 100%;
+  }
+  #time-container{
+    /* force the question x of x to come on a new row instead of splitting into two rows */
+    width: 50%;
+  }
+
 }
