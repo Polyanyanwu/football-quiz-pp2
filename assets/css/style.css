@@ -206,11 +206,6 @@ button {
   cursor: pointer;
 }
 
-
-/* #option1 {
-  float: left;
-} */
-
 .answer-sign-none {
   display: none;
 }
@@ -255,7 +250,6 @@ button {
   font-size: 100%;
   border: 2px solid rgb(202, 110, 182);
   border-radius: 10px;
-  /* letter-spacing: 1px; */
   text-align: center;
   position: relative;
   margin: 2px auto;
@@ -475,11 +469,6 @@ input[type=text] {
   font-size: 120%;
 }
 
-/* .modal-footer {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-} */
 
 /* footer section */
 footer {
@@ -584,10 +573,6 @@ input[type=text] {
     margin: 0 5px;
     font-size: 100%;
   }
-  /* #time-container{
-   
-    width: 50%;
-  } */
   .counters {
     width: 90%;
   }

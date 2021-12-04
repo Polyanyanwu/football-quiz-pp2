@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 /*jshint -W030 */  //ignore warnings due to use of tenary operator
+/*globals $:false */ // accept $ as global variable while testing with jshint
 "use strict";
 
 import {
