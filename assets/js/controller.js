@@ -61,11 +61,16 @@ const winAudioEl = document.querySelector("#win-audio");
 const quizCountEl = document.querySelector("#quiz-count");
 const usernameCloseBtn = document.querySelector(".username-close");
 const usernameCreateBtn = document.querySelector("#create-user-button");
+const totProfQuizEl = document.querySelector("#total-prof-question");
+const totAmateurQuizEl = document.querySelector("#total-amateur-question");
+
 
 let quizCount = 0;
 let time = quizTimeout;
 let totAmateurCorrect = 0;
 let totProfCorrect = 0;
+let totProfQuiz = 0;
+let totAmateurQuiz = 0;
 
 const displayUsernameModal = function () {
     //display the initial question from the amateur level
@@ -73,9 +78,7 @@ const displayUsernameModal = function () {
     answerOptionListener();
     checkAnswer();
     getNextQuestion();
-    // const quizItem = getQuestionToDisplay();
-    // console.log(quizItem);
-    // displayQuestion(quizItem[0],quizItem[1]);
+
     const player = document.getElementById("player");
     const modal = document.getElementById("userNameModal");
     if (player.textContent === '?') {
@@ -123,6 +126,11 @@ const changeQuizLevel = function (event) {
     //  arrow function ideas and forEach obtained from my JavaScript lessons at Udemy.com
     quizLevel.forEach(btn => btn.classList.remove('active-quiz-level'));
     event.target.classList.add('active-quiz-level');
+
+// display the existing total uestions per quiz level before changing
+    totProfQuizEl.textContent = totProfQuiz;
+    totAmateurQuizEl.textContent = totAmateurQuiz;
+// get a new question and display
     getAndDisplayQuiz();
 };
 quizLevel.forEach(btn => btn.addEventListener('click', changeQuizLevel));
@@ -145,9 +153,6 @@ const displayQuestion = function (quizLevel, questionId) {
     question.dataset.quizLevel = quizLevel;
     removeSelectionFromOptions();
     removeAnswerMarks();
-    // updateMasterDatabase(quizLevel, questionId);
-    // console.log(amateurData);
-
 };
 
 /**
@@ -182,6 +187,7 @@ const getAndDisplayQuiz = function () {
     enableCommandBtns();
     // display question count
     quizCountEl.textContent = `${quizCount+1} of ${totQuizPerSession}`;
+    quizItem[0] === 'professional'? totProfQuizEl.textContent =totProfQuiz +1: totAmateurQuizEl.textContent = totAmateurQuiz +1;
 
 };
 
@@ -238,8 +244,10 @@ const getClickedOption = function () {
         let correctAnswer = false;
         if (quizLevel === "amateur") {
             correctAnswer = amateurData[questionId].answer === answer;
+            totAmateurQuiz++;
         } else {
             correctAnswer = professionalData[questionId].answer === answer;
+            totProfQuiz++;
         }
         //     correctAnswer = quizLevel === "professional"? professionalData[questionId].answer === answer: amateurData[questionId].answer === answer;
         removeAnswerMarks();
@@ -440,11 +448,7 @@ detailedInstructionEl.addEventListener('click', function () {
     explainDiv.innerHTML = playInstruction;
     explainDiv.textAlign = 'center';
     answerExplanationEl.insertAdjacentElement('afterbegin', explainDiv);
-
-
-    // answerExplanationEl.textContent = playInstruction;
     closeExplanationModal();
-    // console.log ('explanation content width===' + explanationContentEl.style.width );
     //  explanationContentEl.style.width =  '60%';
     //   explanationContentEl.style.height = '50%'
 });
@@ -518,7 +522,7 @@ const displayQuizResult = function () {
     <p>Percent obtained: <span class="red-text">${totAmateurCorrect* amateurMarkPerQuiz + totProfCorrect* profMarkPerQuiz}%</span></p>
     <p>Pass Cut Off Percentage: <span class="red-text">${passCutOffMark}%</span></p>`;
 
-    if (Math.round(correctAns / totQuizPerSession * 100, 2) >= passCutOffMark) {
+    if ((totAmateurCorrect* amateurMarkPerQuiz + totProfCorrect* profMarkPerQuiz) >= passCutOffMark) {
         result += ` <p>Final Grade: <span class="green-text"><em>PASS</em></span></p>`;
         playSound('win');
     } else {

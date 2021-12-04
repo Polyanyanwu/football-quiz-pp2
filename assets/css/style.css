@@ -166,23 +166,33 @@ button {
   background-color: #000;
 } */
 
+#time-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.counters {
+  display: flex;
+  width: 30%;
+  padding-top: 0.5rem;
+  background-color: #e8e8f3; 
+}
 #time-container,
 #answer-area {
   width: 70%;
   margin: 0 auto;
   /* background-color: #e8e8f3; */
 }
-#quiz-count, #time-container {
+.counters span {
   padding:0 5px;
-  background-color: #e8e8f3; 
+  /* background-color: #e8e8f3;  */
+  color: red;
 }
 
 #time-container p{
   padding:0.5rem 0 ;
 }
-#time-container span{
-  padding:0 0.5rem ;
-}
+
 .option {
   border: 1px solid #0f0b49;
   padding: 0.4rem;
@@ -263,7 +273,6 @@ button {
   height: auto;
   border: 2px solid rgb(202, 110, 182);
   border-radius: 5px;
-  margin: 1rem auto;
   padding: 0.2rem;
   position: relative;
   background-color: whitesmoke;
@@ -533,7 +542,9 @@ footer {
   #answer-box {
     font-size: 100%;
   }
-
+  .counters {
+    width: 45%;
+  }
   #wrong-answer-container {
     float: left;
   }
@@ -570,9 +581,11 @@ input[type=text] {
     margin: 0 5px;
     font-size: 100%;
   }
-  #time-container{
-    /* force the question x of x to come on a new row instead of splitting into two rows */
+  /* #time-container{
+   
     width: 50%;
+  } */
+  .counters {
+    width: 90%;
   }
-
 }
