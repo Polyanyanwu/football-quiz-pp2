@@ -2,6 +2,8 @@
 "use strict";
 export const QUIZ_TIMEOUT_SEC = 600;
 export const TOTAL_QUESTIONS_PER_SESSION = 10;
+export const PROFESSIONAL_MARK_PER_QUESTION = 10;
+export const AMATEUR_MARK_PER_QUESTION = 6.5;
 export const MIN_USER_LENGTH = 3;
 export const TOTAL_ANSWER_OPTIONS = 4;
 export const PASS_CUTOFF_MARK = 70;

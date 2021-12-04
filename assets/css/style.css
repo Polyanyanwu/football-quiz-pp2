@@ -177,11 +177,17 @@ button {
   background-color: #e8e8f3; 
 }
 
+#time-container p{
+  padding:0.5rem 0 ;
+}
+#time-container span{
+  padding:0 0.5rem ;
+}
 .option {
   border: 1px solid #0f0b49;
   padding: 0.4rem;
   margin: 1rem;
-  height: 2.4rem;
+  /* height: 2.4rem; */
   border-radius: 10px;
   background-color: whitesmoke;
   cursor: pointer;

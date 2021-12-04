@@ -91,28 +91,47 @@ export const professionalData = [{
     {
         id: 8,
         used: false,
-        // https://www.history.com/this-day-in-history/first-world-cup
-        question: "Which country won the first ever World Cup in 1930?",
-        option1: "Brazil",
-        option2: "Germany",
-        option3: "Uruguay",
-        option4: "France",
-        answer: "option3",
-        explan: "In the first World Cup final, held on July 30, 1930, 93,000 spectators looked on as Uruguay defeated Argentina 4–2 in a rematch of the 1928 Olympic gold medal game. Uruguay went on to win its second World Cup in 1950 with a 2-1 win over Brazil in Rio de Janeiro.",
+        question: "Two lines are drawn at right angles to the goal line, 16.5 m (18 yds) from the inside of each goalpost. These lines extend into the field of play for 16.5 m (18 yds) and are joined by a line drawn parallel with the goal line. What is this area called?",
+        option1: "The Flagposts",
+        option2: "The Corner Area",
+        option3: "The Penalty Area",
+        option4: "The Technical Area",
+        answer:  "option3",
+        explan: "Two lines are drawn at right angles to the goal line, 16.5 m (18 yds) from the inside of each goalpost. These lines extend into the field of play for 16.5 m (18 yds) and are joined by a line drawn parallel with the goal line. The area bounded by these lines and the goal line is the penalty area.",
     },
     {
+                //https://drive.google.com/file/d/12czUEG7kdGvNh_vJ6MM-kas9qjsvRLqP/view
         id: 9,
         used: false,
+        question: "The centre mark is at the midpoint of the halfway line. What is the radius of the circle that is marked around it",
+        option1: "10.15 meters",
+        option2: "Fr12.5 meters",
+        option3: "9.15 meters (10 yards)",
+        option4: "12 yards",
+        answer: "option3",
+        explan: "The centre mark is at the midpoint of the halfway line. A circle with a radius of 9.15 m (10 yds) is marked around it.",
+    },
+    {
+        id: 10,
+        used: false,
         // https://www.statista.com/statistics/266464/number-of-world-cup-titles-won-by-country-since-1930/
-        question: "Which country has won the most World Cups?",
-        option1: "Germany",
-        option2: "France",
-        option3: "Spain",
-        option4: "Brazil",
-        answer: "option4",
-        explan: " The national team of Brazil has won the most soccer World Cup titles of all time with five, winning the tournament in 1958, 1962, 1970, 1994 and, most recently, in 2002.",
+        question: "What is temporary dismissal during a football match",
+        option1: "A player is punished by explusion from his team",
+        option2: "A player commits a cautionable (YC) offence and is punished by an immediate ‘suspension’ from participating in the next part of that match.",
+        option3: "A player is cautioned by his Manager and warned to be of good behaviour",
+        option4: "A player is cautioned by the Refree and is disallowed from playing matches in future",
+        answer: "option2",
+        explan: `A temporary dismissal is when a player commits a cautionable (YC) offence and 
+        is punished by an immediate ‘suspension’ from participating in the next part of
+        that match. The philosophy is that an ‘instant punishment’ can have a
+        significant and immediate positive influence on the behaviour of the offending
+        player and, potentially, the player’s team.(Laws of football 2021)`
     }
 ];
+
+
+
+
 
 export const amateurData = [{
         id: 0,
@@ -181,5 +200,34 @@ export const amateurData = [{
         option4: "Brazil",
         answer: "option4",
         explan: " The national team of Brazil has won the most soccer World Cup titles of all time with five, winning the tournament in 1958, 1962, 1970, 1994 and, most recently, in 2002.",
-    }
+    },
+    {
+        // https://drive.google.com/file/d/12czUEG7kdGvNh_vJ6MM-kas9qjsvRLqP/view
+        id: 6,
+        used: false,
+        question: "If artificial surfaces are permitted in a football field, what colour must it be?",
+        option1: "Yellow",
+        option2: "Blue",
+        option3: "Violet",
+        option4: "Green",
+        answer: "option4",
+        explan: `The field of play must be a wholly natural or, if competition rules permit,
+        a wholly artificial playing surface except where competition rules permit an
+        integrated combination of artificial and natural materials (hybrid system).
+        The colour of artificial surfaces must be green.`
+    },
+    {
+        id: 7,
+        used: false,
+        question: "What is the purpose of the Goal Line Technology (GLT) in football games?",
+        option1: "Replace the Refree as it is a faultless technology",
+        option2: "Ensure that the Managers do not protest Refree's decisions",
+        option3: "Verify whether a goal has been scored to support Refree's decision",
+        option4: "Verify that ever goal has been scored correctly after the match",
+        answer: "option3",
+        explan: "GLT systems may be used to verify whether a goal has been scored to support the referee’s decision.",
+    },
 ];
+
+
+

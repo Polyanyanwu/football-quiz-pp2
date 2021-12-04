@@ -24,6 +24,13 @@ import {
 } from "./config.js";
 
 import {
+    PROFESSIONAL_MARK_PER_QUESTION as profMarkPerQuiz
+} from "./config.js";
+import {
+    AMATEUR_MARK_PER_QUESTION as amateurMarkPerQuiz
+} from "./config.js";
+
+import {
     professionalData
 } from "./model.js";
 import {
@@ -57,6 +64,8 @@ const usernameCreateBtn = document.querySelector("#create-user-button");
 
 let quizCount = 0;
 let time = quizTimeout;
+let totAmateurCorrect = 0;
+let totProfCorrect = 0;
 
 const displayUsernameModal = function () {
     //display the initial question from the amateur level
@@ -241,6 +250,8 @@ const getClickedOption = function () {
             document.getElementById(`${optionSelected.dataset.option}-sign-ok`).classList.add('answer-sign-selected');
             document.getElementById(`${optionSelected.dataset.option}-sign-ok`).style.color = '#fff';
             document.getElementById(`${optionSelected.dataset.option}-sign-no`).classList.remove('answer-sign-x');
+            // aggregate correct answers
+            quizLevel==="amateur"? ++totAmateurCorrect : ++totProfCorrect;
 
             totalAnswers(true);
             playSound('correct');
@@ -483,8 +494,10 @@ restartQuiz.addEventListener('click', function () {
                 };
             // restart the quiz timer to timout value
             time = quizTimeout;
-            // startQuizTimer(true);
-            // alert('Quiz has restarted');
+            // restart correct answer counts
+            totProfCorrect=0;
+            totAmateurCorrect=0;
+            
             return true;
         },
         function no() {});
@@ -499,8 +512,10 @@ const displayQuizResult = function () {
     let result = `
     <p>Total questions answered correctly: <span class="red-text">${correctAns}</span></p>
     <p>Total wrong answers: <span class="red-text">${wrongAns}</span></p>
+    <p>Total Professional Questions answered correctly: <span class="red-text"> ${totProfCorrect}</span></p>
+    <p>Total Amateur Questions answered correctly: <span class="red-text">${totAmateurCorrect}</span></p>
     <p>Total questions in quiz: <span class="red-text">${totQuizPerSession}</span></p>
-    <p>Percent obtained: <span class="red-text">${ Math.round(correctAns/totQuizPerSession*100, 2)}%</span></p>
+    <p>Percent obtained: <span class="red-text">${totAmateurCorrect* amateurMarkPerQuiz + totProfCorrect* profMarkPerQuiz}%</span></p>
     <p>Pass Cut Off Percentage: <span class="red-text">${passCutOffMark}%</span></p>`;
 
     if (Math.round(correctAns / totQuizPerSession * 100, 2) >= passCutOffMark) {
