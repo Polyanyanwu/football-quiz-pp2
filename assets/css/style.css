@@ -142,10 +142,11 @@ header img {
 }
 
 #instruction {
-  color: red;
+  color:green;
   font-size: 100%;
   padding: 0.3rem;
   text-align: center;
+  background-color: whitesmoke;
 }
 
 button {
@@ -186,7 +187,9 @@ button {
 .counters span {
   padding:0 5px;
   /* background-color: #e8e8f3;  */
-  color: red;
+  color:green;
+  background-color: whitesmoke;
+  border-radius: 5px;
 }
 
 #time-container p{

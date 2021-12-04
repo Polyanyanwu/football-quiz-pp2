@@ -25,13 +25,13 @@ export const professionalData = [{
     {
         id: 2,
         used: false,
-        question: "How many players make up a foothball team?",
-        option1: "11",
-        option2: "9",
-        option3: "7",
-        option4: "12",
-        answer: "option1",
-        explan: "11 players make up a foothball team",
+        question: "Who holds the record for the Top African Premier League Goalscorers",
+        option1: "Sadio Mané",
+        option2: "Mohamed Salah",
+        option3: "Didier Drogba",
+        option4: "Emmanuel Adebayor",
+        answer: "option3",
+        explan: "Didier Drogba (Ivory Coast 104), Emmanuel Adebayor (Togo 97), Yakubu (Nigeria 95), Sadio Mané (Senegal 80), Mohamed Salah (Egypt 72) and Yaya Touré (Ivory Coast 62). (updated 26-Jul-2020)",
     },
     {
         id: 3,
@@ -78,15 +78,16 @@ export const professionalData = [{
         explan: "Cristiano Ronaldo has scored a goal for every minute of a football game. He has scored most frequently in the 23rd minute of games.",
     },
     {
+        // https://www.myfootballfacts.com/question_of_the_day/best-120-football-quiz-questions-trivia-and-answers/#PL-Quiz-1
         id: 7,
         used: false,
-        question: "What is the frequency of the world cup football turnament",
-        option1: "Every 2 years",
-        option2: "Every 3 years",
-        option3: "Every 4 years",
-        option4: "Every 5 years",
-        answer: "option3",
-        explan: "The world cup turnament is held every 4 years",
+        question: "Which two teams competed in the first all-English major European Cup Final?",
+        option1: "Manchester City and Manchester UNited",
+        option2: "Tottenham Hotspur and Wolverhampton Wanderers",
+        option3: "Wolverhampton Wanderers and Chelsea",
+        option4: "Tottenham Hotspur and Manchester City",
+        answer: "option2",
+        explan: "Tottenham Hotspur and Wolverhampton Wanderers, 1972 UEFA Cup Final (played over two legs).",
     },
     {
         id: 8,
@@ -96,16 +97,16 @@ export const professionalData = [{
         option2: "The Corner Area",
         option3: "The Penalty Area",
         option4: "The Technical Area",
-        answer:  "option3",
+        answer: "option3",
         explan: "Two lines are drawn at right angles to the goal line, 16.5 m (18 yds) from the inside of each goalpost. These lines extend into the field of play for 16.5 m (18 yds) and are joined by a line drawn parallel with the goal line. The area bounded by these lines and the goal line is the penalty area.",
     },
     {
-                //https://drive.google.com/file/d/12czUEG7kdGvNh_vJ6MM-kas9qjsvRLqP/view
+        //https://drive.google.com/file/d/12czUEG7kdGvNh_vJ6MM-kas9qjsvRLqP/view
         id: 9,
         used: false,
         question: "The centre mark is at the midpoint of the halfway line. What is the radius of the circle that is marked around it",
         option1: "10.15 meters",
-        option2: "Fr12.5 meters",
+        option2: "12.5 meters",
         option3: "9.15 meters (10 yards)",
         option4: "12 yards",
         answer: "option3",
@@ -126,7 +127,19 @@ export const professionalData = [{
         that match. The philosophy is that an ‘instant punishment’ can have a
         significant and immediate positive influence on the behaviour of the offending
         player and, potentially, the player’s team.(Laws of football 2021)`
-    }
+    },
+    {
+        id: 11,
+        used: false,
+        question: "Who is the only African player to win FIFAs World Player of the Year Award?",
+        option1: "JJ Okocha",
+        option2: "Mohammed Salah",
+        option3: "George Weah",
+        option4: "Sadio Mane",
+        answer: "option3",
+        explan: "George Weah of AC Milan & Liberia in 1994-95.",
+    },
+    
 ];
 
 
@@ -227,7 +240,50 @@ export const amateurData = [{
         answer: "option3",
         explan: "GLT systems may be used to verify whether a goal has been scored to support the referee’s decision.",
     },
-];
-
-
-
+    {
+        id: 8,
+        used: false,
+        question: "What is the full meaning of VAR?",
+        option1: "Vehicle Assistant Reference",
+        option2: "Video Assessment Referee",
+        option3: "Video Assigned Refree",
+        option4: "Video Assistant Referee",
+        answer: "option4",
+        explan: " VAR means Video Assistant Refree. In matches using VARs there must be a video operation room (VOR) and at least one referee review area (RRA).",
+    },
+    {
+        // https://www.888sport.com/blog/most-successful-football-club-in-england
+        id: 9,
+        used: false,
+        question: "Who are the TWO most successful English clubs with the most Trophies",
+        option1: "Manchester City & Chelsea",
+        option2: "Chelsea & Manchester United",
+        option3: "Liverpool & Arsenal",
+        option4: "Manchester United & Liverpool",
+        answer: "option4",
+        explan: "English Clubs With Most Trophies:Manchester United - 66 trophies Liverpool - 65 trophies, Arsenal - 48 trophies, Chelsea - 32 trophies, Manchester City - 28 trophies",
+    },
+    {
+        id: 10,
+        used: false,
+        question: "Who is the all-time Champions League top scorer as at September, 2021 ",
+        option1: "Leo Messi",
+        option2: "Cristiano Ronaldo",
+        option3: "Ryan Giggs",
+        option4: "Alan Shearer",
+        answer: "option2",
+        explan: "Cristiano Ronaldo is the all-time Champions League top scorer with 134 goals in the competition",
+    },
+    {
+        id: 11,
+        used: false,
+        question: "Who is the Manchester City Manager as at year 2020 ",
+        option1: "Manuel Pellegrini",
+        option2: "Roberto Mancini",
+        option3: "Pep Guardiola",
+        option4: "Alan Shearer",
+        answer: "option3",
+        explan: "Josep 'Pep' Guardiola Sala, (born 18 January 1971) is Manchester City Manager from 2016–17 season till date (2021)",
+    },
+    
+]
