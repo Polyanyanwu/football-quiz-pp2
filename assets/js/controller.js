@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-/*jshint -W030 */  //ignore warnings due to use of tenary operator
+/*jshint -W030 */ //ignore warnings due to use of tenary operator
 /*globals $:false */ // accept $ as global variable while testing with jshint
 "use strict";
 
@@ -128,10 +128,10 @@ const changeQuizLevel = function (event) {
     quizLevel.forEach(btn => btn.classList.remove('active-quiz-level'));
     event.target.classList.add('active-quiz-level');
 
-// display the existing total uestions per quiz level before changing
+    // display the existing total uestions per quiz level before changing
     totProfQuizEl.textContent = totProfQuiz;
     totAmateurQuizEl.textContent = totAmateurQuiz;
-// get a new question and display
+    // get a new question and display
     getAndDisplayQuiz();
 };
 quizLevel.forEach(btn => btn.addEventListener('click', changeQuizLevel));
@@ -188,7 +188,8 @@ const getAndDisplayQuiz = function () {
     enableCommandBtns();
     // display question count
     quizCountEl.textContent = `${quizCount+1} of ${totQuizPerSession}`;
-    quizItem[0] === 'professional'? totProfQuizEl.textContent =totProfQuiz +1: totAmateurQuizEl.textContent = totAmateurQuiz +1;
+    console.log("after restart:" + totProfQuiz + " amateur==" + totAmateurQuiz)
+    quizItem[0] === 'professional' ? totProfQuizEl.textContent = totProfQuiz + 1 : totAmateurQuizEl.textContent = totAmateurQuiz + 1;
 
 };
 
@@ -260,7 +261,7 @@ const getClickedOption = function () {
             document.getElementById(`${optionSelected.dataset.option}-sign-ok`).style.color = '#fff';
             document.getElementById(`${optionSelected.dataset.option}-sign-no`).classList.remove('answer-sign-x');
             // aggregate correct answers
-            quizLevel==="amateur"? ++totAmateurCorrect : ++totProfCorrect;
+            quizLevel === "amateur" ? ++totAmateurCorrect : ++totProfCorrect;
 
             totalAnswers(true);
             playSound('correct');
@@ -490,6 +491,14 @@ restartQuiz.addEventListener('click', function () {
             wrongAnswerEl.textContent = 0;
             // display new question
             quizCount = 0;
+            // restart correct answer counts
+            totProfCorrect = 0;
+            totAmateurCorrect = 0;
+            // restart the quiz number of questions count
+            totProfQuiz = 0;
+            totAmateurQuiz = 0;
+            totProfQuizEl.textContent = 0;
+            totAmateurQuizEl.textContent = 0;
             getAndDisplayQuiz();
             // restart timer
 
@@ -499,10 +508,7 @@ restartQuiz.addEventListener('click', function () {
                 };
             // restart the quiz timer to timout value
             time = quizTimeout;
-            // restart correct answer counts
-            totProfCorrect=0;
-            totAmateurCorrect=0;
-            
+
             return true;
         },
         function no() {});
@@ -523,7 +529,7 @@ const displayQuizResult = function () {
     <p>Percent obtained: <span class="red-text">${totAmateurCorrect* amateurMarkPerQuiz + totProfCorrect* profMarkPerQuiz}%</span></p>
     <p>Pass Cut Off Percentage: <span class="red-text">${passCutOffMark}%</span></p>`;
 
-    if ((totAmateurCorrect* amateurMarkPerQuiz + totProfCorrect* profMarkPerQuiz) >= passCutOffMark) {
+    if ((totAmateurCorrect * amateurMarkPerQuiz + totProfCorrect * profMarkPerQuiz) >= passCutOffMark) {
         result += ` <p>Final Grade: <span class="green-text"><em>PASS</em></span></p>`;
         playSound('win');
     } else {
