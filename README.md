@@ -33,12 +33,22 @@ The Header contains a football logo, title of the page and the user that logged 
 
 
 ### 3. The Question & Answer Area
+This is the main area of the page having a question displayed, the instruction to select only one answer; the link to the Detailed Instructions; the answer options and the command buttons to enable Submit Answer, Next Question, Explanation of Answer and Restart Quiz. It also has the feedback on the total questions answered correctly or wrongly.
+
 ![The Question & Answer Area](/docs/question_area.png)
+
+When an answer option is clicked, the background and foreground color changes to give visual effect of the selected option. Clicking on the Submit Answer button will check correctness of the answer;  make a sound to alert the user and display the incremented total correct or wrong answers accordingly. If a user clicks Submit Answer button without fist selecting an option, the Guru will respond with an alert <em> Please chose an answer before clicking submit answer</em>.
+
+After submitting the answer, the user could click on View Explanation of Answer button to get a detailed explanation of the answer. The user must have submitted the answer first if not an alert is displayed requesting the user to <em>Please submit your answer before checking the explanation</em>
+
+![The Answer Explanation](/docs/answer_explanation.png)
 
 The user clicks on the Next Question button to navigate to the next random question from the system. The question is picked randomly from the quiz level database that the user currently selected. If a user clicks on the Next Question without submitting answer for the currently displayed question, a Confirmation message is displayed to ensure the user really want to navigate to another question. If the user clicks Ok, the next question is displayed, if not no action is taken.
 
-#### Submission of Answer
-If a user clicks the Submit Answer Button, the application will check if user has selected an answer option, if not a message is displayed informing the user to first select and answer before clicking the Submit Answer Button. If an answer option was already selected, the application will check if the answer is correct and increment the correct or wrong answer totals and also play an appropriate sound.
+The Restart the Quiz button enables the user to restart the quix at any time deemed necessary. A confirmation window is displayed requesting <em>Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?</em> If the user clicks Yes, the quiz is restarted if No is clicked user returns to continue the quiz without restarting. If the Yes confirmation was clicked, an alert is displayed informing the user that the quiz has restarted.
+![The Restart Quiz Confirmation Alert](/docs/alert.png)
+
+
 
 ### 4. The Footer Area
 
