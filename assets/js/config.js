@@ -9,7 +9,7 @@ export const TOTAL_ANSWER_OPTIONS = 4;
 export const PASS_CUTOFF_MARK = 70;
 export const PLAY_INSTRUCTION = `<p>The Quiz is composed of two levels, the Amateur and the Professional. 
 The difference between the two is that the professional has more difficult to guess questions. Each Amateur question is 6.5 marks
-while each professional question is 10 marks. To pass the quiz you must answer at least 1 professional question correctly.
+while each professional question is 10 marks. To pass the quiz you must answer at least 2 professional question correctly.
 Click on the desired level of play and a question will be loaded automatically.<br><br>
 Click on your answer choice and the Submit Answer button to get the Guru to mark your submission.<br></p><p>
 If your answer is correct, the total correct answer is incresed by 1 and if wrong, the wrong answers is increased by 1.

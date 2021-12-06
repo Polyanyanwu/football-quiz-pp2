@@ -2,10 +2,10 @@
 # The Football Guru Website 
 [Hosted Live Here](https://polyanyanwu.github.io/football-quiz-pp2/)
 
-The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he answers up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user.
+The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while ecah amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
 
 
-![Site Image on Different Screens](/docs/pp1_image.png)
+![Site Image Mockup of Different Screens](/docs/guru_display.png)
 ## User Stories
 * As a person desirous to know football and its facts I want an interactive application so that I could test my knowledge of football and be guided when I don’t know the answer.
 * As a user of the application, I want to be given the option to interact as an amateur or a professional so that I could test my knowledge as desired.
@@ -22,13 +22,20 @@ The visual aspectes of the site was done with the HTML and CSS while the interac
 2. The model.js contains the database of the questions modeled with an array of footbal question and answer objects. There are two arrays; one for the amateur and another for the professional options.
 3. The controller.js is where the application logic is implemented; it importas data from the config.js and the model.js.
 
+While testing the application and its appeal I got dissatisfied with the default Confirm and Alert windows provided by the JavaScript. This led to the use of jQuery library 3.6.0 <code>cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js</code> to display customised confirmation modal and alert windows.
+
 ## Features of the Site
-The Site is is presented in three sections:
+The Site is is presented in three areas:
 ### 1. The Header
+![Header Area of the Application](/docs/header-area.png)
+
+The Header contains a football logo, title of the page and the user that logged in. It also contains the two buttons to enable selection of the Professional or Amateur level of the quiz. 
 
 
 ### 3. The Question & Answer Area
-The user clicks on the Next Question button to navigate to the next random question from the system. The question is picked randomly from the quiz level database that the user currently selected. If a user clicks on the Next Question without submitting answer for the currently displayed question, a Confirmation message is displayed to ensure the user really want to navigate to another question. If the answer is Ok, the next question is displayed, if not no action is taken.
+![The Question & Answer Area](/docs/question_area.png)
+
+The user clicks on the Next Question button to navigate to the next random question from the system. The question is picked randomly from the quiz level database that the user currently selected. If a user clicks on the Next Question without submitting answer for the currently displayed question, a Confirmation message is displayed to ensure the user really want to navigate to another question. If the user clicks Ok, the next question is displayed, if not no action is taken.
 
 #### Submission of Answer
 If a user clicks the Submit Answer Button, the application will check if user has selected an answer option, if not a message is displayed informing the user to first select and answer before clicking the Submit Answer Button. If an answer option was already selected, the application will check if the answer is correct and increment the correct or wrong answer totals and also play an appropriate sound.
@@ -45,7 +52,7 @@ The footer has the links to take the user back to any of the three main sections
 
 
 ### Features Left to Implement
-
+The application is usable as it is but has limited set of questions. An API could be developed to enable interested persons contribute questions to the database. This would then require a proper database and not an array of structures as is the case here.
 
 ## Testing
 * ### Image and Information Rendering
