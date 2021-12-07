@@ -68,7 +68,21 @@ The application is usable as it is but has limited set of questions. An API coul
     ![CSS Validation Result](/docs/css_validation.png)
 
 * ### Validity of the JavaScript
-The three JavaScript files in the application were validated using the JSHINT.
+    The three JavaScript files in the application were validated using the JSHINT.
+    ####    <b>1. The controller.js </b>
+        The controller was tested using [JSHINT](https://jshint.com/). To elminate known warnings with the JSHINT I added the following 
+        /*jshint esversion: 6 */ for the EMS6 to accept const and other EMS6 features used
+        /*jshint -W030 */ //ignore warnings due to use of tenary operator
+        /*globals $:false */ // accept $ as global variable while testing with jshint
+        I ended up with the following jshint output:
+    ![JSHINT Validation Result for controller.js](/docs/controller_jshint.png)
+    #### <b>2. The model.js and config.js</b>
+        Both the model.js had only the warning about the use of Strict Mode.
+    ![JSHINT Validation Result for model.js](/docs/model_jshint.png)
+
+    #### <b>3. The model.js and config.js</b>
+      The config.js also only had the warning about the use of Strict Mode.
+    ![JSHINT Validation Result for config.js](/docs/config_jshint.png)
 
 * ### Accessibility & Performance Testing
 
@@ -78,32 +92,30 @@ The three JavaScript files in the application were validated using the JSHINT.
 
 * ### Browser Compatibility 
 
-    The website was tested with the major browsers available and found to work as expected: Chrome, Firefox, Safari, and Microsoft Edge. It was while testing on Safari on the Iphone that I noticed that the .mp4 videos were not playing. To resolve this I had to specify the type="video/mp4", gave it an autoplay and mute attribute in order to have the video show a picture instead of being blank. However, the mute attribute ensures the voice is not out until the user chooses to hear it. Apart from the iPhone, Android phones had no issues with playing the videos.
+    The website was tested with the major browsers available and found to work as expected: Chrome, Firefox, Safari, and Microsoft Edge.
 
 * ### Accessibility with Different Device Widths
 
     Using the Chrome Development tools, the responsiveness of the site to various screen sizes was simulated. This led to the adjustment of the CSS until the site supports numerous device widths from the smallest hand held devices to full computer monitor screens.
-    ![Responsive Screens](/docs/various_screen_sizes.png)
-    The first image above shows a full screen of two image columns and two video columns dsiplayed on a laptop computer screen. The images below the laptop screen are simulations on the ipad - portrait (with single image column) and small screen of Moto G4 and Iphone X displaying single column for both video and images.
 
 * ### Functionality Test
 
     Guided by the User Story and application design, extensive tests of the functionality was carried out. The detailed test script and result is available at  [Functionality Test](docs/Testing.md)
 
 * ### Bugs
-As expected for projects of this nature several bugs were identified in the cause of the impleentation and fixed accordingly.
-1. Submit Answer had two issues. The first one was it tried to process the submission even when an answer had not been selected. This was resolved by first checking that one of the Options has the "option-selected" class before processing the submission, if not an alert message is displayed for the user to first select and answer before submitting. The second issue was submitting the same answer more than once. The solution was disabling click on the div was being used as the Submit Answer and re-enabling it when a new question is loaded.
-            
-2. The timer for tracking the elapsed time for the quiz kept running even after getting to 0 secods left. It was resolved by calling the function clearInterval().
+    As expected for projects of this nature several bugs were identified in the cause of the impleentation and fixed accordingly.
+    1. Submit Answer had two issues. The first one was it tried to process the submission even when an answer had not been selected. This was resolved by first checking that one of the Options has the "option-selected" class before processing the submission, if not an alert message is displayed for the user to first select and answer before submitting. The second issue was submitting the same answer more than once. The solution was disabling click on the div was being used as the Submit Answer and re-enabling it when a new question is loaded.
+                
+    2. The timer for tracking the elapsed time for the quiz kept running even after getting to 0 secods left. It was resolved by calling the function clearInterval().
 
-3. It was challenging to get the Font Awesome to be displayed for the marking of the correct answer with a √ and wrong answer with an x. To resolve this I had to setup two divs' having the two Font Awesome for each answer option and used CSS class to control the display from JavaScript.
+    3. It was challenging to get the Font Awesome to be displayed for the marking of the correct answer with a √ and wrong answer with an x. To resolve this I had to setup two divs' having the two Font Awesome for each answer option and used CSS class to control the display from JavaScript.
 
-4. It was observed that the user could still click on answer options after the submission of the answer. This was not desirable and was removed by adding a function to disable clicks on the divs containing the answer options after a user had submitted. The divs are enabled when a new question is loaded.
-5. Modal content was not scrolling when desired on small screens, the scroll ability was added by setting overflow-y property on the modal and modal content.
-6. When a user clicks the View Result button, the previous result displayed was not cleared resulting into multiple display of the result. The fix was to remove the div element I was inserting for the result, if it exists, before inserting a new div.
-7. The audio alert was done with new audio() statement in the JavaScript. This didn't work in the Chrome browser, it was fixed by creating audio elements in the html and playing from the JavaScript.
-8. After restarting the quiz the timer runs both the old and new timer displaying confusing numbers; fixed by creating a global duration time variable  and reseting it to 0 during quiz resets.
-9. Number of professional and amature questions not reseting to 0 after resetting the quiz; resolved by assigning the variables holding the count to zero and displaying them on the DOM element after a restart of the quiz. 
+    4. It was observed that the user could still click on answer options after the submission of the answer. This was not desirable and was removed by adding a function to disable clicks on the divs containing the answer options after a user had submitted. The divs are enabled when a new question is loaded.
+    5. Modal content was not scrolling when desired on small screens, the scroll ability was added by setting overflow-y property on the modal and modal content.
+    6. When a user clicks the View Result button, the previous result displayed was not cleared resulting into multiple display of the result. The fix was to remove the div element I was inserting for the result, if it exists, before inserting a new div.
+    7. The audio alert was done with new audio() statement in the JavaScript. This didn't work in the Chrome browser, it was fixed by creating audio elements in the html and playing from the JavaScript.
+    8. After restarting the quiz the timer runs both the old and new timer displaying confusing numbers; fixed by creating a global duration time variable  and reseting it to 0 during quiz resets.
+    9. Number of professional and amature questions not reseting to 0 after resetting the quiz; resolved by assigning the variables holding the count to zero and displaying them on the DOM element after a restart of the quiz. 
 
 ## Deployment
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:
@@ -112,7 +124,7 @@ The site was deployed to GitHub pages. The following steps were used to effect t
 3. From the settings page, click on Pages
 4. In the source section drop-down menu, select the Main Branch
 5. Once the Main branch has been selected, the page will be refreshed with a detailed ribbon display to indicate the successful deployment.
-6. The live site can be found at [New Yam Festival] (https://polyanyanwu.github.io/yam-festival-pp1/)
+6. The live site can be found at [New Yam Festival] (https://polyanyanwu.github.io/football-quiz-pp2/)
 
 ## Credits
 ### i. Design
