@@ -325,7 +325,7 @@ const checkAnswer = function () {
 };
 
 /**
- * 
+ * Function takes the quiz level and question ID and updates their used attribute to true. This prevents the question from being selecetd again.
  * @param {*} quizLevel 
  * @param {*} id 
  */
@@ -333,12 +333,22 @@ const updateMasterDatabase = function (quizLevel, id) {
     quizLevel === "professional" ? professionalData[id].used = true : amateurData[id].used = true;
 };
 
+/**
+ * 
+ * @returns Check if user has already submitted answer, this is by checking if the Submit Answer Button has pointer disabled
+ */
+const checkAlreadySubmitted = () => {
+    return answerBtnEl.style.pointerEvents === 'none' ? true : false;
+};
+
+/**
+ * Function to check if user has submitted answer, if so display next question
+ */
 const getNextQuestion = function () {
     nextQuiz.addEventListener('click', function () {
         // check if user has answered the question before clicking next or user just desires to leave that question unanswered.
         // The app will permit the user to go next question after confirmation.
         if (!checkAlreadySubmitted()) {
-
             functionConfirm("You clicked Next Question without answering this current question. Are you sure you want to skip this question?",
                 function yes() {
                     getAndDisplayQuiz();
@@ -356,7 +366,7 @@ const getNextQuestion = function () {
 /**
  * function to return the total correct and total wrong answers. This is just a demo of ability to do this. The actual final
  * result is obtained from our global variables of totAmateurCorrect and totProfCorrect which the user cannot change in the browser.
- * @returns an array of the correct and wrong answer total
+ * @returns an array of the correct and wrong answer totals
  */
 const getTotalfromEl = () => {
     let correctAns = Number(correctAnswerEl.textContent);
@@ -367,7 +377,7 @@ const getTotalfromEl = () => {
 };
 
 /**
- * Function to tally the correct and wrong answers and display to the user
+ * Function to aggregate the correct and wrong answers and display to the user
  * @param {Boolean value if true then correct answer tally else wrong answer tally} correct 
  */
 const totalAnswers = function (correct) {
@@ -376,8 +386,24 @@ const totalAnswers = function (correct) {
     correct ? correctAnswerEl.textContent = ++correctAns : wrongAnswerEl.textContent = ++wrongAns;
     // disable answer button to prevent submitting more than once
     disableAnswerOptionsAndSubmit();
-    // answerBtnEl.style.pointerEvents = 'none';
 };
+
+/**
+ * Disable user from clicking an answer option and submit answer button after submission
+ */
+const disableAnswerOptionsAndSubmit = () => {
+    answerOptionsBox.forEach(option => option.style.pointerEvents = 'none');
+    disableAButton(answerBtnEl);
+};
+
+/**
+ * Enable user to click an answer option and submit answer button after display of question
+ */
+const enableAnswerOptionsAndSubmit = () => {
+    answerOptionsBox.forEach(option => option.style.pointerEvents = 'auto');
+    enableCommandBtn(answerBtnEl);
+};
+
 /**
  * Function to display the time remaining for the quiz. The total seconds is read from the config.js
  * Ideas and code snippets from Jonas Schmedtmann @ Udemy Javascript class. If the timer was running before, reset it before 
@@ -408,36 +434,19 @@ const startQuizTimer = function () {
     return timer;
 };
 /**
- * Explanation of answers event listener
+ * Event listenere to close modal window. 
  */
 const closeExplanationModal = function () {
     closeExplainBtnEl.forEach(btn => btn.addEventListener('click', function () {
         explanationModalEl.style.display = 'none';
     }));
 };
-
-const checkAlreadySubmitted = () => {
-    return answerBtnEl.style.pointerEvents === 'none' ? true : false;
-};
+closeExplanationModal();
 
 /**
- * Disable user from clicking an answer option and submit answer button after submission
+ * Event listener for the View Explanation of Answer button.
+ * Checks if answer is submitted before displaying the explanation
  */
-const disableAnswerOptionsAndSubmit = () => {
-    answerOptionsBox.forEach(option => option.style.pointerEvents = 'none');
-    answerBtnEl.style.pointerEvents = 'none';
-    answerBtnEl.style.border = '3px solid #0f0b49';
-};
-
-/**
- * Enable user to click an answer option and submit answer button after display of question
- */
-const enableAnswerOptionsAndSubmit = () => {
-    answerOptionsBox.forEach(option => option.style.pointerEvents = 'auto');
-    answerBtnEl.style.pointerEvents = 'auto';
-    answerBtnEl.style.border = '2px solid rgb(202, 110, 182)';
-};
-
 explanationBtnEl.addEventListener('click', function () {
     // Check if user has submitted answer before permitting view of explanation
     if (!checkAlreadySubmitted()) {
@@ -448,15 +457,16 @@ explanationBtnEl.addEventListener('click', function () {
         return;
     }
     explanationModalEl.style.display = 'block';
-    // display the question
+    // display the question and answer
     const questionId = Number(question.dataset.quizId);
     const quizLevel = question.dataset.quizLevel;
     explanationQuestionEl.textContent = quizLevel === "professional" ? professionalData[questionId].question : amateurData[questionId].question;
     answerExplanationEl.textContent = quizLevel === "professional" ? professionalData[questionId].explan : amateurData[questionId].explan;
 });
-closeExplanationModal();
 
-
+/**
+ * Event listener for the display of Detailed Instruction. It reuses the modal window for the Explanation of answer.
+ */
 detailedInstructionEl.addEventListener('click', function () {
     explanationModalEl.style.display = 'block';
     explanationQuestionEl.textContent = "Detailed Instructions";
@@ -474,10 +484,12 @@ detailedInstructionEl.addEventListener('click', function () {
     explainDiv.textAlign = 'center';
     answerExplanationEl.insertAdjacentElement('afterbegin', explainDiv);
     closeExplanationModal();
-    //  explanationContentEl.style.width =  '60%';
-    //   explanationContentEl.style.height = '50%'
 });
 
+/**
+ * Function to play the alert sounds in the application
+ * @param {*} type determines the sound to play for correct, wrong or win.
+ */
 const playSound = function (type) {
     switch (type) {
         case 'correct': {
@@ -492,19 +504,15 @@ const playSound = function (type) {
             winAudioEl.play();
         }
     }
-    //   let audio = correctAnswer ? new Audio('../assets/media/SFXProducer.mp3') : new Audio('../assets/media/SFXProducerError.mp3');
-    // correctAnswer ? correctAudioEl.play(): wrongAudioEl.play();
-    // audio.play();
 };
 
 /**
- * Event function for restarting the quiz. Clears all questions ready to be selected by marking used property false;
+ * Event function for restarting the quiz. Makes all questions eligible to be selected by marking used property as false in the model;
  * Restarts the totalling of correct and wrong answer
  * displays a new question
  * restarts the quiz timer
  */
 restartQuiz.addEventListener('click', function () {
-
     functionConfirm("Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?",
         function yes() {
             professionalData.filter(data => data.used).forEach(el => el.used = false);
@@ -524,14 +532,16 @@ restartQuiz.addEventListener('click', function () {
             totAmateurQuizEl.textContent = 0;
             getAndDisplayQuiz();
             // restart timer
-
             alertMe("Quiz has restarted"),
-                function yes() {
-                    return true;
-                };
+                function yes() {};
             // restart the quiz timer to timout value
-            time = quizTimeout;
-
+            if (time <= 0) {
+                // means time ran out the last session and clearInterval was called, need to invoke the startQuizTimer() again
+                time = quizTimeout;
+                startQuizTimer();
+            } else {
+                time = quizTimeout;
+            }
             return true;
         },
         function no() {});
@@ -573,9 +583,6 @@ const displayQuizResult = function () {
     }
     answerExplanationEl.insertAdjacentElement('afterbegin', resultDiv);
     closeExplanationModal();
-    // explanationContentEl.style.width = '60%';
-    // explanationContentEl.style.height = '50%'
-    // display the button to enable the user to display the result again
     viewResultBtnEl.style.display = "inline";
     //disable next question and view answer buttons
     disablebCommandBtns();
@@ -590,27 +597,36 @@ viewResultBtnEl.addEventListener('click', () => {
  * Disable all buttons after displaying result except the explanation, restart quiz and view result button
  */
 const disablebCommandBtns = () => {
-    nextQuiz.style.pointerEvents = 'none';
-    nextQuiz.style.border = '3px solid #0f0b49';
-    explanationBtnEl.style.pointerEvents = 'none';
-    explanationBtnEl.style.border = '3px solid #0f0b49';
-    answerBtnEl.style.pointerEvents = 'none';
-    answerBtnEl.style.border = '3px solid #0f0b49';
+    disableAButton(nextQuiz);
+    disableAButton(explanationBtnEl);
+    disableAButton(answerBtnEl);
+};
 
+const disableAButton = (button) =>{
+    button.style.pointerEvents = 'none';
+    button.style.border = '3px solid #0f0b49';
 };
 
 /**
  * Enable command buttons after starting to display questions
  */
 const enableCommandBtns = () => {
-    nextQuiz.style.pointerEvents = 'auto';
-    explanationBtnEl.style.pointerEvents = 'auto';
-    explanationBtnEl.style.border = '2px solid rgb(202, 110, 182)';
-    nextQuiz.style.border = '2px solid rgb(202, 110, 182)';
-    answerBtnEl.style.pointerEvents = 'auto';
-    answerBtnEl.style.border = '2px solid rgb(202, 110, 182)';
+    enableCommandBtn(nextQuiz);
+    enableCommandBtn(explanationBtnEl);
+    enableCommandBtn(answerBtnEl);
 };
 
+const enableCommandBtn = (button) => {
+    button.style.pointerEvents = 'auto';
+    button.style.border = '2px solid rgb(202, 110, 182)';
+};
+
+/**
+ * Confirmation window using jQuery 3.6
+ * @param {*} msg Message to be displayed
+ * @param {*} myYes the function to excute if user clicks the Yes button
+ * @param {*} myNo the function to execute if user clicks the No button
+ */
 // https://www.tutorialspoint.com/How-to-create-a-dialog-with-yes-and-no-options-in-JavaScript
 const functionConfirm = function (msg, myYes, myNo) {
     let confirmBox = $("#confirm");
@@ -626,6 +642,11 @@ const functionConfirm = function (msg, myYes, myNo) {
     confirmBox.show();
 };
 
+/**
+ * Alert window using jQuery 6.0
+ * @param {} msg he message to alert the user
+ * @param {*} myYes the function to execute after user clicks Ok
+ */
 const alertMe = (msg, myYes) => {
     const alertBox = $("#alert");
     alertBox.find(".confirm-message").text(msg);
