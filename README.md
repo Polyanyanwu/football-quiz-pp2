@@ -48,47 +48,32 @@ The user clicks on the Next Question button to navigate to the next random quest
 The Restart the Quiz button enables the user to restart the quix at any time deemed necessary. A confirmation window is displayed requesting <em>Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?</em> If the user clicks Yes, the quiz is restarted if No is clicked user returns to continue the quiz without restarting. If the Yes confirmation was clicked, an alert is displayed informing the user that the quiz has restarted.
 ![The Restart Quiz Confirmation Alert](/docs/alert.png)
 
-
-
-### 4. The Footer Area
-
-### 5. Pop Up Modal Windows Used
-    
-
-
 ### 6. The Footer Section
-The footer has the links to take the user back to any of the three main sections of the site. In addition, the Contact us part of the footer has the icons that links the user to the social network of the site designer.
-
-
+The footer has the Contact us icons that links the user to the social network of the site designer.
 
 ### Features Left to Implement
 The application is usable as it is but has limited set of questions. An API could be developed to enable interested persons contribute questions to the database. This would then require a proper database and not an array of structures as is the case here.
 
 ## Testing
-* ### Image and Information Rendering
-
-    I noticed that the banner image was not displaying when I deployed to Github pages. The issues was traced to a broken URL due to change of the banner display from background image to use of img element without adjusting the source accordingly. The source was adjusted to the correct URL and the image started displaying.
 
 * ### Validity of the HTML
 
-    The HTML text was validated using [W3C Markup Validation Service](https://validator.w3.org/). It was realized that the HTML had few errors, which were identified and fixed as shown below:
+    The HTML text was validated using [W3C Markup Validation Service](https://validator.w3.org/). The validator warned about a section element not having any h1 to h6 header at the Audio and Footer elements. These were changed to div elements and the resultant html had no further warnings nor errors as shown below:
 
     ![HTML Validation Result](/docs/html_validation.png)
 
-    The errors due to few missing tags in the cause of rearrangement of elements were identified and corrected. After that the html validated without any errors.
-
 * ### Validity of the CSS
 
-    The CSS text was validated using [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator). It was realized that the CSS had two errors, which were identified and fixed as shown below: The first error 0.5% 1% 0.5 1% for padding was resolved by using the shorthand 0.5% 1% and the second error was resolved by deleting the 0.
-
+    The CSS text was validated using [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator). The CSS had no errors and one warning. The warning was due to the validator unable to check the Google fonts that were imported into the css.
     ![CSS Validation Result](/docs/css_validation.png)
 
 * ### Validity of the JavaScript
+The three JavaScript files in the application were validated using the JSHINT.
 
 * ### Accessibility & Performance Testing
 
-    Performance test was carried out using Lighthouse tool provided by the Chrome Development tool. Initial performance result pointed to deficiencies in the size and type of images on the site - most were .jpg and .png. The images were converted to .webp using  [cloud convert](https://cloudconvert.com/) and then  [tiny png](https://tinypng.com/) was used to compress the images further. Issue of non-caching of static images was also observed. Cache Control was added to the header with properties content="max-age=31536000" and content="public". After these changes to the images and caching, the Lighthouse produced the result below:
-    ![Performance Result](/docs/performance_test.png)
+    Performance test was carried out using Lighthouse tool provided by the Chrome Development tool.  The background and logo images were converted to .webp using  [cloud convert](https://cloudconvert.com/) and then  [tiny png](https://tinypng.com/) was used to compress the images further. Cache Control was added to the header with properties content="max-age=31536000" and content="public" to enhance performance. The Lighthouse produced the result below:
+    ![Performance Result](/docs/lighthouse.png)
 
 
 * ### Browser Compatibility 

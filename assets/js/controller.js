@@ -40,6 +40,8 @@ import {
 
 // Define the variables for DOM elements
 const quizLevel = document.querySelectorAll(".quiz-btn");
+const player = document.getElementById("player");
+const modal = document.getElementById("userNameModal");
 const answerOptionsBox = document.querySelectorAll(".option");
 const question = document.getElementById("question");
 const restartQuiz = document.querySelector("#restart-btn");
@@ -54,7 +56,6 @@ const explanationQuestionEl = document.getElementById('explanation-question');
 const answerExplanationEl = document.getElementById('answer-explanation');
 const closeExplainBtnEl = document.querySelectorAll(".close-explanation-button");
 const detailedInstructionEl = document.querySelector("#detailed-instructions");
-// const explanationContentEl = document.querySelector("#explanation-content");
 const viewResultBtnEl = document.querySelector("#view-result-btn");
 const correctAudioEl = document.querySelector("#correct-audio");
 const wrongAudioEl = document.querySelector("#wrong-audio");
@@ -65,38 +66,47 @@ const usernameCreateBtn = document.querySelector("#create-user-button");
 const totProfQuizEl = document.querySelector("#total-prof-question");
 const totAmateurQuizEl = document.querySelector("#total-amateur-question");
 
+// Global variable very necessary for correct functioning of the site
+let quizCount = 0; //tracking of how many questions already presented
+let time = quizTimeout; //the timeout duration for the quiz
+let totAmateurCorrect = 0; //total amateur correct answers used in computing the final score
+let totProfCorrect = 0; // total professional correct answers used in computing the final score
+let totProfQuiz = 0; //total professional questions answered, helps the user be conscious of progress
+let totAmateurQuiz = 0; //total amateur questions answered, helps the user be conscious of progress
 
-let quizCount = 0;
-let time = quizTimeout;
-let totAmateurCorrect = 0;
-let totProfCorrect = 0;
-let totProfQuiz = 0;
-let totAmateurQuiz = 0;
+const init = function () {
+    displayUsernameModal(); //display modal and get username
+    usernameCloseBtn.addEventListener('click', validateAndSaveUser); //event listener for username close button
+    usernameCreateBtn.addEventListener('click', validateAndSaveUser); //event listener for Create Username button
+    getAndDisplayQuiz(); //display the initial question from the amateur level
+    answerOptionListener(); //start the answer option listener after displaying questions
+    checkAnswer(); //start the event listener that processes the submitted answer
+    getNextQuestion(); // start event listener for getting the next question
 
-const displayUsernameModal = function () {
-    //display the initial question from the amateur level
-    getAndDisplayQuiz();
-    answerOptionListener();
-    checkAnswer();
-    getNextQuestion();
+};
 
-    const player = document.getElementById("player");
-    const modal = document.getElementById("userNameModal");
-    if (player.textContent === '?') {
-        // call function to display modal and request player name
+//after document has loaded, call the init function
+document.addEventListener("DOMContentLoaded", init);
+
+/**
+ * function to display modal and request player name
+ */
+const displayUsernameModal = () => {
+    if (player.textContent === '?') { //player text content was set to ? at the DOM
         modal.style.display = "block";
     }
 };
 
-document.addEventListener("DOMContentLoaded", displayUsernameModal);
-
+/**
+ * When user clicks Create Username or the x (close button) on the username creation modal
+ * Confirm that the username is at least 3 characters;
+ * If the name is blank request confirmation from user to proceed as Guest
+ */
 const validateAndSaveUser = function () {
     let username = document.getElementById("username").value;
-    const modal = document.getElementById("userNameModal");
     username = username.length > 0 ? username.trim() : username;
     const player = document.getElementById("player");
     if (username.length === 0) {
-
         functionConfirm("Confirm exiting without a username, in this case your name will be 'Guest'",
             function yes() {
                 player.textContent = "Guest";
@@ -106,10 +116,8 @@ const validateAndSaveUser = function () {
             function no() {});
 
     } else if (username.length < userLength) {
-
         alertMe(`Your username must be ${userLength} characters and longer`),
             function yes() {};
-        // alert(`Your username must be ${userLength} characters and longer`);
     } else {
         modal.style.display = 'none';
         player.textContent = username;
@@ -117,8 +125,6 @@ const validateAndSaveUser = function () {
     }
 };
 
-usernameCloseBtn.addEventListener('click', validateAndSaveUser);
-usernameCreateBtn.addEventListener('click', validateAndSaveUser);
 /**
  * Event listener for selection of the quiz level. Loop through the buttons for the quiz level, remove the class for the active button
  * on all buttons and insert the class on the clicked quiz level
@@ -128,33 +134,13 @@ const changeQuizLevel = function (event) {
     quizLevel.forEach(btn => btn.classList.remove('active-quiz-level'));
     event.target.classList.add('active-quiz-level');
 
-    // display the existing total uestions per quiz level before changing
+    // display the existing total questions per quiz level before changing
     totProfQuizEl.textContent = totProfQuiz;
     totAmateurQuizEl.textContent = totAmateurQuiz;
     // get a new question and display
     getAndDisplayQuiz();
 };
 quizLevel.forEach(btn => btn.addEventListener('click', changeQuizLevel));
-
-/**
- * 
- * @param {the level of the quiz} quizLevel 
- * @param {the question index to display} questionId 
- * function that takes a question and its options and displays to the DOM
- */
-const displayQuestion = function (quizLevel, questionId) {
-    //question ID is the index of the question in the array of questions
-
-    const quiz = quizLevel === "professional" ? professionalData[questionId] : amateurData[questionId];
-    question.textContent = quiz.question;
-    for (let i = 1; i <= totOptions; i++) {
-        document.getElementById(`option${i}`).textContent = quiz[`option${i}`];
-    }
-    question.dataset.quizId = questionId;
-    question.dataset.quizLevel = quizLevel;
-    removeSelectionFromOptions();
-    removeAnswerMarks();
-};
 
 /**
  * Function checks which level the player is engaged in, picks a random question among the ones that have used property false
@@ -174,6 +160,24 @@ const getQuestionToDisplay = function () {
 };
 
 /**
+ * @param {the level of the quiz} quizLevel 
+ * @param {the question index to display} questionId 
+ * function that takes a question and its options and displays to the DOM
+ */
+const displayQuestion = function (quizLevel, questionId) {
+    //question ID is a unique ID number of the question in the array of questions
+    const quiz = quizLevel === "professional" ? professionalData[questionId] : amateurData[questionId];
+    question.textContent = quiz.question;
+    for (let i = 1; i <= totOptions; i++) {
+        document.getElementById(`option${i}`).textContent = quiz[`option${i}`];
+    }
+    question.dataset.quizId = questionId; //store the question ID in the DOM
+    question.dataset.quizLevel = quizLevel;
+    removeSelectionFromOptions(); //clear the existing selected option, if any
+    removeAnswerMarks(); //clear the right/wrong answer indicator on the options
+};
+
+/**
  * A function to get and display a quiz item
  */
 const getAndDisplayQuiz = function () {
@@ -188,14 +192,20 @@ const getAndDisplayQuiz = function () {
     enableCommandBtns();
     // display question count
     quizCountEl.textContent = `${quizCount+1} of ${totQuizPerSession}`;
-    console.log("after restart:" + totProfQuiz + " amateur==" + totAmateurQuiz)
     quizItem[0] === 'professional' ? totProfQuizEl.textContent = totProfQuiz + 1 : totAmateurQuizEl.textContent = totAmateurQuiz + 1;
 
 };
 
+/**
+ * Clear the 'option-selected' class from the options when new question is loaded
+ */
 const removeSelectionFromOptions = function () {
     answerOptionsBox.forEach(option => option.classList.remove('option-selected'));
 };
+
+/**
+ * Clear the correct/wrong answer indicator marks from the options when new question is loaded
+ */
 const removeAnswerMarks = function () {
     for (let i = 1; i <= totOptions; i++) {
 
@@ -209,64 +219,89 @@ const removeAnswerMarks = function () {
     }
 };
 
+/**
+ * Mark all the answer options with the x, before the correct answer is marked with a √
+ */
 const markAllOptionsX = function () {
     for (let i = 1; i <= totOptions; i++) {
         document.getElementById(`option${i}-sign-no`).classList.add('answer-sign-x');
     }
 };
+
+/**
+ * Event listener for the selection of an answer option when user clicks
+ */
 const answerOptionListener = function () {
     answerOptionsBox.forEach(option => option.addEventListener('click', function (event) {
         removeSelectionFromOptions();
-        // if user clicks the span, highlight the parent div instaed of only the span by adding the class option-selected
+        // if user clicks the span, highlight the parent div instead of only the span by adding the class option-selected
         event.target.localName === "span" ? event.target.parentNode.classList.add('option-selected') : event.target.classList.add('option-selected');
     }));
 };
 
-const getClickedOption = function () {
-    let optionClicked = false;
-    let answer = "";
-    let optionSelected;
+/**
+ * Function that checks that a user has clicked an answer option before submitting the answer
+ * @returns the answer option that was clicked or undefined if the user has not clicked an option
+ * before clicking submit answer
+ */
+const getOptionClicked = () => {
     for (let option of answerOptionsBox) {
-        optionClicked = option.classList.contains('option-selected');
+        const optionClicked = option.classList.contains('option-selected');
         if (optionClicked) {
-            answer = option.dataset.option;
-            optionSelected = option;
-            break;
+            return option.dataset.option;
         }
     }
-    if (!optionClicked) {
+    return undefined;
+};
 
-        alertMe("Please chose an answer before clicking submit answer"),
-            function yes() {
-                return;
-            };
+/**
+ * Function accepts the Option the user clicked and returns boolean of correctness of the answer
+ * plus the quiz level and question ID being answered
+ * @param {*} optionClicked 
+ * @returns 
+ */
+const checkCorrectAnswer = (optionClicked) => {
+    const questionId = Number(question.dataset.quizId);
+    const quizLevel = question.dataset.quizLevel;
+    let correctAnswer = false;
+    if (quizLevel === "amateur") {
+        correctAnswer = amateurData[questionId].answer === optionClicked;
+        totAmateurQuiz++;
     } else {
-        const questionId = Number(question.dataset.quizId);
-        const quizLevel = question.dataset.quizLevel;
-        let correctAnswer = false;
-        if (quizLevel === "amateur") {
-            correctAnswer = amateurData[questionId].answer === answer;
-            totAmateurQuiz++;
-        } else {
-            correctAnswer = professionalData[questionId].answer === answer;
-            totProfQuiz++;
-        }
-        //     correctAnswer = quizLevel === "professional"? professionalData[questionId].answer === answer: amateurData[questionId].answer === answer;
+        correctAnswer = professionalData[questionId].answer === optionClicked;
+        totProfQuiz++;
+    }
+    return [correctAnswer, quizLevel, questionId];
+};
+
+/**
+ * Function to mark the question. It calls getOptionClicked() to get the option the user selected, 
+ * calls checkCorrectAnswer() to check the correctness of the answer and obtain the question ID and Quiz level
+ * calls removeAnswerMarks() to clear the x and √ that indicates the correct/worng answer
+ * calls the markAllOptionsX to mark all options with x before then marking the correct answer with √.
+ * It plays the sound indicating the corect/wrong answer
+ * calls updateMasterDatabase to update the database and indicate that the question has been used for this session
+ */
+const markQuestion = function () {
+    const optionClicked = getOptionClicked();
+    if (!optionClicked) {
+        alertMe("Please chose an answer before clicking submit answer"),
+            function yes() {};
+    } else {
         removeAnswerMarks();
+        markAllOptionsX();
+        const [correctAnswer, quizLevel, questionId] = checkCorrectAnswer(optionClicked);
         if (correctAnswer) {
             // correct answer
             // mark all as x 
-            markAllOptionsX();
-            document.getElementById(`${optionSelected.dataset.option}-sign-ok`).classList.add('answer-sign-selected');
-            document.getElementById(`${optionSelected.dataset.option}-sign-ok`).style.color = '#fff';
-            document.getElementById(`${optionSelected.dataset.option}-sign-no`).classList.remove('answer-sign-x');
+            document.getElementById(`${optionClicked}-sign-ok`).classList.add('answer-sign-selected');
+            document.getElementById(`${optionClicked}-sign-ok`).style.color = '#fff';
+            document.getElementById(`${optionClicked}-sign-no`).classList.remove('answer-sign-x');
             // aggregate correct answers
             quizLevel === "amateur" ? ++totAmateurCorrect : ++totProfCorrect;
-
             totalAnswers(true);
             playSound('correct');
         } else {
-            markAllOptionsX();
             if (quizLevel === "professional") {
                 document.getElementById(`${professionalData[questionId].answer}-sign-ok`).classList.add('answer-sign-selected');
                 document.getElementById(`${professionalData[questionId].answer}-sign-ok`).style.color = '#008000';
@@ -281,22 +316,19 @@ const getClickedOption = function () {
         }
         updateMasterDatabase(quizLevel, questionId);
         quizCount++;
-
         if (quizCount >= totQuizPerSession) displayQuizResult();
     }
 };
 
 const checkAnswer = function () {
-    answerBtnEl.addEventListener('click', getClickedOption);
+    answerBtnEl.addEventListener('click', markQuestion);
 };
 
-// const markAnswer = function () {
-//     const questionId = question.dataset.quizId;
-//     const quizLevel = question.dataset.quizLevel;
-//     const correct = quizLevel === "professional" ? professionalData[questionId].answer === getClickedOption() : amateurData[questionId].answer === getClickedOption();
-
-// };
-
+/**
+ * 
+ * @param {*} quizLevel 
+ * @param {*} id 
+ */
 const updateMasterDatabase = function (quizLevel, id) {
     quizLevel === "professional" ? professionalData[id].used = true : amateurData[id].used = true;
 };
@@ -322,7 +354,8 @@ const getNextQuestion = function () {
 };
 
 /**
- * function to return the total correct and total wrong answers.
+ * function to return the total correct and total wrong answers. This is just a demo of ability to do this. The actual final
+ * result is obtained from our global variables of totAmateurCorrect and totProfCorrect which the user cannot change in the browser.
  * @returns an array of the correct and wrong answer total
  */
 const getTotalfromEl = () => {
@@ -332,25 +365,15 @@ const getTotalfromEl = () => {
     if (isNaN(wrongAns)) wrongAns = 0;
     return [correctAns, wrongAns];
 };
+
 /**
  * Function to tally the correct and wrong answers and display to the user
  * @param {Boolean value if true then correct answer tally else wrong answer tally} correct 
  */
 const totalAnswers = function (correct) {
-    // if (correct) {
-    //     let ans = Number(correctAnswerEl.textContent);
-    //     if (isNaN(ans)) ans = 0;
-    //     correctAnswerEl.textContent = ++ans;
-    // } else {
-    //     let ans = Number(wrongAnswerEl.textContent);
-    //     if (isNaN(ans)) ans = 0;
-    //     wrongAnswerEl.textContent = ++ans;
-    // }
-
     // destructure the array and get the individual items
     let [correctAns, wrongAns] = getTotalfromEl();
     correct ? correctAnswerEl.textContent = ++correctAns : wrongAnswerEl.textContent = ++wrongAns;
-
     // disable answer button to prevent submitting more than once
     disableAnswerOptionsAndSubmit();
     // answerBtnEl.style.pointerEvents = 'none';
