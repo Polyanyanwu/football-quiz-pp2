@@ -1,5 +1,7 @@
 /*jshint esversion: 6 */
 "use strict";
+// The Config.js contains all static variables required for smooth functioning of the site. 
+// It also contains the detailed instruction to be displayed when the user desires to do so
 export const QUIZ_TIMEOUT_SEC = 480;
 export const TOTAL_QUESTIONS_PER_SESSION = 10;
 export const PROFESSIONAL_MARK_PER_QUESTION = 10;

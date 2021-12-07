@@ -1,15 +1,20 @@
 /*jshint esversion: 6 */
+//The model.js has the database of the professional and amateur level questions. Each level is made up of
+// an array of objects (ojbects we can call question object). The structure of both the professionalData and the amateurData are the same
+// the difference is that we put more difficult questions in the professional data and a user earns more marks by answering from the professional level
+// Each level has a total of 12 questions and the quiz is limited to 10 questions
 "use strict";
 export const professionalData = [{
         id: 0, // uniquely identify this question in the professional data
-        used: false, // already displayed will be true and used to filter
-        question: "In which country was football invented?",
-        option1: "England",
-        option2: "Brazil",
-        option3: "China",
-        option4: "Germany",
-        answer: "option3",
+        used: false, // already displayed will be true and used to filter and ensure questions are not repeated
+        question: "In which country was football invented?", //the question
+        option1: "England", //answer option 1
+        option2: "Brazil", //answer option 2
+        option3: "China", //answer option 3
+        option4: "Germany", // answer option 4
+        answer: "option3", //The correct answer option
         explan: "Football was invented in 476 BC in China. It was first called Cuju and was played with two teams who played the match with a ball made from an animal bladder. The aim was to use your feet to get the ball through an opening and into a net and was a form of training for the military.",
+                //the explanation of the answer
     },
     {
         id: 1,
@@ -141,10 +146,6 @@ export const professionalData = [{
     },
     
 ];
-
-
-
-
 
 export const amateurData = [{
         id: 0,
@@ -286,4 +287,4 @@ export const amateurData = [{
         explan: "Josep 'Pep' Guardiola Sala, (born 18 January 1971) is Manchester City Manager from 2016–17 season till date (2021)",
     },
     
-]
+];
