@@ -12,11 +12,11 @@
     <meta name="author" content="Polycarp Anyanwu" />
     <meta name="description" content="The Football Guru tests and educates you on knowledge of football" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="icon" type="image/png" href="assets/images/favicon.png"/>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
 </head>
 
 <body>
-    <!-- heder has the title and soccer image -->
+    <!-- heder has the title, soccer image and quiz level-->
     <header>
         <div id="logo">
             <div id="title">
@@ -37,6 +37,7 @@
         </div>
     </header>
     <main>
+        <!-- Main has the question area, the time and question counters, the answer options, command buttons -->
         <section id="question-area">
             <div id="question-container">
                 <h2 id="question">question</h2>
@@ -46,13 +47,13 @@
                         Instructions</em></span></p>
         </section>
         <div id="time-container">
+            <!-- the tracking of number of questions from each quiz level, the time remaining and view result button -->
             <div class="counters">
                 Total Professional Questions:<span id="total-prof-question">0</span>
             </div>
             <div class="counters">
                 Total Amateur Questions: <span id="total-amateur-question">0</span>
             </div>
-            <!-- <p>Total Professional Questions: <span id="total-prof-question">5</span>Total Amateur Questions: <span id="total-amateur-question">2</span></p> -->
             <div class="counters">
                 Remaining time: <span id="remaining-time"></span>
             </div>
@@ -62,37 +63,34 @@
             <div class="counters">
                 <button id="view-result-btn"> View Result</button>
             </div>
-            <!-- <p>Remaining time: <span id="remaining-time"></span> Question: <span id="quiz-count"></span><button
-                    id="view-result-btn"> View Result</button> </p> -->
         </div>
         <div id="answer-area">
             <div class="option" data-option="option1">
                 <span id="option1">first option</span>
-                <div class="answer-sign-ok" id="option1-sign-ok"><i class="fas fa-check"></i></div>
-                <div class="answer-sign" id="option1-sign-no"><i class="fas fa-times"></i></div>
+                <!-- two font awesome included, one for the x and another for the √ but they remain hidden until user has selected and submitted an answer -->
+                <div id="option1-sign-ok"><i class="fas fa-check"></i></div>
+                <div id="option1-sign-no"><i class="fas fa-times"></i></div>
             </div>
-
             <div class="option" data-option="option2">
                 <span id="option2">second option</span>
-                <div class="answer-sign" id="option2-sign-no"><i class="fas fa-times"></i></div>
-                <div class="answer-sign-ok" id="option2-sign-ok"><i class="fas fa-check"></i></div>
+                <div id="option2-sign-no"><i class="fas fa-times"></i></div>
+                <div id="option2-sign-ok"><i class="fas fa-check"></i></div>
             </div>
             <div class="option" data-option="option3">
                 <span id="option3">Third option</span>
-                <div class="answer-sign" id="option3-sign-no"><i class="fas fa-times"></i></div>
-                <div class="answer-sign-ok" id="option3-sign-ok"><i class="fas fa-check"></i></div>
+                <div id="option3-sign-no"><i class="fas fa-times"></i></div>
+                <div id="option3-sign-ok"><i class="fas fa-check"></i></div>
             </div>
             <div class="option" data-option="option4">
                 <span id="option4">Fourth option</span>
-                <div class="answer-sign" id="option4-sign-no"><i class="fas fa-times"></i></div>
-                <div class="answer-sign-ok" id="option4-sign-ok"><i class="fas fa-check"></i></div>
+                <div id="option4-sign-no"><i class="fas fa-times"></i></div>
+                <div id="option4-sign-ok"><i class="fas fa-check"></i></div>
             </div>
-
             <div id="command-btn-container">
+                <!-- command buttons for submit answer, Next Question, View Answer Explanation, Restart Quiz -->
                 <div class="command-btns">
                     <button id="submit-answer-btn" class="command-btn"><i class="fas fa-marker"></i>Submit
                         Answer</button>
-
                 </div>
                 <div class="command-btns">
                     <button id="next-quix-btn" class="command-btn"><i class="fas fa-arrow-right"></i>Next Question
@@ -101,7 +99,6 @@
                 <div class="command-btns">
                     <button id="explanation-btn" class="command-btn"><i class="fas fa-binoculars"></i>View Explanation
                         of Answer</button>
-
                 </div>
                 <div class="command-btns">
                     <button id="restart-btn" class="command-btn"><i class="fas fa-power-off"></i>Restart the
@@ -109,6 +106,7 @@
                 </div>
             </div>
             <div id="answer-box">
+                <!-- total display of correct and worng answers -->
                 <div id="correct-answer-container"><span id="correct-answer-icon"><i
                             class="far fa-check-circle"></i></span> Correct Answers:
                     <span id="corret-answer">0</span></div>
@@ -143,12 +141,10 @@
                     <h2><span id="explanation-question">Explanation text</span></h2>
                 </div>
                 <div class="username-container">
+                    <!-- reusing the username-container class -->
                     <p id="answer-explanation"></p>
                     <button type="submit" class="close-explanation-button">Close</button>
                 </div>
-                <!-- <div class="modal-footer">
-                    <h3>Modal Footer</h3>
-                </div> -->
             </div>
         </div>
         <!-- confirmation box -->
@@ -201,7 +197,6 @@
             </span>
         </div>
     </footer>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" rel="preconnect"></script>
     <!-- Font Awesome script link that was used in the social media links -->
     <script src="https://kit.fontawesome.com/af901081da.js" crossorigin="anonymous" rel="preconnect"></script>

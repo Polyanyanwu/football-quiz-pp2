@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@300&family=Roboto+Condensed:wght@300&family=Roboto:wght@300&family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 /* ensure no margins, border and paddings are added to elements */
 * {
@@ -15,6 +15,12 @@ body {
   background-color: #e8e8f3;
 }
 
+/* all buttons to have pointer effect */
+button {
+  cursor: pointer;
+}
+
+/* Set the background image for the main area */
 main {
   background-image: url("../images/pikpng_com_soccer.webp");
   background-repeat: no-repeat;
@@ -22,6 +28,7 @@ main {
 
 }
 
+/* The header area containing the logo, title and Quiz level*/
 header {
   width: 100%;
   background-color: white;
@@ -37,36 +44,26 @@ header {
 }
 
 #title {
-  width: 32%;
-  /* padding-left: 3%; */
-  /* top: 1.5rem; */
-  letter-spacing: 3px;
   display: flex;
+  width: 32%;
+  letter-spacing: 3px;
   position: relative;
   margin: 1rem auto;
-
 }
 
 header img {
-  /* position: relative; */
-  margin: 0.2rem auto;
+  margin: 0.2rem auto 1rem auto;
   width: 15%;
   height: auto;
-  /* top: 0.5rem; */
-  margin-bottom: 1rem;
 }
 
 #title-image {
   width: 32%;
   position: relative;
   margin: 0 auto;
-  /* left: 8%; */
-
 }
 
 #player-container {
-  /* top: 2em; */
-  /* left: 5%; */
   display: flex;
   width: 32%;
   position: relative;
@@ -85,7 +82,6 @@ header img {
 }
 
 .quiz-level {
-  /* display:flex; */
   width: 60%;
   margin: 0 auto;
   height: 1.8rem;
@@ -104,12 +100,12 @@ header img {
   margin-top: 0.4em;
 }
 
+/* consistent hover effect for the quiz level, options, detailed instructions */
 .quiz-level .quiz-btn:hover,
 .option:hover,
 .option-selected,
 #detailed-instructions:hover {
   background-color: #07412b;
-  /* color:rgba(255, 255, 255, 0.808); */
   color: rgb(255, 255, 255);
 }
 
@@ -118,10 +114,7 @@ header img {
   color: white;
 }
 
-/* .btn-amateur {
-  box-shadow: 10px 5px 5px rgb(168, 112, 233);
-} */
-
+/* The question area has the question, a divider line, the instruction and link for the detailed instruction */
 #question-area {
   width: 70%;
   height: auto;
@@ -132,6 +125,7 @@ header img {
   background-color: whitesmoke;
 }
 
+/* some space for the question */
 #question-container {
   padding: 0.3rem;
 }
@@ -141,15 +135,11 @@ header img {
 }
 
 #instruction {
-  color:green;
+  color: green;
   font-size: 100%;
   padding: 0.3rem;
   text-align: center;
   background-color: whitesmoke;
-}
-
-button {
-  cursor: pointer;
 }
 
 #detailed-instructions {
@@ -161,109 +151,44 @@ button {
   border-top: 1px solid rgb(202, 110, 182);
 }
 
-/* #detailed-instructions:hover {
-  color: khaki;
-  background-color: #000;
-} */
-
-#time-container{
+/* The time container is a flex display having the counters for the total questions, elapsed time, view quiz result button */
+#time-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .counters {
   display: flex;
   width: 30%;
   padding-top: 0.5rem;
-  background-color: #e8e8f3; 
+  background-color: #e8e8f3;
 }
+
 #time-container,
 #answer-area {
   width: 70%;
   margin: 0 auto;
-  /* background-color: #e8e8f3; */
 }
+
 .counters span {
-  padding:0 5px;
-  /* background-color: #e8e8f3;  */
-  color:green;
+  padding: 0 5px;
+  color: green;
   background-color: whitesmoke;
   border-radius: 5px;
 }
 
-#time-container p{
-  padding:0.5rem 0 ;
+#time-container p {
+  padding: 0.5rem 0;
 }
 
-.option {
-  border: 1px solid #0f0b49;
-  padding: 0.4rem;
-  margin: 1rem;
-  border-radius: 10px;
-  background-color: whitesmoke;
-  cursor: pointer;
-}
-
-.option button {
-  background-color: whitesmoke;
-  font-size: 100%;
-  color: #4c4c4c;
-}
-.answer-sign-none {
-  display: none;
-}
-
-.answer-sign-selected {
-  float: right;
-  color: white;
-  display: block;
-  /* color: #008000; */
-}
-
-.answer-sign-x {
-  float: right;
+#remaining-time {
   color: red;
-  display: block;
-}
-
-#explanation {
-  width: 36em;
-  margin: 0 auto;
-}
-
-
-#command-btn-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  background-color: #e8e8f3;
-}
-
-.command-btns {
-    display: flex;
-    width: 23%;
-    padding: 0 1%;
-}
-
-.command-btn {
-  background-color: #c3c2d1;
-  padding: 0.2em;
-  text-align: center;
   font-size: 100%;
-  border: 2px solid rgb(202, 110, 182);
-  border-radius: 10px;
-  text-align: center;
-  position: relative;
-  margin: 2px auto;
-  /* cursor: pointer; */
-}
-.command-btn:hover {
-  background-color: yellowgreen;
-  color: white;
+  padding: 0.2em;
 }
 
-/* #command-btn-container button:hover, */
+/* View result button hidden by controller.js until the result is displayed */
 #view-result-btn:hover {
   background-color: yellowgreen;
   color: white;
@@ -279,7 +204,68 @@ button {
   font-size: 100%;
 }
 
+/* answer area haveing the 4 answer options, the command buttons for submit answer, next question, etc*/
+.option {
+  border: 1px solid #0f0b49;
+  padding: 0.4rem;
+  margin: 1rem;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  cursor: pointer;
+}
 
+/* used by controller.js to hide an answer sign - the x or √ */
+.answer-sign-none {
+  display: none;
+}
+
+/* used by controller.js to indicate the correct answer option */
+.answer-sign-selected {
+  float: right;
+  color: white;
+  display: block;
+}
+
+/* used by controller.js to indicate a red x to the wrong answer options */
+.answer-sign-x {
+  float: right;
+  color: red;
+  display: block;
+}
+
+/* the 4 buttons below the answer options */
+#command-btn-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: #e8e8f3;
+}
+
+.command-btns {
+  display: flex;
+  width: 23%;
+  padding: 0 1%;
+}
+
+.command-btn {
+  background-color: #c3c2d1;
+  padding: 0.2em;
+  text-align: center;
+  font-size: 100%;
+  border: 2px solid rgb(202, 110, 182);
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  margin: 2px auto;
+}
+
+.command-btn:hover {
+  background-color: yellowgreen;
+  color: white;
+}
+
+/* The totals for the correct and wrong answers displayed below the command buttons */
 #answer-box {
   background-color: whitesmoke;
   display: inline-block;
@@ -312,19 +298,13 @@ button {
   padding-right: 0.2em;
 }
 
-#remaining-time {
-  color: red;
-  font-size: 100%;
-  padding: 0.2em;
-}
-
 #correct-answer-icon {
   color: green;
   font-size: 150%;
   padding-right: 0.2em;
 }
 
-/* Username modal form */
+/* Username  and confirm, and alert modal window */
 /* Modal styling adopted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2 */
 .modal,
 #confirm,
@@ -339,10 +319,6 @@ button {
   overflow-y: initial !important;
   background-color: rgba(189, 177, 231, 0.7);
   padding-top: 60px;
-}
-
-#confirm {
-  z-index: 10;
 }
 
 /* Modal Content */
@@ -361,6 +337,22 @@ button {
   animation-duration: 0.6s
 }
 
+/* Username input field */
+input[type=text] {
+  width: 50%;
+  padding: 0.5rem;
+  margin: 5% 15%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 120%;
+}
+
+/* Cobnirmation modal window */
+#confirm {
+  /* need to be above the possibly displayed modal window */
+  z-index: 10;
+}
 
 .confirm-content button {
   width: 47.5%;
@@ -397,43 +389,39 @@ button {
   font-style: italic;
 }
 
-
-input[type=text] {
-  width: 50%;
-  padding: 0.5rem;
-  margin: 5% 15%;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  font-size: 120%;
-}
-
+/* used by the controller.js to color a text red */
 .red-text {
   color: red;
   font-weight: bold;
 }
 
+/* used by the controller.js to color a text green */
 .green-text {
   color: green;
   font-weight: bold;
 }
 
-
+.username-container {
+  width: 80%;
+  margin: 0 auto;
+}
 
 /* Set a style for all buttons */
 .username-container>button {
-  /* background-color: #04AA6D; */
-  background-color:green;
+  background-color: green;
   color: white;
-  padding: 14px 20px;
   margin: 0 auto;
   margin-top: 1rem;
   width: 100%;
   border-radius: 10px;
   bottom: 0.5em;
-  /* position: absolute; */
-  left: -10%;
   font-size: 120%;
+  padding: 0.5rem 1rem;
+  line-height: 1.5rem;
+}
+
+label {
+  font-size: 100%;
 }
 
 .username-container>button:hover {
@@ -442,7 +430,7 @@ input[type=text] {
 
 /* The Close Button */
 .close-btn {
-  color:white;
+  color: white;
   float: right;
   font-size: 1rem;
 }
@@ -450,32 +438,23 @@ input[type=text] {
 .close-btn:hover,
 .close-btn:focus {
   /* color: #000; */
-  color:red;
+  color: red;
   text-decoration: none;
   cursor: pointer;
 }
 
 .username-header {
   padding: 0.5em 1em;
-  /* background-image: linear-gradient(rgba(218, 222, 224, 0.7), rgba(24, 133, 192, 0.7)); */
   background-color: blue;
-  /* background-color: #5cb85c; */
+  margin-bottom: 1rem;
   text-align: center;
   color: white;
 }
-
-.username-container {
-  padding: 0.5rem 1rem;
-  line-height: 1.5rem;
-  font-size: 120%;
-}
-
 
 /* footer section */
 footer {
   text-align: center;
   width: 100%;
-  /* overflow: hidden; */
   font-size: 1rem;
   padding: 0.5% 0;
   margin-top: 15px;
@@ -503,7 +482,6 @@ footer {
   /* make the title be on a single row and the icon and player to be on a new row */
   #title {
     width: 80%;
-
   }
 
   #title-image {
@@ -515,7 +493,7 @@ footer {
   header img {
     margin-bottom: 0;
   }
-
+/* reduce header font size */
   h1 {
     font-size: 130%;
   }
@@ -527,45 +505,50 @@ footer {
   #player-container {
     width: 38%;
   }
+
   .command-btns {
     width: 48%;
     margin: 0 auto;
-}
+  }
+
   /* answer total area reduce to single column */
   #answer-box {
     font-size: 100%;
   }
+
   .counters {
     width: 45%;
   }
+
   #wrong-answer-container {
     float: left;
   }
 
   .username-modal-content,
-.confirm-content {
-  width: 80%;
-  height: 50%;
-}
-.username-header h2{
-  font-size: 120%;
-}
-.confirm-content button{
-  width: 45%;
-}
+  .confirm-content {
+    width: 80%;
+    height: 50%;
+  }
 
-input[type=text] {
-  width: 80%;
-  margin: 5% 0;
-  font-size: 100%;
-}
-.username-container > button{
-  width: 90%;
-  font-size: 100%;
-}
-.username-modal-content, .confirm-content {
-  width: 80%;
-}
+  .username-header h2 {
+    font-size: 120%;
+  }
+
+  .confirm-content button {
+    width: 45%;
+  }
+
+  input[type=text] {
+    width: 80%;
+    margin: 5% 0;
+    font-size: 100%;
+  }
+
+  .username-container>button {
+    width: 90%;
+    font-size: 100%;
+  }
+
 }
 
 /*For larger to medium screens size from 1060px width and down. The point that our Title and football logo gets distorted */
@@ -574,6 +557,7 @@ input[type=text] {
     margin: 0 5px;
     font-size: 100%;
   }
+
   .counters {
     width: 90%;
   }
