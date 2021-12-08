@@ -1,38 +1,37 @@
 
-# The Football Guru Website 
+# **The Football Guru Website** 
 [Hosted Live Here](https://polyanyanwu.github.io/football-quiz-pp2/)
 
 The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while ecah amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
 
 
 ![Site Image Mockup of Different Screens](/docs/guru_display.png)
-## User Stories
+## **User Stories**
 * As a person desirous to know football and its facts I want an interactive application so that I could test my knowledge of football and be guided when I don’t know the answer.
 * As a user of the application, I want to be given the option to interact as an amateur or a professional so that I could test my knowledge as desired.
 * As a user of the application, I want to be notified by sound and words when I guess the correct or incorrect answer.
 * As a user, I want to know my overall percentage score at the end of the quiz.
 
-## Design of the Site
+## **Design of the Site**
 I intended to have a one-page website with modal window pop ups that provide feedbacks and other necessary information like the explanation of answers, entry of username and detailed instructions for the quiz.  The Wireframe for the site is shown below.
 ![Design of Wireframe](/docs/football_quiz_wireframe.png)
 
-## Technologies Used
+## **Technologies Used**
 The visual aspectes of the site was done with the HTML and CSS while the interactivity was achieved using JavaScript. The font images were from Font Awesome. The JavaScript was organised into three different files:
 1. The Config.js contains the constants that drive the limits used for the site; e.g. Total Number of Qustions per session; time duration for the quiz; total answer options, etc. These config variables enable the change of these variables that determine the overal actions on the site from a central point.
 2. The model.js contains the database of the questions modeled with an array of footbal question and answer objects. There are two arrays; one for the amateur and another for the professional options.
-3. The controller.js is where the application logic is implemented; it importas data from the config.js and the model.js.
+3. The controller.js is where the application logic is implemented; it imports data from the config.js and the model.js.
 
 While testing the application and its appeal I got dissatisfied with the default Confirm and Alert windows provided by the JavaScript. This led to the use of jQuery library 3.6.0 <code>cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js</code> to display customised confirmation modal and alert windows.
 
-## Features of the Site
+## **Features of the Site**
 The Site is is presented in three areas:
 ### 1. The Header
 ![Header Area of the Application](/docs/header-area.png)
 
 The Header contains a football logo, title of the page and the user that logged in. It also contains the two buttons to enable selection of the Professional or Amateur level of the quiz. 
 
-
-### 3. The Question & Answer Area
+### 2. The Question & Answer Area
 This is the main area of the page having a question displayed, the instruction to select only one answer; the link to the Detailed Instructions; the answer options and the command buttons to enable Submit Answer, Next Question, Explanation of Answer and Restart Quiz. It also has the feedback on the total questions answered correctly or wrongly.
 
 ![The Question & Answer Area](/docs/question_area.png)
@@ -48,13 +47,13 @@ The user clicks on the Next Question button to navigate to the next random quest
 The Restart the Quiz button enables the user to restart the quix at any time deemed necessary. A confirmation window is displayed requesting <em>Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?</em> If the user clicks Yes, the quiz is restarted if No is clicked user returns to continue the quiz without restarting. If the Yes confirmation was clicked, an alert is displayed informing the user that the quiz has restarted.
 ![The Restart Quiz Confirmation Alert](/docs/alert.png)
 
-### 6. The Footer Section
+### 3. The Footer Section
 The footer has the Contact us icons that links the user to the social network of the site designer.
 
 ### Features Left to Implement
 The application is usable as it is but has limited set of questions. An API could be developed to enable interested persons contribute questions to the database. This would then require a proper database and not an array of structures as is the case here.
 
-## Testing
+## **Testing**
 
 * ### Validity of the HTML
 
@@ -117,25 +116,23 @@ The application is usable as it is but has limited set of questions. An API coul
     8. After restarting the quiz the timer runs both the old and new timer displaying confusing numbers; fixed by creating a global duration time variable  and reseting it to 0 during quiz resets.
     9. Number of professional and amature questions not reseting to 0 after resetting the quiz; resolved by assigning the variables holding the count to zero and displaying them on the DOM element after a restart of the quiz. 
 
-## Deployment
+## **Deployment**
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:
-1. In the GitHub click on repositories, and select yam-festival-pp1
+1. In the GitHub click on repositories, and select football-quiz-pp2
 2. Click on the Settings tab
 3. From the settings page, click on Pages
 4. In the source section drop-down menu, select the Main Branch
 5. Once the Main branch has been selected, the page will be refreshed with a detailed ribbon display to indicate the successful deployment.
-6. The live site can be found at [New Yam Festival] (https://polyanyanwu.github.io/football-quiz-pp2/)
+6. The live site can be found at [The Football Guru](https://polyanyanwu.github.io/football-quiz-pp2/).
 
-## Credits
-### i. Design
+## **Credits**
 
+### i. Content
+The code for the customised confirmation window was adapted from [Tutorials Point](https://www.tutorialspoint.com/How-to-create-a-dialog-with-yes-and-no-options-in-JavaScript). The CSS code for the Modal windows was adapted from [w3schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2). 
 
-### ii. Content
+Some of the questions were copied from [Football Facts](https://www.myfootballfacts.com/question_of_the_day/best-120-football-quiz-questions-trivia-and-answers/#PL-Quiz-1), [Laws of the Game](https://drive.google.com/file/d/12czUEG7kdGvNh_vJ6MM-kas9qjsvRLqP/view), [Statista](https://www.statista.com/statistics/266464/number-of-world-cup-titles-won-by-country-since-1930/), [History](https://www.history.com/this-day-in-history/first-world-cup) and [888 Sport](https://www.888sport.com/blog/most-successful-football-club-in-england).
+   
+### ii. Media
 
+The icons in the footer were copied from the Font Awesome. The sounds for the correct and wrong answers were downloaded from [Epidemic Sound](https://www.epidemicsound.com/sound-effects/user-interface/). The clap sound when a user wins was downloaded from [mixkit](https://mixkit.co/free-sound-effects/clap/). The background image was downloaded from [PikPng](https://www.pikpng.com/downpngs/TimJRh_ball-in-the-football-stadium-background-free-vector/).
     
-The icons in the footer were copied from the Font Awesome.
-### iii. Media
-
-
-    
-    Thanks to God and my family for their support and understanding while I stayed hours on the Laptop.
