@@ -17,9 +17,9 @@ I intended to have a one-page website with modal window pop ups that provide fee
 ![Design of Wireframe](/docs/football_quiz_wireframe.png)
 
 ## **Technologies Used**
-The visual aspectes of the site was done with the HTML and CSS while the interactivity was achieved using JavaScript. The font images were from Font Awesome. The JavaScript was organised into three different files:
-1. The Config.js contains the constants that drive the limits used for the site; e.g. Total Number of Qustions per session; time duration for the quiz; total answer options, etc. These config variables enable the change of these variables that determine the overal actions on the site from a central point.
-2. The model.js contains the database of the questions modeled with an array of footbal question and answer objects. There are two arrays; one for the amateur and another for the professional options.
+The visual aspects of the site was done with the HTML and CSS while the interactivity was achieved using JavaScript. The font images were from Font Awesome. The JavaScript was organized into three different files:
+1. The Config.js contains the constants that drive the limits used for the site; e.g. Total Number of Questions per session; time duration for the quiz; total answer options, etc. These config variables enable the change of these variables that determine the overall actions on the site from a central point.
+2. The model.js contains the database of the questions modeled with an array of football question and answer objects. There are two arrays; one for the amateur and another for the professional options.
 3. The controller.js is where the application logic is implemented; it imports data from the config.js and the model.js.
 
 While testing the application and its appeal I got dissatisfied with the default Confirm and Alert windows provided by the JavaScript. This led to the use of jQuery library 3.6.0 <code>cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js</code> to display customised confirmation modal and alert windows.
