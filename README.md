@@ -45,17 +45,17 @@
 
 ## **Introcuction** <a id = "introduction"></a>
 ### **Objectives** <a id = "objective"></a>
-    The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while ecah amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
+The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while ecah amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
 
 ### Goals of the Project <a id = "goals"></a>
-    - Test the user's knowledge of soccer/football.
-    - Educate the user on details of answers to questions to enhace learning.
-    - Celebrate the user if a pass is attained.
-    - Give the user options to earn higher marks by playing at professional level.
-    - Provide feedbacks to guide the user experience.
+- Test the user's knowledge of soccer/football.
+- Educate the user on details of answers to questions to enhace learning.
+- Celebrate the user if a pass is attained.
+- Give the user options to earn higher marks by playing at professional level.
+- Provide feedbacks to guide the user experience.
 
 ### Target Audience <a id = "terget-audience"></a>
-    I intend the application to be useful to any lover of football or anyone desirous of learning football. A novice in football would be able to guess the answers and after that obtain explanation of the answers to the question and be eqducated. 
+I intend the application to be useful to any lover of football or anyone desirous of learning football. A novice in football would be able to guess the answers and after that obtain explanation of the answers to the question and be eqducated. 
 
 ![Site Image Mockup of Different Screens](/docs/guru_display.png)
 
@@ -148,18 +148,18 @@ The application is usable as it is but has limited set of questions. An API coul
 * ### Validity of the JavaScript <a id="javascript-validity"></a>
     The three JavaScript files in the application were validated using the JSHINT.
     ####    <b>1. The controller.js </b>
-        The controller was tested using [JSHINT](https://jshint.com/). To eliminate known warnings with the JSHINT I added the following 
-        /*jshint esversion: 6 */ for the ES6 to accept const and other ES6 features used
-        /*jshint -W030 */ //ignore warnings due to use of tenary operator
-        /*globals $:false */ // accept $ as global variable while testing with jshint
-        I ended up with the following jshint output:
+    The controller was tested using [JSHINT](https://jshint.com/). To eliminate known warnings with the JSHINT I added the following 
+    /*jshint esversion: 6 */ for the ES6 to accept const and other ES6 features used
+    /*jshint -W030 */ //ignore warnings due to use of tenary operator
+    /*globals $:false */ // accept $ as global variable while testing with jshint
+    I ended up with the following jshint output:
     ![JSHINT Validation Result for controller.js](/docs/controller_jshint.png)
     #### <b>2. The model.js</b>
-        Both the model.js had only the warning about the use of Strict Mode.
+    Both the model.js had only the warning about the use of Strict Mode.
     ![JSHINT Validation Result for model.js](/docs/model_jshint.png)
 
     #### <b>3. The config.js</b>
-      The config.js also only had the warning about the use of Strict Mode.
+    The config.js also only had the warning about the use of Strict Mode.
     ![JSHINT Validation Result for config.js](/docs/config_jshint.png)
 
 * ### **Accessibility & Performance Testing** <a id="performance-testing"></a>
