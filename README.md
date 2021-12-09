@@ -1,5 +1,5 @@
 # Name of the Project <a id="name-of-project"></a>
-## **The Football Guru Website** 
+## **The Football Guru** 
 ## Live Site <a id="live-site"></a>
 [Hosted Live Here](https://polyanyanwu.github.io/football-quiz-pp2/)
 ## Repository
@@ -12,7 +12,10 @@
 
 - [Name of the Project](#name-of-project)
 - [Live Site](#live-site)
-- [Objective](#objective)
+- [Introduction](#introduction)
+    - [Objectives](#objective)
+    - [Goals of the Project](#goals)
+    - [Target Audience](#target-audience)
 - [User Experience Design](#user-experience)
     - [User Stories](#user-stories)
     - [Wireframe](#wireframe)
@@ -26,11 +29,33 @@
     - [The Question & Answer Area](#question-answer)
     - [The Footer Section](#footer)
     - [Features Left to Implement](#features-left)
+- [Testing](#testing)
+    - [Validity of the HTML](#html-validity)
+    - [Validity of the CSS](#css-validity)
+    - [Validity of the JavaScript](#javascript-validity)
+    - [Accessibility & Performance Testing](#performance-testing)
+    - [Browser Compatibility](#browser-compatibility)
+    - [Accessibility with Different Device Widths](#accessibility)
+    - [Functionality Test](docs/Testing.md)
+    - [Bugs](#bugs)
+- [Deployment](#deployment)
+- [Credits](#credits)
+    - [Content](#content)
+    - [Media](#media)
 
+## **Introcuction** <a id = "introduction"></a>
+### **Objectives** <a id = "objective"></a>
+    The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while ecah amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
 
-## **Objective** <a id = "objective"></a>
-The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while ecah amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
+### Goals of the Project <a id = "goals"></a>
+    - Test the user's knowledge of soccer/football.
+    - Educate the user on details of answers to questions to enhace learning.
+    - Celebrate the user if a pass is attained.
+    - Give the user options to earn higher marks by playing at professional level.
+    - Provide feedbacks to guide the user experience.
 
+### Target Audience <a id = "terget-audience"></a>
+    I intend the application to be useful to any lover of football or anyone desirous of learning football. A novice in football would be able to guess the answers and after that obtain explanation of the answers to the question and be eqducated. 
 
 ![Site Image Mockup of Different Screens](/docs/guru_display.png)
 
@@ -107,20 +132,20 @@ The footer has the Contact us icons that links the user to the social network of
 ### **Features Left to Implement** <a id="features-left"></a>
 The application is usable as it is but has limited set of questions. An API could be developed to enable interested persons contribute questions to the database. This would then require a proper database and not an array of structures as is the case here.
 
-## **Testing**
+## **Testing** <a id="testing"></a>
 
-* ### Validity of the HTML
+* ### Validity of the HTML <a id="html-validity"></a>
 
     The HTML text was validated using [W3C Markup Validation Service](https://validator.w3.org/). The validator warned about a section element not having any h1 to h6 header at the Audio and Footer elements. These were changed to div elements and the resultant html had no further warnings nor errors as shown below:
 
     ![HTML Validation Result](/docs/html_validation.png)
 
-* ### Validity of the CSS
+* ### Validity of the CSS <a id="css-validity"></a>
 
     The CSS text was validated using [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator). The CSS had no errors and one warning. The warning was due to the validator unable to check the Google fonts that were imported into the css.
     ![CSS Validation Result](/docs/css_validation.png)
 
-* ### Validity of the JavaScript
+* ### Validity of the JavaScript <a id="javascript-validity"></a>
     The three JavaScript files in the application were validated using the JSHINT.
     ####    <b>1. The controller.js </b>
         The controller was tested using [JSHINT](https://jshint.com/). To eliminate known warnings with the JSHINT I added the following 
@@ -129,33 +154,33 @@ The application is usable as it is but has limited set of questions. An API coul
         /*globals $:false */ // accept $ as global variable while testing with jshint
         I ended up with the following jshint output:
     ![JSHINT Validation Result for controller.js](/docs/controller_jshint.png)
-    #### <b>2. The model.js and config.js</b>
+    #### <b>2. The model.js</b>
         Both the model.js had only the warning about the use of Strict Mode.
     ![JSHINT Validation Result for model.js](/docs/model_jshint.png)
 
-    #### <b>3. The model.js and config.js</b>
+    #### <b>3. The config.js</b>
       The config.js also only had the warning about the use of Strict Mode.
     ![JSHINT Validation Result for config.js](/docs/config_jshint.png)
 
-* ### Accessibility & Performance Testing
+* ### **Accessibility & Performance Testing** <a id="performance-testing"></a>
 
     Performance test was carried out using Lighthouse tool provided by the Chrome Development tool.  The background and logo images were converted to .webp using  [cloud convert](https://cloudconvert.com/) and then  [tiny png](https://tinypng.com/) was used to compress the images further. Cache Control was added to the header with properties content="max-age=31536000" and content="public" to enhance performance. The Lighthouse produced the result below:
     ![Performance Result](/docs/lighthouse.png)
 
 
-* ### Browser Compatibility 
+* ### **Browser Compatibility**  <a id="browser-compatibility"></a>
 
     The website was tested with the major browsers available and found to work as expected: Chrome, Firefox, Safari, and Microsoft Edge.
 
-* ### Accessibility with Different Device Widths
+* ### **Accessibility with Different Device Widths** <a id="accessibility"></a>
 
     Using the Chrome Development tools, the responsiveness of the site to various screen sizes was simulated. This led to the adjustment of the CSS until the site supports numerous device widths from the smallest hand held devices to full computer monitor screens.
 
-* ### Functionality Test
+* ### **Functionality Test** <a id="functionality-test"></a>
 
     Guided by the User Story and application design, extensive tests of the functionality was carried out. The detailed test script and result is available at  [Functionality Test](docs/Testing.md)
 
-* ### Bugs
+* ### **Bugs** <a id="bugs"></a>
     As expected for projects of this nature several bugs were identified in the cause of the implementation and fixed accordingly.
     1. Submit Answer had two issues. The first one was it tried to process the submission even when an answer had not been selected. This was resolved by first checking that one of the Options has the "option-selected" class before processing the submission, if not an alert message is displayed for the user to first select and answer before submitting. The second issue was submitting the same answer more than once. The solution was disabling click on the div was being used as the Submit Answer and re-enabling it when a new question is loaded.
                 
@@ -170,7 +195,7 @@ The application is usable as it is but has limited set of questions. An API coul
     8. After restarting the quiz the timer runs both the old and new timer displaying confusing numbers; fixed by creating a global duration time variable  and reseting it to 0 during quiz resets.
     9. Number of professional and amature questions not reseting to 0 after resetting the quiz; resolved by assigning the variables holding the count to zero and displaying them on the DOM element after a restart of the quiz. 
 
-## **Deployment**
+## **Deployment** <a id="deployment"></a>
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:
 1. In the GitHub click on repositories, and select football-quiz-pp2
 2. Click on the Settings tab
@@ -179,14 +204,14 @@ The site was deployed to GitHub pages. The following steps were used to effect t
 5. Once the Main branch has been selected, the page will be refreshed with a detailed ribbon display to indicate the successful deployment.
 6. The live site can be found at [The Football Guru](https://polyanyanwu.github.io/football-quiz-pp2/).
 
-## **Credits**
+## **Credits** <a id="credits"></a>
 
-### i. Content
+### **i. Content** <a id="content"></a>
 The code for the customized confirmation window was adapted from [Tutorials Point](https://www.tutorialspoint.com/How-to-create-a-dialog-with-yes-and-no-options-in-JavaScript). The CSS code for the Modal windows was adapted from [w3schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2). 
 
 Some of the questions were copied from [Football Facts](https://www.myfootballfacts.com/question_of_the_day/best-120-football-quiz-questions-trivia-and-answers/#PL-Quiz-1), [Laws of the Game](https://drive.google.com/file/d/12czUEG7kdGvNh_vJ6MM-kas9qjsvRLqP/view), [Statista](https://www.statista.com/statistics/266464/number-of-world-cup-titles-won-by-country-since-1930/), [History](https://www.history.com/this-day-in-history/first-world-cup) and [888 Sport](https://www.888sport.com/blog/most-successful-football-club-in-england).
    
-### ii. Media
+### **ii. Media** <a id="media"></a>
 
 The icons in the footer were copied from the Font Awesome. The sounds for the correct and wrong answers were downloaded from [Epidemic Sound](https://www.epidemicsound.com/sound-effects/user-interface/). The clap sound when a user wins was downloaded from [mixkit](https://mixkit.co/free-sound-effects/clap/). The background image was downloaded from [PikPng](https://www.pikpng.com/downpngs/TimJRh_ball-in-the-football-stadium-background-free-vector/).
     
