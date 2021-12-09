@@ -1,37 +1,91 @@
-
-# **The Football Guru Website** 
+# Name of the Project <a id="name-of-project"></a>
+## **The Football Guru Website** 
+## Live Site <a id="live-site"></a>
 [Hosted Live Here](https://polyanyanwu.github.io/football-quiz-pp2/)
+## Repository
 
+[View Repository Here](https://github.com/Polyanyanwu/football-quiz-pp2)
+
+***
+
+## Table of Contents
+
+- [Name of the Project](#name-of-project)
+- [Live Site](#live-site)
+- [Objective](#objective)
+- [User Experience Design](#user-experience)
+    - [User Stories](#user-stories)
+    - [Wireframe](#wireframe)
+    - [Flowchart](#flowchart)
+- [Technologies Used](#technologies-used)
+    - [HTML & CSS](#html-css)
+    - [Google fonts & Font awesome](#fonts)
+    - [jQuery](#jquery)
+- [Features of the Site](#features-of-the-site)
+    - [The Header](#the-header)
+    - [The Question & Answer Area](#question-answer)
+    - [The Footer Section](#footer)
+    - [Features Left to Implement](#features-left)
+
+
+## **Objective** <a id = "objective"></a>
 The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while ecah amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
 
 
 ![Site Image Mockup of Different Screens](/docs/guru_display.png)
-## **User Stories**
+
+<div id="user-experience"></div>
+
+## **User Experience Design** 
+<div id="user-stories"></div>
+
+### **User Stories** 
 * As a person desirous to know football and its facts I want an interactive application so that I could test my knowledge of football and be guided when I don’t know the answer.
 * As a user of the application, I want to be given the option to interact as an amateur or a professional so that I could test my knowledge as desired.
 * As a user of the application, I want to be notified by sound and words when I guess the correct or incorrect answer.
 * As a user, I want to know my overall percentage score at the end of the quiz.
 
-## **Design of the Site**
+<div id="wireframe"></div>
+
+### **Wireframe - Design of the Site**
 I intended to have a one-page website with modal window pop ups that provide feedbacks and other necessary information like the explanation of answers, entry of username and detailed instructions for the quiz.  The Wireframe for the site is shown below.
 ![Design of Wireframe](/docs/football_quiz_wireframe.png)
 
+<div id="flowchart"></div>
+
+### **Logic Flowchart**
+
+I created a flowchart that guided the coding of the logic in the JavaScript. The flowchart is given below:
+![Lggic Flowchart](/docs/flowchart.png)
+
+<a id = "technologies-used"></a>
+
 ## **Technologies Used**
-The visual aspects of the site was done with the HTML and CSS while the interactivity was achieved using JavaScript. The font images were from Font Awesome. The JavaScript was organized into three different files:
-1. The Config.js contains the constants that drive the limits used for the site; e.g. Total Number of Questions per session; time duration for the quiz; total answer options, etc. These config variables enable the change of these variables that determine the overall actions on the site from a central point.
-2. The model.js contains the database of the questions modeled with an array of football question and answer objects. There are two arrays; one for the amateur and another for the professional options.
-3. The controller.js is where the application logic is implemented; it imports data from the config.js and the model.js.
+- HTML & CSS. <a id = "html-css"></a>
+The visual aspects of the site was done with the HTML and CSS.
 
-While testing the application and its appeal I got dissatisfied with the default Confirm and Alert windows provided by the JavaScript. This led to the use of jQuery library 3.6.0 <code>cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js</code> to display customised confirmation modal and alert windows.
+- JavaScript <a id = "javascript"></a>
+    The interactivity was achieved using JavaScript. 
+    The JavaScript was organized into three different files:
+    1. The Config.js contains the constants that drive the limits used for the site; e.g. Total Number of Questions per session; time duration for the quiz; total answer options, etc. These config variables enable the change of these variables that determine the overall actions on the site from a central point.
+    2. The model.js contains the database of the questions modeled with an array of football question and answer objects. There are two arrays; one for the amateur and another for the professional options.
+    3. The controller.js is where the application logic is implemented; it imports data from the config.js and the model.js.
 
-## **Features of the Site**
+ - Font Images <a id = "fonts"></a>
+ The font images were from Font Awesome. The fonts used in the text were imported from Google Fonts.
+
+- jQuery <a id = "jquery"></a>
+While testing the application and its appeal I got dissatisfied with the default Confirm and Alert windows provided by the JavaScript. This led to the use of jQuery library 3.6.0 <code>cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js</code> to display customized confirmation modal and alert windows.
+
+## **Features of the Site** <a id="features-of-the-site"></a>
 The Site is is presented in three areas:
-### 1. The Header
+
+### **1. The Header** <a id="the-header"></a>
 ![Header Area of the Application](/docs/header-area.png)
 
 The Header contains a football logo, title of the page and the user that logged in. It also contains the two buttons to enable selection of the Professional or Amateur level of the quiz. 
 
-### 2. The Question & Answer Area
+### **2. The Question & Answer Area** <a id="question-answer"></a>
 This is the main area of the page having a question displayed, the instruction to select only one answer; the link to the Detailed Instructions; the answer options and the command buttons to enable Submit Answer, Next Question, Explanation of Answer and Restart Quiz. It also has the feedback on the total questions answered correctly or wrongly.
 
 ![The Question & Answer Area](/docs/question_area.png)
@@ -47,10 +101,10 @@ The user clicks on the Next Question button to navigate to the next random quest
 The Restart the Quiz button enables the user to restart the quix at any time deemed necessary. A confirmation window is displayed requesting <em>Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?</em> If the user clicks Yes, the quiz is restarted if No is clicked user returns to continue the quiz without restarting. If the Yes confirmation was clicked, an alert is displayed informing the user that the quiz has restarted.
 ![The Restart Quiz Confirmation Alert](/docs/alert.png)
 
-### 3. The Footer Section
+### **3. The Footer Section** <a id="footer"></a>
 The footer has the Contact us icons that links the user to the social network of the site designer.
 
-### Features Left to Implement
+### **Features Left to Implement** <a id="features-left"></a>
 The application is usable as it is but has limited set of questions. An API could be developed to enable interested persons contribute questions to the database. This would then require a proper database and not an array of structures as is the case here.
 
 ## **Testing**
@@ -69,8 +123,8 @@ The application is usable as it is but has limited set of questions. An API coul
 * ### Validity of the JavaScript
     The three JavaScript files in the application were validated using the JSHINT.
     ####    <b>1. The controller.js </b>
-        The controller was tested using [JSHINT](https://jshint.com/). To elminate known warnings with the JSHINT I added the following 
-        /*jshint esversion: 6 */ for the EMS6 to accept const and other EMS6 features used
+        The controller was tested using [JSHINT](https://jshint.com/). To eliminate known warnings with the JSHINT I added the following 
+        /*jshint esversion: 6 */ for the ES6 to accept const and other ES6 features used
         /*jshint -W030 */ //ignore warnings due to use of tenary operator
         /*globals $:false */ // accept $ as global variable while testing with jshint
         I ended up with the following jshint output:
@@ -102,10 +156,10 @@ The application is usable as it is but has limited set of questions. An API coul
     Guided by the User Story and application design, extensive tests of the functionality was carried out. The detailed test script and result is available at  [Functionality Test](docs/Testing.md)
 
 * ### Bugs
-    As expected for projects of this nature several bugs were identified in the cause of the impleentation and fixed accordingly.
+    As expected for projects of this nature several bugs were identified in the cause of the implementation and fixed accordingly.
     1. Submit Answer had two issues. The first one was it tried to process the submission even when an answer had not been selected. This was resolved by first checking that one of the Options has the "option-selected" class before processing the submission, if not an alert message is displayed for the user to first select and answer before submitting. The second issue was submitting the same answer more than once. The solution was disabling click on the div was being used as the Submit Answer and re-enabling it when a new question is loaded.
                 
-    2. The timer for tracking the elapsed time for the quiz kept running even after getting to 0 secods left. It was resolved by calling the function clearInterval().
+    2. The timer for tracking the elapsed time for the quiz kept running even after getting to 0 seconds left. It was resolved by calling the function clearInterval().
 
     3. It was challenging to get the Font Awesome to be displayed for the marking of the correct answer with a √ and wrong answer with an x. To resolve this I had to setup two divs' having the two Font Awesome for each answer option and used CSS class to control the display from JavaScript.
 
@@ -128,7 +182,7 @@ The site was deployed to GitHub pages. The following steps were used to effect t
 ## **Credits**
 
 ### i. Content
-The code for the customised confirmation window was adapted from [Tutorials Point](https://www.tutorialspoint.com/How-to-create-a-dialog-with-yes-and-no-options-in-JavaScript). The CSS code for the Modal windows was adapted from [w3schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2). 
+The code for the customized confirmation window was adapted from [Tutorials Point](https://www.tutorialspoint.com/How-to-create-a-dialog-with-yes-and-no-options-in-JavaScript). The CSS code for the Modal windows was adapted from [w3schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2). 
 
 Some of the questions were copied from [Football Facts](https://www.myfootballfacts.com/question_of_the_day/best-120-football-quiz-questions-trivia-and-answers/#PL-Quiz-1), [Laws of the Game](https://drive.google.com/file/d/12czUEG7kdGvNh_vJ6MM-kas9qjsvRLqP/view), [Statista](https://www.statista.com/statistics/266464/number-of-world-cup-titles-won-by-country-since-1930/), [History](https://www.history.com/this-day-in-history/first-world-cup) and [888 Sport](https://www.888sport.com/blog/most-successful-football-club-in-england).
    
