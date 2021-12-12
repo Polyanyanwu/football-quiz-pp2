@@ -43,19 +43,19 @@
     - [Content](#content)
     - [Media](#media)
 
-## **Introcuction** <a id = "introduction"></a>
+## **Introduction** <a id = "introduction"></a>
 ### **Objectives** <a id = "objective"></a>
-The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while ecah amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
+The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while each amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
 
 ### Goals of the Project <a id = "goals"></a>
 - Test the user's knowledge of soccer/football.
-- Educate the user on details of answers to questions to enhace learning.
+- Educate the user on details of answers to questions to enhance learning.
 - Celebrate the user if a pass is attained.
 - Give the user options to earn higher marks by playing at professional level.
 - Provide feedbacks to guide the user experience.
 
 ### Target Audience <a id = "terget-audience"></a>
-I intend the application to be useful to any lover of football or anyone desirous of learning football. A novice in football would be able to guess the answers and after that obtain explanation of the answers to the question and be eqducated. 
+I intend the application to be useful to any lover of football or anyone desirous of learning football. A novice in football would be able to guess the answers and after that obtain explanation of the answers to the question and be educated. 
 
 ![Site Image Mockup of Different Screens](/docs/guru_display.png)
 
@@ -86,24 +86,24 @@ I created a flowchart that guided the coding of the logic in the JavaScript. The
 <a id = "technologies-used"></a>
 
 ## **Technologies Used**
-- HTML & CSS. <a id = "html-css"></a>
+- HTML & CSS :  <a id = "html-css"></a>
 The visual aspects of the site was done with the HTML and CSS.
 
-- JavaScript <a id = "javascript"></a>
+- JavaScript : <a id = "javascript"></a>
     The interactivity was achieved using JavaScript. 
     The JavaScript was organized into three different files:
     1. The Config.js contains the constants that drive the limits used for the site; e.g. Total Number of Questions per session; time duration for the quiz; total answer options, etc. These config variables enable the change of these variables that determine the overall actions on the site from a central point.
     2. The model.js contains the database of the questions modeled with an array of football question and answer objects. There are two arrays; one for the amateur and another for the professional options.
     3. The controller.js is where the application logic is implemented; it imports data from the config.js and the model.js.
 
- - Font Images <a id = "fonts"></a>
+ - Font Images : <a id = "fonts"></a>
  The font images were from Font Awesome. The fonts used in the text were imported from Google Fonts.
 
-- jQuery <a id = "jquery"></a>
+- jQuery : <a id = "jquery"></a>
 While testing the application and its appeal I got dissatisfied with the default Confirm and Alert windows provided by the JavaScript. This led to the use of jQuery library 3.6.0 <code>cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js</code> to display customized confirmation modal and alert windows.
 
 ## **Features of the Site** <a id="features-of-the-site"></a>
-The Site is is presented in three areas:
+The Site is presented in three areas:
 
 ### **1. The Header** <a id="the-header"></a>
 ![Header Area of the Application](/docs/header-area.png)
@@ -123,7 +123,7 @@ After submitting the answer, the user could click on View Explanation of Answer 
 
 The user clicks on the Next Question button to navigate to the next random question from the system. The question is picked randomly from the quiz level database that the user currently selected. If a user clicks on the Next Question without submitting answer for the currently displayed question, a Confirmation message is displayed to ensure the user really want to navigate to another question. If the user clicks Ok, the next question is displayed, if not no action is taken.
 
-The Restart the Quiz button enables the user to restart the quix at any time deemed necessary. A confirmation window is displayed requesting <em>Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?</em> If the user clicks Yes, the quiz is restarted if No is clicked user returns to continue the quiz without restarting. If the Yes confirmation was clicked, an alert is displayed informing the user that the quiz has restarted.
+The Restart the Quiz button enables the user to restart the quiz at any time deemed necessary. A confirmation window is displayed requesting <em>Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?</em> If the user clicks Yes, the quiz is restarted if No is clicked user returns to continue the quiz without restarting. If the Yes confirmation was clicked, an alert is displayed informing the user that the quiz has restarted.
 ![The Restart Quiz Confirmation Alert](/docs/alert.png)
 
 ### **3. The Footer Section** <a id="footer"></a>
@@ -149,10 +149,13 @@ The application is usable as it is but has limited set of questions. An API coul
     The three JavaScript files in the application were validated using the JSHINT.
     ####    <b>1. The controller.js </b>
     The controller was tested using [JSHINT](https://jshint.com/). To eliminate known warnings with the JSHINT I added the following 
-    /*jshint esversion: 6 */ for the ES6 to accept const and other ES6 features used
-    /*jshint -W030 */ //ignore warnings due to use of tenary operator
-    /*globals $:false */ // accept $ as global variable while testing with jshint
+
+    - /*jshint esversion: 6 */ for the ES6 to accept const and other ES6 features used
+    - /*jshint -W030 */ //ignore warnings due to use of ternary operator
+    - /*globals $:false */ // accept $ as global variable while testing with jshint
+
     I ended up with the following jshint output:
+
     ![JSHINT Validation Result for controller.js](/docs/controller_jshint.png)
     #### <b>2. The model.js</b>
     Both the model.js had only the warning about the use of Strict Mode.
@@ -192,8 +195,8 @@ The application is usable as it is but has limited set of questions. An API coul
     5. Modal content was not scrolling when desired on small screens, the scroll ability was added by setting overflow-y property on the modal and modal content.
     6. When a user clicks the View Result button, the previous result displayed was not cleared resulting into multiple display of the result. The fix was to remove the div element I was inserting for the result, if it exists, before inserting a new div.
     7. The audio alert was done with new audio() statement in the JavaScript. This didn't work in the Chrome browser, it was fixed by creating audio elements in the html and playing from the JavaScript.
-    8. After restarting the quiz the timer runs both the old and new timer displaying confusing numbers; fixed by creating a global duration time variable  and reseting it to 0 during quiz resets.
-    9. Number of professional and amature questions not reseting to 0 after resetting the quiz; resolved by assigning the variables holding the count to zero and displaying them on the DOM element after a restart of the quiz. 
+    8. After restarting the quiz the timer runs both the old and new timer displaying confusing numbers; fixed by creating a global duration time variable  and resetting it to 0 during quiz resets.
+    9. Number of professional and amateur questions not resetting to 0 after resetting the quiz; resolved by assigning the variables holding the count to zero and displaying them on the DOM element after a restart of the quiz. 
 
 ## **Deployment** <a id="deployment"></a>
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:
