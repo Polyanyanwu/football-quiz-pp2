@@ -78,6 +78,7 @@ header img {
   margin: 2rem auto;
   font-size: 1.5rem;
   color: var(--green);
+  letter-spacing: 3px;
 }
 
 /* #player {
@@ -467,12 +468,16 @@ footer {
   text-align: center;
   width: 100%;
   font-size: 1rem;
+  color: var(--green);
+  background-image: url("../images/spiration-light.png");
   padding: 0.5% 0;
-  margin-top: 15px;
-  background-color: white;
-  bottom: 0.5rem;
-  position: relative;
-  margin-top: 2rem;
+  /* margin-top: 15px; */
+  bottom: 0;
+  height: 2rem;
+  /* background-color: white;
+  bottom: 0.5rem; */
+  position: absolute;
+  /* margin-top: 2rem; */
 }
 
 .contact-us span {
@@ -492,14 +497,14 @@ footer {
 
   /* make the title be on a single row and the icon and player to be on a new row */
   #title {
-    width: 80%;
+    width: 98%;
   }
 
-  #title-image {
+  /* #title-image {
     width: 50%;
     left: 6%;
     margin: 0 auto;
-  }
+  } */
 
   header img {
     margin-bottom: 0;
@@ -513,9 +518,9 @@ footer {
     width: 80%;
   }
 
-  /* #player-container {
-    width: 38%;
-  } */
+  #player-container {
+    font-size: 100%;
+  }
 
   .command-btns {
     width: 48%;
@@ -560,6 +565,7 @@ footer {
     font-size: 100%;
   }
 
+
 }
 
 /*For larger to medium screens size from 1060px width and down. The point that our Title and football logo gets distorted */
@@ -572,4 +578,11 @@ footer {
   .counters {
     width: 90%;
   }
+  header img {
+    width: 70px;
+  }
+  footer {
+    position: relative;
+  }
+
 }
