@@ -40,13 +40,6 @@ header {
   top: 5px;
 }
 
-/* #logo {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width: 100%;
-} */
-
 #logo {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -55,8 +48,6 @@ header {
 
 
 #title {
-  /* display: flex;
-  width: 32%; */
   letter-spacing: 3px;
   position: relative;
   margin: 1rem auto;
@@ -80,10 +71,6 @@ header img {
   color: var(--green);
   letter-spacing: 3px;
 }
-
-/* #player {
-  margin-left: 0.5rem;
-} */
 
 #quiz-level-container {
   clear: both;
@@ -164,14 +151,13 @@ header img {
 
 /* The time container is a flex display having the counters for the total questions, elapsed time, view quiz result button */
 #time-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  grid-column-gap: 5px;
 }
 
 .counters {
-  display: flex;
-  width: 30%;
   padding-top: 0.5rem;
   background-color: #e8e8f3;
 }
@@ -250,18 +236,9 @@ header img {
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
   grid-column-gap: 5px;
-  /* display: flex;
-  flex-wrap: wrap;
-  flex-direction: row; */
   background-color: #e8e8f3;
   margin-bottom: 1rem;
 }
-
-/* .command-btns {
-  display: flex; 
-  width: 100%; 
-  padding: 0 1%; 
-} */
 
 .command-btn {
   padding: 0.2em;
@@ -342,7 +319,6 @@ header img {
 .confirm-content {
   position: relative;
   background-image: url("../images/spiration-light.png");
-  /* background-color: #fefefe; */
   overflow-y: auto;
   margin: 20vh auto;
   padding: 0;
@@ -454,7 +430,6 @@ label {
 
 .close-btn:hover,
 .close-btn:focus {
-  /* color: #000; */
   color: red;
   text-decoration: none;
   cursor: pointer;
@@ -476,13 +451,9 @@ footer {
   color: var(--green);
   background-image: url("../images/spiration-light.png");
   padding: 0.5% 0;
-  /* margin-top: 15px; */
   bottom: 0;
   height: 2rem;
-  /* background-color: white;
-  bottom: 0.5rem; */
   position: absolute;
-  /* margin-top: 2rem; */
 }
 
 .contact-us span {
@@ -500,15 +471,8 @@ footer {
  For larger to medium screens size from 1060px width and down. The point that our Title and football logo gets distorted */
 @media screen and (max-width: 1060px) {
 
-  /* make the title be on a single row and the icon and player to be on a new row */
-  #title {
+  /* #title {
     width: 98%;
-  }
-
-  /* #title-image {
-    width: 50%;
-    left: 6%;
-    margin: 0 auto;
   } */
 
   header img {
@@ -527,21 +491,18 @@ footer {
     font-size: 100%;
   }
 
-  /* .command-btns {
-    width: 48%;
-    margin: 0 auto;
-  } */
+    /* counter area reduce to 2 column */
+  #time-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-  /* answer total area reduce to single column */
   #answer-box {
     font-size: 100%;
   }
 
+  /* reduce command buttons to 2 columns */
   #command-btn-container {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .counters {
-    width: 45%;
   }
 
   #wrong-answer-container {
@@ -582,18 +543,23 @@ footer {
     margin: 0 5px;
     font-size: 100%;
   }
-
-  .counters {
-    width: 90%;
+  #time-container, #answer-area {
+    width: 80%;
   }
+
   header img {
     width: 70px;
   }
+  
+  #time-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
   #command-btn-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
   .command-btn {
-    height: 4rem;
+    height: 3rem;
   }
   footer {
     position: relative;
