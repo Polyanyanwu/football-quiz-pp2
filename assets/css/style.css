@@ -7,6 +7,10 @@
   border: none;
 }
 
+:root {
+  --red: #91363a;
+  --green: #07412b;
+}
 /* default font and color for the entire page */
 body {
   font-family: "Ubuntu", sans-serif;
@@ -36,43 +40,49 @@ header {
   top: 5px;
 }
 
-#logo {
+/* #logo {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   width: 100%;
+} */
+
+#logo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-image: url("../images/spiration-light.png");
 }
 
+
 #title {
-  display: flex;
-  width: 32%;
+  /* display: flex;
+  width: 32%; */
   letter-spacing: 3px;
   position: relative;
   margin: 1rem auto;
 }
 
 header img {
-  margin: 0.2rem auto 1rem auto;
-  width: 15%;
+  margin: 1rem auto;
+  width: 100px;
   height: auto;
 }
 
 #title-image {
-  width: 32%;
   position: relative;
   margin: 0 auto;
 }
 
 #player-container {
-  display: flex;
-  width: 32%;
   position: relative;
-  margin: 1rem auto;
+  margin: 2rem auto;
+  font-size: 1.5rem;
+  color: var(--green);
 }
 
-#player {
+/* #player {
   margin-left: 0.5rem;
-}
+} */
 
 #quiz-level-container {
   clear: both;
@@ -325,7 +335,8 @@ header img {
 .username-modal-content,
 .confirm-content {
   position: relative;
-  background-color: #fefefe;
+  background-image: url("../images/spiration-light.png");
+  /* background-color: #fefefe; */
   overflow-y: auto;
   margin: 20vh auto;
   padding: 0;
@@ -502,9 +513,9 @@ footer {
     width: 80%;
   }
 
-  #player-container {
+  /* #player-container {
     width: 38%;
-  }
+  } */
 
   .command-btns {
     width: 48%;
