@@ -65,6 +65,7 @@ const usernameCloseBtn = document.querySelector(".username-close");
 const usernameCreateBtn = document.querySelector("#create-user-button");
 const totProfQuizEl = document.querySelector("#total-prof-question");
 const totAmateurQuizEl = document.querySelector("#total-amateur-question");
+const logoImg = document.querySelector(".logo-image");
 
 // Global variable very necessary for correct functioning of the site
 let quizCount = 0; //tracking of how many questions already presented
@@ -659,3 +660,8 @@ const alertMe = (msg, myYes) => {
     alertBox.find(".confirm-ok").click(myYes);
     alertBox.show();
 };
+
+//when the image is clicked, toggle the animatation of the football image
+logoImg.addEventListener('click',function(){
+    logoImg.classList.toggle("animate");
+});

@@ -57,6 +57,39 @@ header img {
   margin: 1rem auto;
   width: 100px;
   height: auto;
+  cursor: pointer;
+}
+
+/* toggle animation for rotating the football logo */
+.animate {
+  animation: rotate 4s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+/* Tooltip text for the logo image*/
+.tooltip-text {
+  visibility: hidden;
+  width: 15rem;
+  color: white;
+  background-color: #07412b;
+  padding: 5px 2px;
+  border-radius: 5px;
+  position: relative;
+  top: -1rem;
+  z-index: 9;
+  font-size: 80%;
+}
+
+#title-image:hover .tooltip-text {
+  visibility: visible;
 }
 
 #title-image {
@@ -149,7 +182,7 @@ header img {
   border-top: 1px solid rgb(202, 110, 182);
 }
 
-/* The time container is a flex display having the counters for the total questions, elapsed time, view quiz result button */
+/* The time container is a grid display having the counters for the total questions, elapsed time, view quiz result button */
 #time-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -466,7 +499,7 @@ footer {
 }
 
 /* Media queries 
- For larger to medium screens size from 1060px width and down. The point that our Title and football logo gets distorted */
+ For larger to medium screens size from 1060px width and down.*/
 @media screen and (max-width: 1060px) {
 
   header img {
@@ -531,7 +564,7 @@ footer {
 
 }
 
-/*For larger to medium screens size from 1060px width and down. The point that our Title and football logo gets distorted */
+/*For small screen devices less than or equal 450px */
 @media screen and (max-width: 450px) {
   .contact-us span a {
     margin: 0 5px;
@@ -545,16 +578,19 @@ footer {
     width: 70px;
   }
   
+  /* single colum display of the counters */
   #time-container {
     grid-template-columns: repeat(1, 1fr);
   }
 
+   /* single colum display of the command buttons */
   #command-btn-container {
     grid-template-columns: repeat(1, 1fr);
   }
   .command-btn {
     height: 3rem;
   }
+  /* get the footer to stay at the bottom of the page after the other elements*/
   footer {
     position: relative;
   }
