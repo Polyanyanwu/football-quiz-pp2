@@ -83,10 +83,12 @@ header img {
   background-color: #07412b;
   padding: 5px 2px;
   border-radius: 5px;
-  position: relative;
+  position: absolute;
   top: -1rem;
   z-index: 9;
   font-size: 80%;
+  top: 100%;
+  left:-50%;
 }
 
 #title-image:hover .tooltip-text {
@@ -551,11 +553,6 @@ footer {
   input[type=text] {
     width: 80%;
     margin: 5% 0;
-    font-size: 100%;
-  }
-
-  .username-container>button {
-    width: 90%;
     font-size: 100%;
   }
 
