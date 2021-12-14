@@ -11,14 +11,26 @@
   --red: #91363a;
   --green: #07412b;
   --dark-green: #002500;
-  --artic-choke : #929982;
+  --artic-choke: #929982;
 }
+
 /* default font and color for the entire page */
 body {
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
   color: #4c4c4c;
   background-color: #e8e8f3;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* ensure footer stays at the bottom */
+body > footer {
+  position: sticky;
+  top: 100vh;
 }
 
 /* all buttons to have pointer effect */
@@ -71,6 +83,7 @@ header img {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(359deg);
   }
@@ -89,7 +102,7 @@ header img {
   z-index: 9;
   font-size: 80%;
   top: 100%;
-  left:-50%;
+  left: -50%;
 }
 
 #title-image:hover .tooltip-text {
@@ -144,7 +157,7 @@ header img {
 }
 
 /* different hover for answer options */
-.option:hover{
+.option:hover {
   background-color: var(--artic-choke);
   color: rgb(255, 255, 255);
 }
@@ -383,6 +396,11 @@ input[type=text] {
   font-size: 120%;
 }
 
+#username p {
+  width: 50%;
+  text-align: left;
+}
+
 /* Cobnirmation modal window */
 #confirm {
   /* need to be above the possibly displayed modal window */
@@ -438,7 +456,7 @@ input[type=text] {
 .username-container {
   width: 80%;
   margin: 0 auto;
-text-align: center;
+  text-align: center;
 }
 
 /* Set a style for all buttons */
@@ -494,7 +512,7 @@ footer {
   padding: 0.5% 0;
   bottom: 0;
   height: 2rem;
-  position: absolute;
+  position: relative;
 }
 
 .contact-us span {
@@ -515,7 +533,8 @@ footer {
   header img {
     margin-bottom: 0;
   }
-/* reduce header font size */
+
+  /* reduce header font size */
   h1 {
     font-size: 130%;
   }
@@ -528,7 +547,7 @@ footer {
     font-size: 100%;
   }
 
-    /* counter area reduce to 2 column */
+  /* counter area reduce to 2 column */
   #time-container {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -553,7 +572,7 @@ footer {
 
   input[type=text] {
     width: 80%;
-    margin: 5% 0;
+    margin: 5% 0 0 5px;
     font-size: 100%;
   }
 
@@ -566,10 +585,6 @@ footer {
   header img {
     width: 70px;
   }
-  /* get the footer to stay at the bottom of the page after the other elements*/
-  footer {
-    position: relative;
-  }
 }
 
 /*For small screen devices less than or equal 450px */
@@ -578,27 +593,30 @@ footer {
     margin: 0 5px;
     font-size: 100%;
   }
+
   #logo {
     height: 6rem;
   }
 
-  #title{
+  #title {
     margin: 0.5rem;
   }
 
-  #time-container, #answer-area {
+  #time-container,
+  #answer-area {
     width: 80%;
   }
-  
+
   /* single colum display of the counters */
   #time-container {
     grid-template-columns: repeat(1, 1fr);
   }
 
-   /* single colum display of the command buttons */
+  /* single colum display of the command buttons */
   #command-btn-container {
     grid-template-columns: repeat(1, 1fr);
   }
+
   .command-btn {
     height: 3rem;
   }
