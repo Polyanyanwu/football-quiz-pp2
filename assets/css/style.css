@@ -10,6 +10,7 @@
 :root {
   --red: #91363a;
   --green: #07412b;
+  --dark-green: #002500;
 }
 /* default font and color for the entire page */
 body {
@@ -37,7 +38,7 @@ header {
   width: 100%;
   background-color: white;
   position: relative;
-  top: 5px;
+  top: 0;
 }
 
 #logo {
@@ -166,7 +167,7 @@ header img {
 }
 
 #instruction {
-  color: green;
+  color: var(--dark-green);
   font-size: 100%;
   padding: 0.3rem;
   text-align: center;
@@ -353,13 +354,14 @@ header img {
   position: relative;
   background-image: url("../images/spiration-light.png");
   overflow-y: auto;
-  margin: 20vh auto;
+  margin: 10vh auto;
   padding: 0;
   border: 1px solid #888;
-  width: 60%;
+  width: 50%;
   border-radius: 10px;
   animation-name: topAnimation;
-  animation-duration: 0.6s
+  animation-duration: 0.6s;
+  text-align: center;
 }
 
 /* Username input field */
@@ -380,7 +382,7 @@ input[type=text] {
 }
 
 .confirm-content button {
-  width: 47.5%;
+  width: 4rem;
   line-height: 2rem;
   text-align: center;
   margin: 1rem 1%;
@@ -391,12 +393,12 @@ input[type=text] {
 }
 
 .confirm-content .confirm-ok {
-  width: 98%;
-  background-color: green;
+  width: 50px;
+  background-color: var(--dark-green);
 }
 
 .confirm-content .username-header {
-  font-size: 120%;
+  font-size: 100%;
 }
 
 .confirm-yes {
@@ -428,17 +430,17 @@ input[type=text] {
 .username-container {
   width: 80%;
   margin: 0 auto;
+text-align: center;
 }
 
 /* Set a style for all buttons */
 .username-container>button {
-  background-color: green;
+  background-color: var(--green);
   color: white;
-  margin: 0 auto;
-  margin: 1rem 0;
-  width: 100%;
+  position: relative;
+  width: auto;
   border-radius: 10px;
-  bottom: 0.5em;
+  margin: 1rem auto;
   font-size: 120%;
   padding: 0.5rem 1rem;
   line-height: 1.5rem;
@@ -468,7 +470,7 @@ label {
 
 .username-header {
   padding: 0.5em 1em;
-  background-color: blue;
+  background-color: var(--green);
   margin-bottom: 1rem;
   text-align: center;
   color: white;
@@ -542,10 +544,6 @@ footer {
     height: 50%;
   }
 
-  .username-header h2 {
-    font-size: 120%;
-  }
-
   .confirm-content button {
     width: 45%;
   }
@@ -561,7 +559,10 @@ footer {
     font-size: 100%;
   }
 
-
+  /* get the footer to stay at the bottom of the page after the other elements*/
+  footer {
+    position: relative;
+  }
 }
 
 /*For small screen devices less than or equal 450px */
@@ -570,6 +571,14 @@ footer {
     margin: 0 5px;
     font-size: 100%;
   }
+  #logo {
+    height: 6rem;
+  }
+
+  #title{
+    margin: 0.5rem;
+  }
+
   #time-container, #answer-area {
     width: 80%;
   }
@@ -589,10 +598,6 @@ footer {
   }
   .command-btn {
     height: 3rem;
-  }
-  /* get the footer to stay at the bottom of the page after the other elements*/
-  footer {
-    position: relative;
   }
 
 }
