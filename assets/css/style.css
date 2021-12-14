@@ -11,6 +11,7 @@
   --red: #91363a;
   --green: #07412b;
   --dark-green: #002500;
+  --artic-choke : #929982;
 }
 /* default font and color for the entire page */
 body {
@@ -134,12 +135,17 @@ header img {
   margin-top: 0.4em;
 }
 
-/* consistent hover effect for the quiz level, options, detailed instructions */
+/* consistent hover effect for the quiz level, detailed instructions */
 .quiz-level .quiz-btn:hover,
-.option:hover,
 .option-selected,
 #detailed-instructions:hover {
   background-color: #07412b;
+  color: rgb(255, 255, 255);
+}
+
+/* different hover for answer options */
+.option:hover{
+  background-color: var(--artic-choke);
   color: rgb(255, 255, 255);
 }
 
@@ -543,11 +549,6 @@ footer {
   .username-modal-content,
   .confirm-content {
     width: 80%;
-    height: 50%;
-  }
-
-  .confirm-content button {
-    width: 45%;
   }
 
   input[type=text] {
@@ -556,6 +557,15 @@ footer {
     font-size: 100%;
   }
 
+}
+
+
+/*For small screen devices less than or equal 662px */
+@media screen and (max-width: 662px) {
+
+  header img {
+    width: 70px;
+  }
   /* get the footer to stay at the bottom of the page after the other elements*/
   footer {
     position: relative;
@@ -578,10 +588,6 @@ footer {
 
   #time-container, #answer-area {
     width: 80%;
-  }
-
-  header img {
-    width: 70px;
   }
   
   /* single colum display of the counters */
