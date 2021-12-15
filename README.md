@@ -73,7 +73,7 @@ I intend the application to be useful to any lover of football or anyone desirou
 <div id="wireframe"></div>
 
 ### **Wireframe - Design of the Site**
-I intended to have a one-page website with modal window pop ups that provide feedbacks and other necessary information like the explanation of answers, entry of username and detailed instructions for the quiz.  The Wireframe for the site is shown below.
+The application is a one-page website with modal window pop ups that provide feedbacks and other necessary information like the explanation of answers, entry of username and detailed instructions for the quiz.  The Wireframe for the site is shown below.
 ![Design of Wireframe](/docs/football_quiz_wireframe.png)
 
 <div id="flowchart"></div>
@@ -103,6 +103,11 @@ The visual aspects of the site was done with the HTML and CSS.
 While testing the application and its appeal I got dissatisfied with the default Confirm and Alert windows provided by the JavaScript. This led to the use of jQuery library 3.6.0 <code>cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js</code> to display customized confirmation modal and alert windows.
 
 ## **Features of the Site** <a id="features-of-the-site"></a>
+
+The application requires a Username from the user. The username is made of between 3 and 15 characters and is required. However, if a user chose not to provide a username, Guest is assigned after confirmation from the user. The Username login modal window is as follows:
+
+![Username Login](/docs/login-screen.png)
+
 The Site is presented in three areas:
 
 ### **1. The Header** <a id="the-header"></a>
@@ -117,6 +122,10 @@ This is the main area of the page having a question displayed, the instruction t
 
 When an answer option is clicked, the background and foreground color changes to give visual effect of the selected option. Clicking on the Submit Answer button will check correctness of the answer;  make a sound to alert the user and display the incremented total correct or wrong answers accordingly. If a user clicks Submit Answer button without fist selecting an option, the Guru will respond with an alert <em> Please chose an answer before clicking submit answer</em>.
 
+A user may opt to click on <em>Click for Detailed Instructions</em> at any time to read the detailed instructions for the quiz.
+
+![Detailed Instructions](/docs/detailed_instruction.png)
+
 After submitting the answer, the user could click on View Explanation of Answer button to get a detailed explanation of the answer. The user must have submitted the answer first if not an alert is displayed requesting the user to <em>Please submit your answer before checking the explanation</em>
 
 ![The Answer Explanation](/docs/answer_explanation.png)
@@ -124,7 +133,12 @@ After submitting the answer, the user could click on View Explanation of Answer 
 The user clicks on the Next Question button to navigate to the next random question from the system. The question is picked randomly from the quiz level database that the user currently selected. If a user clicks on the Next Question without submitting answer for the currently displayed question, a Confirmation message is displayed to ensure the user really want to navigate to another question. If the user clicks Ok, the next question is displayed, if not no action is taken.
 
 The Restart the Quiz button enables the user to restart the quiz at any time deemed necessary. A confirmation window is displayed requesting <em>Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?</em> If the user clicks Yes, the quiz is restarted if No is clicked user returns to continue the quiz without restarting. If the Yes confirmation was clicked, an alert is displayed informing the user that the quiz has restarted.
+![The Restart Quiz Confirmation](/docs/confirmation.png)
 ![The Restart Quiz Confirmation Alert](/docs/alert.png)
+
+The score of the quiz is computed automatically after the user submits the 10th answer or when the time for the quiz has elapsed. A pop up window gives the computed scores as given below:
+
+![Quiz score](/docs/quiz-result.png)
 
 ### **3. The Footer Section** <a id="footer"></a>
 The footer has the Contact us icons that links the user to the social network of the site designer.
@@ -177,7 +191,7 @@ The application is usable as it is but has limited set of questions. An API coul
 
 * ### **Accessibility with Different Device Widths** <a id="accessibility"></a>
 
-    Using the Chrome Development tools, the responsiveness of the site to various screen sizes was simulated. This led to the adjustment of the CSS until the site supports numerous device widths from the smallest hand held devices to full computer monitor screens.
+    Using the Chrome Development tools, the responsiveness of the site to various screen sizes was simulated. In addition I used all the smart phones in my family to test the responsiveness - iPhone 12, Samsung Fold3 (small and big screen), Samsung A3 and iPad. This led to the adjustment of the CSS until the site supports numerous device widths from the smallest hand held devices to full computer monitor screens.
 
 * ### **Functionality Test** <a id="functionality-test"></a>
 
@@ -197,6 +211,7 @@ The application is usable as it is but has limited set of questions. An API coul
     7. The audio alert was done with new audio() statement in the JavaScript. This didn't work in the Chrome browser, it was fixed by creating audio elements in the html and playing from the JavaScript.
     8. After restarting the quiz the timer runs both the old and new timer displaying confusing numbers; fixed by creating a global duration time variable  and resetting it to 0 during quiz resets.
     9. Number of professional and amateur questions not resetting to 0 after resetting the quiz; resolved by assigning the variables holding the count to zero and displaying them on the DOM element after a restart of the quiz. 
+    10. The placement of the footer at the bottom of the screen was challenging but finally resolved in the CSS by making the top of the footer 100vh.
 
 ## **Deployment** <a id="deployment"></a>
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:

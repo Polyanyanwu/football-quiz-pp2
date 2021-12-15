@@ -389,7 +389,7 @@ header img {
 input[type=text] {
   width: 50%;
   padding: 0.5rem;
-  margin: 5% 15%;
+  margin: 5% 0 0 5px;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -420,7 +420,7 @@ input[type=text] {
 
 .confirm-content .confirm-ok {
   width: 50px;
-  background-color: var(--dark-green);
+  background-color: var(--green);
 }
 
 .confirm-content .username-header {
@@ -550,6 +550,7 @@ footer {
   /* counter area reduce to 2 column */
   #time-container {
     grid-template-columns: repeat(2, 1fr);
+    font-size: 100%;
   }
 
   #answer-box {
