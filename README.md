@@ -81,7 +81,7 @@ The application is a one-page website with modal window pop ups that provide fee
 ### **Logic Flowchart**
 
 I created a flowchart that guided the coding of the logic in the JavaScript. The flowchart is given below:
-![Lggic Flowchart](/docs/flowchart.png)
+![Logic Flowchart](/docs/flowchart.png)
 
 A screenshot of the full page opened in a laptop computer is as follows:
 
@@ -232,9 +232,15 @@ The site was deployed to GitHub pages. The following steps were used to effect t
 The code for the customized confirmation window was adapted from [Tutorials Point](https://www.tutorialspoint.com/How-to-create-a-dialog-with-yes-and-no-options-in-JavaScript). The CSS code for the Modal windows was adapted from [w3schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2). 
 
 Some of the questions were copied from [Football Facts](https://www.myfootballfacts.com/question_of_the_day/best-120-football-quiz-questions-trivia-and-answers/#PL-Quiz-1), [Laws of the Game](https://drive.google.com/file/d/12czUEG7kdGvNh_vJ6MM-kas9qjsvRLqP/view), [Statista](https://www.statista.com/statistics/266464/number-of-world-cup-titles-won-by-country-since-1930/), [History](https://www.history.com/this-day-in-history/first-world-cup) and [888 Sport](https://www.888sport.com/blog/most-successful-football-club-in-england).
+
+The background for header, footer and modal windows was downloaded from [Toptal](https://www.toptal.com/designers/subtlepatterns/).
+
+The football logo was donloaded from [PikPng](https://www.pikpng.com/pngvi/Timbmx_soccer-ball-logo-clipart-world-cup-flag-ball/) and resized online using [online Image Resizer]https://online-image-resizer.com/).  
+
+The background image was downloaded from [PikPng](https://www.pikpng.com/downpngs/TimJRh_ball-in-the-football-stadium-background-free-vector/).
    
 ### **ii. Media** <a id="media"></a>
 
-The icons in the footer were copied from the Font Awesome. The sounds for the correct and wrong answers were downloaded from [Epidemic Sound](https://www.epidemicsound.com/sound-effects/user-interface/). The clap sound when a user wins was downloaded from [mixkit](https://mixkit.co/free-sound-effects/clap/). The background image was downloaded from [PikPng](https://www.pikpng.com/downpngs/TimJRh_ball-in-the-football-stadium-background-free-vector/).
+The icons in the footer were copied from the Font Awesome. The sounds for the correct and wrong answers were downloaded from [Epidemic Sound](https://www.epidemicsound.com/sound-effects/user-interface/). The clap sound when a user wins was downloaded from [mixkit](https://mixkit.co/free-sound-effects/clap/). 
     
 Credit to Code Institute for organizing two Hackathons that I attended between October and December 2021 where I learnt a lot from team members that also impacted this project.
