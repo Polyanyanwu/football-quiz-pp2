@@ -13,6 +13,10 @@
   --green: #07412b;
   --dark-green: #002500;
   --artic-choke: #929982;
+
+  --dark-sea-green: #7FB285;
+  --burgundy: #463239;
+  --khaki: C6AD94;
 }
 
 /* default font and color for the entire page */
@@ -20,7 +24,8 @@ body {
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
   color: #4c4c4c;
-  background-color: #e8e8f3;
+  /* background-color: #e8e8f3; */
+  background-image: url("../images/spiration-light.png");
 }
 
 html,
@@ -41,9 +46,10 @@ button {
 
 /* Set the background image for the main area */
 main {
-  background-image: url("../images/pikpng_com_soccer.webp");
+  /* background-image: url("../images/pikpng_com_soccer.webp");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: contain; */
+  /* background: linear-gradient(red 0%, orange 25%, yellow 50%, green 75%, blue 100%); */
 
 }
 

@@ -531,6 +531,7 @@ restartQuiz.addEventListener('click', function () {
             totAmateurQuiz = 0;
             totProfQuizEl.textContent = 0;
             totAmateurQuizEl.textContent = 0;
+            quizLevel.forEach(btn => btn.style.pointerEvents = 'auto');
             getAndDisplayQuiz();
             // restart timer
             alertMe("Quiz has restarted"),
@@ -601,6 +602,8 @@ const disablebCommandBtns = () => {
     disableAButton(nextQuiz);
     disableAButton(explanationBtnEl);
     disableAButton(answerBtnEl);
+    // disable the change of quiz level until a restart
+    quizLevel.forEach(btn => btn.style.pointerEvents = 'none');
 };
 
 const disableAButton = (button) =>{
