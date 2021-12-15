@@ -233,3 +233,4 @@ Some of the questions were copied from [Football Facts](https://www.myfootballfa
 
 The icons in the footer were copied from the Font Awesome. The sounds for the correct and wrong answers were downloaded from [Epidemic Sound](https://www.epidemicsound.com/sound-effects/user-interface/). The clap sound when a user wins was downloaded from [mixkit](https://mixkit.co/free-sound-effects/clap/). The background image was downloaded from [PikPng](https://www.pikpng.com/downpngs/TimJRh_ball-in-the-football-stadium-background-free-vector/).
     
+Credit to Code Institute for organizing two Hackathons that I attended between October and December 2021 where I learnt a lot from team members that also impacted this project.

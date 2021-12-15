@@ -7,6 +7,7 @@
   border: none;
 }
 
+/* Color variables */
 :root {
   --red: #91363a;
   --green: #07412b;
@@ -28,7 +29,7 @@ body {
 }
 
 /* ensure footer stays at the bottom */
-body > footer {
+body>footer {
   position: sticky;
   top: 100vh;
 }
@@ -59,7 +60,6 @@ header {
   grid-template-columns: repeat(3, 1fr);
   background-image: url("../images/spiration-light.png");
 }
-
 
 #title {
   letter-spacing: 3px;
@@ -94,7 +94,7 @@ header img {
   visibility: hidden;
   width: 15rem;
   color: white;
-  background-color: #07412b;
+  background-color: var(--red);
   padding: 5px 2px;
   border-radius: 5px;
   position: absolute;
@@ -423,7 +423,8 @@ input[type=text] {
   background-color: var(--green);
 }
 
-.confirm-content .username-header {
+.confirm-content,
+.username-header {
   font-size: 100%;
 }
 
@@ -579,12 +580,20 @@ footer {
 
 }
 
-
 /*For small screen devices less than or equal 662px */
 @media screen and (max-width: 662px) {
 
   header img {
     width: 70px;
+  }
+
+  .confirm-content,
+  .username-header {
+    font-size: 90%;
+  }
+
+  #question-area {
+    width: 80%;
   }
 }
 
@@ -606,6 +615,7 @@ footer {
   #time-container,
   #answer-area {
     width: 80%;
+    font-size: 90%;
   }
 
   /* single colum display of the counters */
