@@ -47,6 +47,8 @@
 ### **Objectives** <a id = "objective"></a>
 The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while each amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
 
+![Site Image Mockup of Different Screens](/docs/guru_display.png)
+
 ### Goals of the Project <a id = "goals"></a>
 - Test the user's knowledge of soccer/football.
 - Educate the user on details of answers to questions to enhance learning.
@@ -56,8 +58,6 @@ The application intends to present an interactive football quiz application to t
 
 ### Target Audience <a id = "terget-audience"></a>
 I intend the application to be useful to any lover of football or anyone desirous of learning football. A novice in football would be able to guess the answers and after that obtain explanation of the answers to the question and be educated. 
-
-![Site Image Mockup of Different Screens](/docs/guru_display.png)
 
 <div id="user-experience"></div>
 
@@ -82,6 +82,10 @@ The application is a one-page website with modal window pop ups that provide fee
 
 I created a flowchart that guided the coding of the logic in the JavaScript. The flowchart is given below:
 ![Lggic Flowchart](/docs/flowchart.png)
+
+A screenshot of the full page opened in a laptop computer is as follows:
+
+![Full Screen](/docs/main-page.png)
 
 <a id = "technologies-used"></a>
 
