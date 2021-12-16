@@ -66,6 +66,9 @@ const usernameCreateBtn = document.querySelector("#create-user-button");
 const totProfQuizEl = document.querySelector("#total-prof-question");
 const totAmateurQuizEl = document.querySelector("#total-amateur-question");
 const logoImg = document.querySelector(".logo-image");
+const soundSwitch = document.querySelector(".sound-switch");
+const soundSwitchValue =  document.getElementById("sound-switch-value"); 
+
 
 // Global variable very necessary for correct functioning of the site
 let quizCount = 0; //tracking of how many questions already presented
@@ -492,17 +495,19 @@ detailedInstructionEl.addEventListener('click', function () {
  * @param {*} type determines the sound to play for correct, wrong or win.
  */
 const playSound = function (type) {
-    switch (type) {
-        case 'correct': {
-            correctAudioEl.play();
-            break;
-        }
-        case 'wrong': {
-            wrongAudioEl.play();
-            break;
-        }
-        case 'win': {
-            winAudioEl.play();
+    if(soundSwitchValue.textContent==="ON"){
+        switch (type) {
+            case 'correct': {
+                correctAudioEl.play();
+                break;
+            }
+            case 'wrong': {
+                wrongAudioEl.play();
+                break;
+            }
+            case 'win': {
+                winAudioEl.play();
+            }
         }
     }
 };
@@ -606,7 +611,7 @@ const disablebCommandBtns = () => {
     quizLevel.forEach(btn => btn.style.pointerEvents = 'none');
 };
 
-const disableAButton = (button) =>{
+const disableAButton = (button) => {
     button.style.pointerEvents = 'none';
     button.style.border = '3px solid #0f0b49';
 };
@@ -665,6 +670,16 @@ const alertMe = (msg, myYes) => {
 };
 
 //when the image is clicked, toggle the animatation of the football image
-logoImg.addEventListener('click',function(){
+logoImg.addEventListener('click', function () {
     logoImg.classList.toggle("animate");
+});
+
+// toggle play of sound ON / OFF as user clicks the Sound: button
+soundSwitch.addEventListener('click', function (e) {
+    if (soundSwitchValue.textContent === "OFF") {
+        soundSwitchValue.textContent = "ON";
+        playSound('correct');
+    } else {
+        soundSwitchValue.textContent = "OFF";
+    }
 });

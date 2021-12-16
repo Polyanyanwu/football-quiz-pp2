@@ -65,12 +65,15 @@ header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   background-image: url("../images/spiration-light.png");
+  /* background-image: url("../images/double-bubble-dark.png"); */
+  /* background-image: url("../images/oriental-tiles.png"); */
 }
 
 #title {
   letter-spacing: 3px;
   position: relative;
   margin: 1rem auto;
+  /* color: whitesmoke; */
 }
 
 header img {
@@ -104,7 +107,7 @@ header img {
   padding: 5px 2px;
   border-radius: 5px;
   position: absolute;
-  top: -1rem;
+  top: -1.5rem;
   z-index: 9;
   font-size: 80%;
   top: 100%;
@@ -134,16 +137,18 @@ header img {
   clear: both;
   width: 100%;
   text-align: center;
-  height: 3em;
+  height: 3.2em;
   margin: 0 auto;
   background-image: linear-gradient(rgba(218, 222, 224, 0.7), rgba(24, 133, 192, 0.7));
+/* background-image: linear-gradient(#00B295,#03F7EB,#191516 ); */
+
 }
 
-.quiz-btn {
+.quiz-btn, .sound-switch {
   margin: 0.5rem;
   /* height: 1.8rem; */
   padding: 0.5rem;
-  width: 8rem;
+  width: 9rem;
   font-size: 110%;
   border-radius: 10px;
 }
@@ -156,11 +161,71 @@ header img {
   font-size: 2rem;
   color: var(--artic-choke);
   cursor: pointer;
+  background-color: white;
+  opacity: 0;
 }
 
 .toggle-sound-label {
   color: white;
   font-size: 110%;
+}
+
+/* .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  border-radius: 10px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: var(--green);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+} */
+
+/* Rounded sliders */
+/* .slider.round {
+  border-radius: 34px;
+} */
+
+.slider.round:before {
+  border-radius: 50%;
 }
 /* .quiz-btn {
   padding: 0.4em;
@@ -613,9 +678,9 @@ footer {
   .username-header {
     font-size: 90%;
   }
-  .quiz-btn {
+  .quiz-btn,  .sound-switch {
     width: auto;
-    font-size: 90%;
+    font-size: 80%;
   }
 
   #question-area {
