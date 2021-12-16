@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <!-- heder has the title, soccer image and quiz level-->
+    <!-- header has the title, soccer image and quiz level-->
     <header>
         <div id="logo">
             <div id="title">
@@ -35,21 +35,13 @@
             <button data-type="amateur" class="quiz-btn btn-amateur active-quiz-level quiz-level">Amateur</button>
             <button data-type="professional" class="quiz-btn btn-prof quiz-level">Professional</button>
             <!-- button for switching sound on or off, default is OFF -->
-            <button class="sound-switch"><i class="fas fa-music"></i>&nbsp Sound?
+            <button class="sound-switch"><i class="fas fa-music"></i>&nbsp; Sound?
                 <span id="sound-switch-value">OFF</span>
             </button>
         </nav>
     </header>
     <main>
         <!-- Main has the question area, the time and question counters, the answer options, command buttons -->
-        <section id="question-area">
-            <div id="question-container">
-                <h2 id="question">question</h2>
-            </div>
-            <div class="line"></div>
-            <p id="instruction">Please Select 1 Answer <span id="detailed-instructions"><em>Click for Detailed
-                        Instructions</em></span></p>
-        </section>
         <div id="time-container">
             <!-- the tracking of number of questions from each quiz level, the time remaining and view result button -->
             <div class="counters">
@@ -68,6 +60,14 @@
                 <button id="view-result-btn"> View Result</button>
             </div>
         </div>
+        <section id="question-area">
+            <div id="question-container">
+                <h2 id="question">question</h2>
+            </div>
+            <div class="line"></div>
+            <p id="instruction">Please Select 1 Answer <span id="detailed-instructions"><em>Click for Detailed
+                        Instructions</em></span></p>
+        </section>
         <div id="answer-area">
             <div class="option" data-option="option1">
                 <span id="option1">first option</span>
@@ -93,20 +93,17 @@
             <div id="command-btn-container">
                 <!-- command buttons for submit answer, Next Question, View Answer Explanation, Restart Quiz -->
                 <div class="command-btns">
-                    <button id="submit-answer-btn" class="command-btn"><i class="fas fa-marker"></i> &nbsp Submit
-                        Answer</button>
+                    <button id="submit-answer-btn" class="command-btn"><i class="fas fa-marker"></i> &nbsp; Submit Answer</button>
                 </div>
                 <div class="command-btns">
-                    <button id="next-quix-btn" class="command-btn"><i class="fas fa-arrow-right"></i>&nbsp Next Question
+                    <button id="next-quix-btn" class="command-btn"><i class="fas fa-arrow-right"></i>&nbsp; Next Question
                     </button>
                 </div>
                 <div class="command-btns">
-                    <button id="explanation-btn" class="command-btn"><i class="fas fa-binoculars"></i>&nbsp View Explanation
-                        of Answer</button>
+                    <button id="explanation-btn" class="command-btn"><i class="fas fa-binoculars"></i>&nbsp; View Explanation of Answer</button>
                 </div>
                 <div class="command-btns">
-                    <button id="restart-btn" class="command-btn"><i class="fas fa-power-off"></i> &nbsp Restart the
-                        Quiz</button>
+                    <button id="restart-btn" class="command-btn"><i class="fas fa-power-off"></i> &nbsp; Restart the Quiz</button>
                 </div>
             </div>
             <div id="answer-box">

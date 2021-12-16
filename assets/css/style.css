@@ -9,16 +9,10 @@
 
 /* Color variables */
 :root {
-  --red: #91363a;
   --green: #688b58;
   --dark-blue: #54428e;
   --white: #fff;
   --dark-green: #002500;
-  --amethyst: #8963ba;
-
-  --dark-sea-green: #7FB285;
-  --burgundy: #463239;
-  --khaki: C6AD94;
 }
 
 /* default font and color for the entire page */
@@ -26,7 +20,6 @@ body {
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
   color: #4c4c4c;
-  /* background-color: #e8e8f3; */
   background-image: url("../images/spiration-light.png");
 }
 
@@ -36,7 +29,7 @@ body {
 }
 
 /* ensure footer stays at the bottom */
-body>footer {
+body > footer {
   position: sticky;
   top: 100vh;
 }
@@ -49,7 +42,6 @@ button {
 /* The header area containing the logo, title and Quiz level*/
 header {
   width: 100%;
-  background-color: white;
   position: relative;
   top: 0;
 }
@@ -58,15 +50,12 @@ header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   background-image: url("../images/spiration-light.png");
-  /* background-image: url("../images/double-bubble-dark.png"); */
-  /* background-image: url("../images/oriental-tiles.png"); */
 }
 
 #title {
   letter-spacing: 3px;
   position: relative;
   margin: 1rem auto;
-  /* color: whitesmoke; */
 }
 
 header img {
@@ -76,7 +65,7 @@ header img {
   cursor: pointer;
 }
 
-/* toggle animation for rotating the football logo */
+/* animation for rotating the football logo */
 .animate {
   animation: rotate 4s infinite linear;
 }
@@ -85,7 +74,6 @@ header img {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(359deg);
   }
@@ -120,30 +108,22 @@ header img {
   position: relative;
   margin: 2rem auto;
   font-size: 1.5rem;
-  /* color: var(--green); */
   letter-spacing: 3px;
 }
 
 #quiz-level-container {
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr); */
   clear: both;
   width: 100%;
   text-align: center;
   height: 3.2em;
   margin: 0 auto;
   background: linear-gradient(0.25turn, #54428e, #8963ba, #688b58);
-  /* background-image: linear-gradient(rgba(218, 222, 224, 0.7), rgba(24, 133, 192, 0.7)); */
-  /* background-image: linear-gradient(#00B295,#03F7EB,#191516 ); */
-
 }
 
 .quiz-btn,
 .sound-switch {
   margin: 0.5rem;
-  /* height: 1.8rem; */
   padding: 0.5rem;
-  /* width: 9rem; */
   font-size: 110%;
   border-radius: 10px;
   background-color: inherit;
@@ -172,73 +152,7 @@ header img {
   background-color: var(--dark-blue);
 }
 
-/* .switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  border-radius: 10px;
-}
-
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-}
-input:checked + .slider {
-  background-color: var(--green);
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-} */
-
-/* Rounded sliders */
-/* .slider.round {
-  border-radius: 34px;
-} */
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-/* .quiz-btn {
-  padding: 0.4em;
-  width: 5rem;
-  font-size: 110%;
-  border-radius: 10px;
-  margin-top: 0.4em;
-} */
-
-/* consistent hover effect for the quiz level, detailed instructions */
+/* consistent hover effect for the quiz button, answer option and detailed instructions */
 .quiz-btn:hover,
 .option-selected,
 #detailed-instructions:hover {
@@ -304,7 +218,6 @@ input:checked + .slider:before {
 
 .counters {
   padding-top: 0.5rem;
-  /* background-color: #e8e8f3; */
 }
 
 #time-container,
@@ -316,7 +229,6 @@ input:checked + .slider:before {
 .counters span {
   padding: 0 5px;
   color: green;
-  /* background-color: whitesmoke; */
   border-radius: 5px;
 }
 
@@ -346,7 +258,7 @@ input:checked + .slider:before {
   font-size: 100%;
 }
 
-/* answer area haveing the 4 answer options, the command buttons for submit answer, next question, etc*/
+/* answer area having the 4 answer options, the command buttons for submit answer, next question, etc*/
 .option {
   border: 1px solid #0f0b49;
   padding: 0.4rem;
@@ -406,20 +318,19 @@ input:checked + .slider:before {
 
 /* The totals for the correct and wrong answers displayed below the command buttons */
 #answer-box {
-  /* background-color: whitesmoke; */
-  display: inline-block;
+  display: grid;
+  grid-template-columns:auto auto;
   width: 100%;
-  border-radius: 10px;
   margin-bottom: 2rem;
 }
 
 #correct-answer-container {
-  float: left;
+  text-align: left;
   margin: 0.5rem;
 }
 
 #wrong-answer-container {
-  float: right;
+  text-align: right;
   margin: 0.5rem;
 }
 
@@ -492,9 +403,8 @@ input[type=text] {
   text-align: left;
 }
 
-/* Cobnirmation modal window */
+/* Confirmation modal window */
 #confirm {
-  /* need to be above the possibly displayed modal window */
   z-index: 10;
 }
 
@@ -600,7 +510,6 @@ footer {
   width: 100%;
   font-size: 1rem;
   color: var(--white);
-  /* background-image: url("../images/spiration-light.png"); */
   background: linear-gradient(0.25turn, #54428e, #8963ba, #688b58);
   padding: 0.5% 0;
   bottom: 0;
@@ -632,10 +541,6 @@ footer {
     font-size: 130%;
   }
 
-  /* .quiz-level {
-    width: 80%;
-  } */
-
   #player-container {
     font-size: 100%;
   }
@@ -653,10 +558,6 @@ footer {
   /* reduce command buttons to 2 columns */
   #command-btn-container {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  #wrong-answer-container {
-    float: left;
   }
 
   .username-modal-content,
@@ -728,6 +629,13 @@ footer {
 
   .command-btn {
     height: 3rem;
+  }
+  /* single column answer total count */
+  #answer-box {
+    grid-template-columns:auto;
+  }
+  #wrong-answer-container {
+    text-align: left;
   }
 
 }
