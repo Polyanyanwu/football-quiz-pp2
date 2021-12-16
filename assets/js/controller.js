@@ -30,6 +30,9 @@ import {
 import {
     AMATEUR_MARK_PER_QUESTION as amateurMarkPerQuiz
 } from "./config.js";
+import {
+    MAX_AMATEUR_QUIZ as maxAmateurQuiz
+} from "./config.js";
 
 import {
     professionalData
@@ -39,7 +42,7 @@ import {
 } from "./model.js";
 
 // Define the variables for DOM elements
-const quizLevel = document.querySelectorAll(".quiz-btn");
+const quizLevelEl = document.querySelectorAll(".quiz-btn");
 const player = document.getElementById("player");
 const modal = document.getElementById("userNameModal");
 const answerOptionsBox = document.querySelectorAll(".option");
@@ -77,6 +80,7 @@ let totAmateurCorrect = 0; //total amateur correct answers used in computing the
 let totProfCorrect = 0; // total professional correct answers used in computing the final score
 let totProfQuiz = 0; //total professional questions answered, helps the user be conscious of progress
 let totAmateurQuiz = 0; //total amateur questions answered, helps the user be conscious of progress
+
 
 const init = function () {
     displayUsernameModal(); //display modal and get username
@@ -135,7 +139,7 @@ const validateAndSaveUser = function () {
  */
 const changeQuizLevel = function (event) {
     //  arrow function ideas and forEach obtained from my JavaScript lessons at Udemy.com
-    quizLevel.forEach(btn => btn.classList.remove('active-quiz-level'));
+    quizLevelEl.forEach(btn => btn.classList.remove('active-quiz-level'));
     event.target.classList.add('active-quiz-level');
 
     // display the existing total questions per quiz level before changing
@@ -144,7 +148,7 @@ const changeQuizLevel = function (event) {
     // get a new question and display
     getAndDisplayQuiz();
 };
-quizLevel.forEach(btn => btn.addEventListener('click', changeQuizLevel));
+quizLevelEl.forEach(btn => btn.addEventListener('click', changeQuizLevel));
 
 /**
  * Function checks which level the player is engaged in, picks a random question among the ones that have used property false
@@ -153,7 +157,7 @@ quizLevel.forEach(btn => btn.addEventListener('click', changeQuizLevel));
 const getQuestionToDisplay = function () {
     // check the quiz level (that is which of the quiz level has the active-quiz-level class set)
     let levelSelected;
-    for (let quizlevel of quizLevel) {
+    for (let quizlevel of quizLevelEl) {
         if (quizlevel.classList.contains('active-quiz-level')) {
             levelSelected = quizlevel.dataset.type;
         }
@@ -320,7 +324,20 @@ const markQuestion = function () {
         }
         updateMasterDatabase(quizLevel, questionId);
         quizCount++;
-        if (quizCount >= totQuizPerSession) displayQuizResult();
+        if (quizCount >= totQuizPerSession) {
+            displayQuizResult();
+        }else{
+            if((totAmateurQuiz>= maxAmateurQuiz) && (quizLevel!== "professional")){
+                // disable amature button and set quiz level to professional
+                quizLevelEl.forEach(btn => btn.classList.remove('active-quiz-level'));
+                for(let btn of quizLevelEl){
+                   if(btn.textContent==="Professional") btn.classList.add('active-quiz-level');
+                   if(btn.textContent==="Amateur") btn.style.pointerEvents = 'none';
+                }
+                getAndDisplayQuiz();
+                alertMe("You have reached the maxium number of questions permitted for Amateur level and has been switched to Professional level");
+            }
+        }
     }
 };
 
@@ -536,7 +553,12 @@ restartQuiz.addEventListener('click', function () {
             totAmateurQuiz = 0;
             totProfQuizEl.textContent = 0;
             totAmateurQuizEl.textContent = 0;
-            quizLevel.forEach(btn => btn.style.pointerEvents = 'auto');
+            quizLevelEl.forEach(btn => btn.style.pointerEvents = 'auto');
+            // make the amateur level the default starting point
+            quizLevelEl.forEach(btn => btn.classList.remove('active-quiz-level'));
+            for(let btn of quizLevelEl){
+               if(btn.textContent==="Amateur") btn.classList.add('active-quiz-level');
+            }
             getAndDisplayQuiz();
             // restart timer
             alertMe("Quiz has restarted"),
@@ -566,8 +588,10 @@ const displayQuizResult = function () {
     <p>Total Professional Questions answered correctly: <span class="red-text"> ${totProfCorrect}</span></p>
     <p>Total Amateur Questions answered correctly: <span class="red-text">${totAmateurCorrect}</span></p>
     <p>Total questions in quiz: <span class="red-text">${totQuizPerSession}</span></p>
-    <p>Percent obtained: <span class="red-text">${totAmateurCorrect* amateurMarkPerQuiz + totProfCorrect* profMarkPerQuiz}%</span></p>
-    <p>Pass Cut Off Percentage: <span class="red-text">${passCutOffMark}%</span></p>`;
+    <p>Marks obtained: <span class="red-text">${totAmateurCorrect* amateurMarkPerQuiz + totProfCorrect* profMarkPerQuiz}</span></p>
+    <p>Pass Cut Off Mark: <span class="red-text">${passCutOffMark}</span></p>
+    <p><em>Note that each professional question is 10 marks while each amateur question is 6.5marks</em></p>`;
+
 
     if ((totAmateurCorrect * amateurMarkPerQuiz + totProfCorrect * profMarkPerQuiz) >= passCutOffMark) {
         result += ` <p>Final Grade: <span class="green-text"><em>PASS</em></span></p>`;
@@ -608,7 +632,7 @@ const disablebCommandBtns = () => {
     disableAButton(explanationBtnEl);
     disableAButton(answerBtnEl);
     // disable the change of quiz level until a restart
-    quizLevel.forEach(btn => btn.style.pointerEvents = 'none');
+    quizLevelEl.forEach(btn => btn.style.pointerEvents = 'none');
 };
 
 const disableAButton = (button) => {
