@@ -172,13 +172,13 @@ export const amateurData = [{
     {
         id: 2,
         used: false,
-        question: "How many players make up a foothball team?",
+        question: "How many players make up a football team?",
         option1: "11",
         option2: "9",
         option3: "7",
         option4: "12",
         answer: "option1",
-        explan: "11 players make up a foothball team",
+        explan: "11 players make up a football team",
     },
     {
         id: 3,

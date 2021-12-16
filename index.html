@@ -23,7 +23,7 @@
                 <h1>The Football Guru</h1>
             </div>
             <div id="title-image">
-                <img src="assets/images/football.webp" alt="Football image" class="animate logo-image">
+                <img src="assets/images/football.webp" alt="Football image" class="logo-image">
                 <!-- hidden tool tip will display when user hover over the rotating logo -->
                 <span class="tooltip-text">Click to stop/start rotation</span>
             </div>
@@ -32,10 +32,12 @@
             </div>
         </div>
         <nav id="quiz-level-container">
-            <div class="quiz-level">
-                <button data-type="amateur" class="quiz-btn btn-amateur active-quiz-level">Amateur</button>
-                <button data-type="professional" class="quiz-btn btn-prof">Professional</button>
-            </div>
+            <button data-type="amateur" class="quiz-btn btn-amateur active-quiz-level quiz-level">Amateur</button>
+            <button data-type="professional" class="quiz-btn btn-prof quiz-level">Professional</button>
+            <!-- button for switching sound on or off, default is OFF -->
+            <button class="sound-switch"><i class="fas fa-music"></i>&nbsp Sound?
+                <span id="sound-switch-value">OFF</span>
+            </button>
         </nav>
     </header>
     <main>
