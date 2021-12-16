@@ -55,7 +55,7 @@ header {
 #title {
   letter-spacing: 3px;
   position: relative;
-  margin: 1rem auto;
+  margin: 2rem 0.5rem;
 }
 
 header img {
@@ -106,9 +106,10 @@ header img {
 
 #player-container {
   position: relative;
-  margin: 2rem auto;
+  margin: 2rem 0.5rem;
   font-size: 1.5rem;
   letter-spacing: 3px;
+  text-align: right;
 }
 
 #quiz-level-container {
