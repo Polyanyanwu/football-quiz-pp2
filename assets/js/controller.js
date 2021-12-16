@@ -651,7 +651,7 @@ const enableCommandBtns = () => {
 
 const enableCommandBtn = (button) => {
     button.style.pointerEvents = 'auto';
-    button.style.border = '2px solid rgb(202, 110, 182)';
+    button.style.border = '2px solid rgb(84, 66, 142)';
 };
 
 /**
