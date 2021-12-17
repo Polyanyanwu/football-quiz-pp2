@@ -14,7 +14,7 @@ export const professionalData = [{
         option4: "Germany", // answer option 4
         answer: "option3", //The correct answer option
         explan: "Football was invented in 476 BC in China. It was first called Cuju and was played with two teams who played the match with a ball made from an animal bladder. The aim was to use your feet to get the ball through an opening and into a net and was a form of training for the military.",
-                //the explanation of the answer
+        //the explanation of the answer
     },
     {
         id: 1,
@@ -144,7 +144,7 @@ export const professionalData = [{
         answer: "option3",
         explan: "George Weah of AC Milan & Liberia in 1994-95.",
     },
-    
+
 ];
 
 export const amateurData = [{
@@ -286,5 +286,5 @@ export const amateurData = [{
         answer: "option3",
         explan: "Josep 'Pep' Guardiola Sala, (born 18 January 1971) is Manchester City Manager from 2016–17 season till date (2021)",
     },
-    
+
 ];

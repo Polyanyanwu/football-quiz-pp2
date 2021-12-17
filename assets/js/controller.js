@@ -218,7 +218,6 @@ const removeSelectionFromOptions = function () {
  */
 const removeAnswerMarks = function () {
     for (let i = 1; i <= totOptions; i++) {
-
         document.getElementById(`option${i}-sign-no`).classList.remove('answer-sign-selected');
         document.getElementById(`option${i}-sign-no`).classList.remove('answer-sign-x');
         document.getElementById(`option${i}-sign-no`).classList.add('answer-sign-none');
@@ -448,7 +447,6 @@ const startQuizTimer = function () {
         // In each call, print the remaining time to UI, include hour if it is greater than 0
         hour > 0 ? timerEl.textContent = `${hour}:${min}:${sec}` :
             timerEl.textContent = `${min}:${sec}`;
-
         // When 0 seconds, stop timer and display performance
         if (time === 0) {
             displayQuizResult();
@@ -499,7 +497,6 @@ explanationBtnEl.addEventListener('click', function () {
 detailedInstructionEl.addEventListener('click', function () {
     explanationModalEl.style.display = 'block';
     explanationQuestionEl.textContent = "Detailed Instructions";
-
     answerExplanationEl.textContent = "";
     // Check if a result div has already exists and remove it
     const explainDiv = document.createElement('div');
@@ -551,8 +548,8 @@ restartQuiz.addEventListener('click', function () {
             //restart numbering
             correctAnswerEl.textContent = 0;
             wrongAnswerEl.textContent = 0;
-            totalWrongAnswer=0;
-            totalCorrectAnswer=0;
+            totalWrongAnswer = 0;
+            totalCorrectAnswer = 0;
             // display new question
             quizCount = 0;
             // restart correct answer counts
@@ -600,8 +597,6 @@ const displayQuizResult = function () {
     <p>Marks obtained: <span class="red-text">${totAmateurCorrect* amateurMarkPerQuiz + totProfCorrect* profMarkPerQuiz}</span></p>
     <p>Pass Cut Off Mark: <span class="red-text">${passCutOffMark}</span></p>
     <p><em>Note that each professional question is 10 marks while each amateur question is 6.5marks</em></p>`;
-
-
     if ((totAmateurCorrect * amateurMarkPerQuiz + totProfCorrect * profMarkPerQuiz) >= passCutOffMark) {
         result += ` <p>Final Grade: <span class="green-text"><em>PASS</em></span></p>`;
         playSound('win');
