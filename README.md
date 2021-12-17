@@ -245,4 +245,6 @@ The background image was downloaded from [PikPng](https://www.pikpng.com/downpng
 
 The icons in the footer were copied from the Font Awesome. The sounds for the correct and wrong answers were downloaded from [Epidemic Sound](https://www.epidemicsound.com/sound-effects/user-interface/). The clap sound when a user wins was downloaded from [mixkit](https://mixkit.co/free-sound-effects/clap/). 
     
-Credit to Code Institute for organizing two Hackathons that I attended between October and December 2021 where I learnt a lot from team members that also impacted this project. I am grateful to my friend Dave Horrocks who took time to criticize and test the application which led to refinement of the color theme and finding of the last two bugs.
+Credit to Code Institute for organizing two Hackathons that I attended between October and December 2021 where I learnt a lot from team members that also impacted this project. 
+
+I am grateful to my friend Dave Horrocks who took time to criticize and test the application which led to refinement of the color theme and finding of the last two bugs.
