@@ -70,7 +70,7 @@ const totProfQuizEl = document.querySelector("#total-prof-question");
 const totAmateurQuizEl = document.querySelector("#total-amateur-question");
 const logoImg = document.querySelector(".logo-image");
 const soundSwitch = document.querySelector(".sound-switch");
-const soundSwitchValue =  document.getElementById("sound-switch-value"); 
+const soundSwitchValue = document.getElementById("sound-switch-value");
 
 
 // Global variable very necessary for correct functioning of the site
@@ -80,7 +80,8 @@ let totAmateurCorrect = 0; //total amateur correct answers used in computing the
 let totProfCorrect = 0; // total professional correct answers used in computing the final score
 let totProfQuiz = 0; //total professional questions answered, helps the user be conscious of progress
 let totAmateurQuiz = 0; //total amateur questions answered, helps the user be conscious of progress
-
+let totalCorrectAnswer = 0;
+let totalWrongAnswer = 0;
 
 const init = function () {
     displayUsernameModal(); //display modal and get username
@@ -201,7 +202,8 @@ const getAndDisplayQuiz = function () {
     // display question count
     quizCountEl.textContent = `${quizCount+1} of ${totQuizPerSession}`;
     quizItem[0] === 'professional' ? totProfQuizEl.textContent = totProfQuiz + 1 : totAmateurQuizEl.textContent = totAmateurQuiz + 1;
-
+    correctAnswerEl.textContent = totalCorrectAnswer;
+    wrongAnswerEl.textContent = totalWrongAnswer;
 };
 
 /**
@@ -326,13 +328,13 @@ const markQuestion = function () {
         quizCount++;
         if (quizCount >= totQuizPerSession) {
             displayQuizResult();
-        }else{
-            if((totAmateurQuiz>= maxAmateurQuiz) && (quizLevel!== "professional")){
+        } else {
+            if ((totAmateurQuiz >= maxAmateurQuiz) && (quizLevel !== "professional")) {
                 // disable amature button and set quiz level to professional
                 quizLevelEl.forEach(btn => btn.classList.remove('active-quiz-level'));
-                for(let btn of quizLevelEl){
-                   if(btn.textContent==="Professional") btn.classList.add('active-quiz-level');
-                   if(btn.textContent==="Amateur") btn.style.pointerEvents = 'none';
+                for (let btn of quizLevelEl) {
+                    if (btn.textContent === "Professional") btn.classList.add('active-quiz-level');
+                    if (btn.textContent === "Amateur") btn.style.pointerEvents = 'none';
                 }
                 getAndDisplayQuiz();
                 alertMe("You have reached the maxium number of questions permitted for Amateur level and has been switched to Professional level");
@@ -404,7 +406,13 @@ const getTotalfromEl = () => {
 const totalAnswers = function (correct) {
     // destructure the array and get the individual items
     let [correctAns, wrongAns] = getTotalfromEl();
-    correct ? correctAnswerEl.textContent = ++correctAns : wrongAnswerEl.textContent = ++wrongAns;
+    if (correct) {
+        correctAnswerEl.textContent = ++correctAns;
+        totalCorrectAnswer++;
+    } else {
+        wrongAnswerEl.textContent = ++wrongAns;
+        totalWrongAnswer++;
+    }
     // disable answer button to prevent submitting more than once
     disableAnswerOptionsAndSubmit();
 };
@@ -512,7 +520,7 @@ detailedInstructionEl.addEventListener('click', function () {
  * @param {*} type determines the sound to play for correct, wrong or win.
  */
 const playSound = function (type) {
-    if(soundSwitchValue.textContent==="ON"){
+    if (soundSwitchValue.textContent === "ON") {
         switch (type) {
             case 'correct': {
                 correctAudioEl.play();
@@ -543,6 +551,8 @@ restartQuiz.addEventListener('click', function () {
             //restart numbering
             correctAnswerEl.textContent = 0;
             wrongAnswerEl.textContent = 0;
+            totalWrongAnswer=0;
+            totalCorrectAnswer=0;
             // display new question
             quizCount = 0;
             // restart correct answer counts
@@ -556,8 +566,8 @@ restartQuiz.addEventListener('click', function () {
             quizLevelEl.forEach(btn => btn.style.pointerEvents = 'auto');
             // make the amateur level the default starting point
             quizLevelEl.forEach(btn => btn.classList.remove('active-quiz-level'));
-            for(let btn of quizLevelEl){
-               if(btn.textContent==="Amateur") btn.classList.add('active-quiz-level');
+            for (let btn of quizLevelEl) {
+                if (btn.textContent === "Amateur") btn.classList.add('active-quiz-level');
             }
             getAndDisplayQuiz();
             // restart timer
@@ -581,10 +591,9 @@ restartQuiz.addEventListener('click', function () {
  */
 const displayQuizResult = function () {
     const resultDiv = document.createElement('div');
-    const [correctAns, wrongAns] = getTotalfromEl();
     let result = `
-    <p>Total questions answered correctly: <span class="red-text">${correctAns}</span></p>
-    <p>Total wrong answers: <span class="red-text">${wrongAns}</span></p>
+    <p>Total questions answered correctly: <span class="red-text">${totalCorrectAnswer}</span></p>
+    <p>Total wrong answers: <span class="red-text">${totalWrongAnswer}</span></p>
     <p>Total Professional Questions answered correctly: <span class="red-text"> ${totProfCorrect}</span></p>
     <p>Total Amateur Questions answered correctly: <span class="red-text">${totAmateurCorrect}</span></p>
     <p>Total questions in quiz: <span class="red-text">${totQuizPerSession}</span></p>

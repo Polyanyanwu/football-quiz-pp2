@@ -19,6 +19,7 @@
 - [User Experience Design](#user-experience)
     - [User Stories](#user-stories)
     - [Wireframe](#wireframe)
+    - [Color Scheme](#color-scheme)
     - [Flowchart](#flowchart)
 - [Technologies Used](#technologies-used)
     - [HTML & CSS](#html-css)
@@ -42,10 +43,11 @@
 - [Credits](#credits)
     - [Content](#content)
     - [Media](#media)
+    - [Acknowledgements](#acknowledgements)
 
 ## **Introduction** <a id = "introduction"></a>
 ### **Objectives** <a id = "objective"></a>
-The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he scores up to 70% of the questions correctly. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question has a score of 10 marks while each amateur question has a score of 6.5 marks. To pass the quiz its more efficient to answer the professional questions. The user must answer at least two professional questions correctly in order to pass the quiz. A mockup of the application is displayed below.
+The application intends to present an interactive football quiz application to test the knowledge of the user on football facts. The application shall present a question and four clickable options of answers. There shall be a button to click for Instructions; once clicked the instructions will pop up as a modal window, after reading the user closes it. There will be a button to reveal the answer after the user has guessed and it is scored. The revealed answer will provide explanations of the answer to educate the user. The user wins if he obtains a mark of 70 and above. The user is timed and if the time elapses the quiz is stopped, marked and the percentage score revealed to the user automatically. The quiz has two levels - Professional and Amateur. Each professional question is awarded 10 marks while each amateur question is 7.5 marks. To pass the quiz its more efficient to answer the professional questions. The user may pass by answering all 8 Amateur questions correctly. After the 8th question, the user is switched automatically to the professional level. A mockup of the application is displayed below.
 
 ![Site Image Mockup of Different Screens](/docs/guru_display.png)
 
@@ -68,13 +70,24 @@ I intend the application to be useful to any lover of football or anyone desirou
 * As a person desirous to know football and its facts I want an interactive application so that I could test my knowledge of football and be guided when I don’t know the answer.
 * As a user of the application, I want to be given the option to interact as an amateur or a professional so that I could test my knowledge as desired.
 * As a user of the application, I want to be notified by sound and words when I guess the correct or incorrect answer.
-* As a user, I want to know my overall percentage score at the end of the quiz.
+* As a user, I want to know my overall score at the end of the quiz.
 
 <div id="wireframe"></div>
 
 ### **Wireframe - Design of the Site**
 The application is a one-page website with modal window pop ups that provide feedbacks and other necessary information like the explanation of answers, entry of username and detailed instructions for the quiz.  The Wireframe for the site is shown below.
 ![Design of Wireframe](/docs/football_quiz_wireframe.png)
+
+In the course of the application development few other features not shown on the wireframe were added - the button to enable the user allow or disallow the sound effects, display of the number of questions from each level and a button to view result again after the initial display of the result. 
+
+<div id= "color-scheme"></div>
+
+### **Colour Scheme**
+I chose an off white patterned background image for the entire page from [Toptal](https://www.toptal.com/designers/subtlepatterns/) and then used [Coolors](https://coolors.co/) to generate a colour scheme for the site.
+
+![Colour Scheme](/docs/color-scheme.png)
+
+The navigation bar that has the quiz levels and sound on/off button used three of the colors in the scheme to form a gradient background image that was also used at the footer.
 
 <div id="flowchart"></div>
 
@@ -83,9 +96,14 @@ The application is a one-page website with modal window pop ups that provide fee
 I created a flowchart that guided the coding of the logic in the JavaScript. The flowchart is given below:
 ![Logic Flowchart](/docs/flowchart.png)
 
+The flowchart represents about 90% of the application logic. Some issues that came up in the course of testing led to addition of few other logic:
+- the switching to professional level if user has answered 8 amateur questions;
+- the button to enable the user use sound effect;
+- the disabling of command buttons to force the user to act as desired in all circumstances.
+
 A screenshot of the full page opened in a laptop computer is as follows:
 
-![Full Screen](/docs/main-page.png)
+![Full Screen](/docs/main_page.png)
 
 <a id = "technologies-used"></a>
 
@@ -96,8 +114,8 @@ The visual aspects of the site was done with the HTML and CSS.
 - JavaScript : <a id = "javascript"></a>
     The interactivity was achieved using JavaScript. 
     The JavaScript was organized into three different files:
-    1. The Config.js contains the constants that drive the limits used for the site; e.g. Total Number of Questions per session; time duration for the quiz; total answer options, etc. These config variables enable the change of these variables that determine the overall actions on the site from a central point.
-    2. The model.js contains the database of the questions modeled with an array of football question and answer objects. There are two arrays; one for the amateur and another for the professional options.
+    1. The Config.js contains the constants that drive the limits used for the site; e.g. Total Number of Questions per session; time duration for the quiz; total answer options, etc. These configuration variables enable the change of these variables that determine the overall actions on the site from a central point.
+    2. The model.js contains the database of the questions modeled with an array of football question and answer objects. There are two arrays; one for the amateur and another for the professional options. It would have been good to build our model through an Application Programming Interface (API) call. However, within the time limit, I could not find an API that has questions on soccer with explanation of the answers that fits my model, hence I had to create my data model in the application.
     3. The controller.js is where the application logic is implemented; it imports data from the config.js and the model.js.
 
  - Font Images : <a id = "fonts"></a>
@@ -117,7 +135,7 @@ The Site is presented in three areas:
 ### **1. The Header** <a id="the-header"></a>
 ![Header Area of the Application](/docs/header-area.png)
 
-The Header contains a football logo, title of the page and the user that logged in. It also contains the two buttons to enable selection of the Professional or Amateur level of the quiz. 
+The Header contains a football logo, title of the page and the user that logged in. It also contains the two buttons to enable selection of the Professional or Amateur level of the quiz. A third button enables the user to switch on/off the sound played at the submission of the answers.
 
 ### **2. The Question & Answer Area** <a id="question-answer"></a>
 This is the main area of the page having a question displayed, the instruction to select only one answer; the link to the Detailed Instructions; the answer options and the command buttons to enable Submit Answer, Next Question, Explanation of Answer and Restart Quiz. It also has the feedback on the total questions answered correctly or wrongly.
@@ -135,6 +153,8 @@ After submitting the answer, the user could click on View Explanation of Answer 
 ![The Answer Explanation](/docs/answer_explanation.png)
 
 The user clicks on the Next Question button to navigate to the next random question from the system. The question is picked randomly from the quiz level database that the user currently selected. If a user clicks on the Next Question without submitting answer for the currently displayed question, a Confirmation message is displayed to ensure the user really want to navigate to another question. If the user clicks Ok, the next question is displayed, if not no action is taken.
+
+The quiz is switched to professional level automatically if a user has answered 8 amateur questions. 
 
 The Restart the Quiz button enables the user to restart the quiz at any time deemed necessary. A confirmation window is displayed requesting <em>Confirm restarting the Quiz, your scores would be reset to zero and timer will restart?</em> If the user clicks Yes, the quiz is restarted if No is clicked user returns to continue the quiz without restarting. If the Yes confirmation was clicked, an alert is displayed informing the user that the quiz has restarted.
 ![The Restart Quiz Confirmation](/docs/confirmation.png)
@@ -176,16 +196,16 @@ The application is usable as it is but has limited set of questions. An API coul
 
     ![JSHINT Validation Result for controller.js](/docs/controller_jshint.png)
     #### <b>2. The model.js</b>
-    Both the model.js had only the warning about the use of Strict Mode.
+    The model.js had only one warning about the use of Strict Mode.
     ![JSHINT Validation Result for model.js](/docs/model_jshint.png)
 
     #### <b>3. The config.js</b>
-    The config.js also only had the warning about the use of Strict Mode.
+    The config.js also had only the warning about the use of Strict Mode.
     ![JSHINT Validation Result for config.js](/docs/config_jshint.png)
 
 * ### **Accessibility & Performance Testing** <a id="performance-testing"></a>
 
-    Performance test was carried out using Lighthouse tool provided by the Chrome Development tool.  The background and logo images were converted to .webp using  [cloud convert](https://cloudconvert.com/) and then  [tiny png](https://tinypng.com/) was used to compress the images further. Cache Control was added to the header with properties content="max-age=31536000" and content="public" to enhance performance. The Lighthouse produced the result below:
+    Performance test was carried out using Lighthouse tool provided by the Chrome Development tool.  The logo image was converted to .webp using  [cloud convert](https://cloudconvert.com/) and then  [tiny png](https://tinypng.com/) was used to compress the image further. Cache Control was added to the header with properties content="max-age=31536000" and content="public" to enhance performance. The Lighthouse produced the result below:
     ![Performance Result](/docs/lighthouse.png)
 
 
@@ -199,10 +219,11 @@ The application is usable as it is but has limited set of questions. An API coul
 
 * ### **Functionality Test** <a id="functionality-test"></a>
 
-    Guided by the User Story and application design, extensive tests of the functionality was carried out. The detailed test script and result is available at  [Functionality Test](docs/Testing.md)
+    Guided by the User Story and application design, extensive tests of the functionality was carried out. The detailed test script for the user story and result is available at [Functionality Test](docs/Testing.md). The test was continuous and led to the finding and fixing of several bugs detailed in the Bugs section below.
 
 * ### **Bugs** <a id="bugs"></a>
     As expected for projects of this nature several bugs were identified in the cause of the implementation and fixed accordingly.
+
     1. Submit Answer had two issues. The first one was it tried to process the submission even when an answer had not been selected. This was resolved by first checking that one of the Options has the "option-selected" class before processing the submission, if not an alert message is displayed for the user to first select and answer before submitting. The second issue was submitting the same answer more than once. The solution was disabling click on the div was being used as the Submit Answer and re-enabling it when a new question is loaded.
                 
     2. The timer for tracking the elapsed time for the quiz kept running even after getting to 0 seconds left. It was resolved by calling the function clearInterval().
@@ -217,7 +238,7 @@ The application is usable as it is but has limited set of questions. An API coul
     9. Number of professional and amateur questions not resetting to 0 after resetting the quiz; resolved by assigning the variables holding the count to zero and displaying them on the DOM element after a restart of the quiz. 
     10. The placement of the footer at the bottom of the screen was challenging but finally resolved in the CSS by making the top of the footer 100vh.
     11. The user was able to click on the quiz level buttons after quiz had ended and continue playing. it was not desired as user should restart quiz to continue. The bug was fixed by disabling the quiz level buttons when quiz has ended and enabling them after quiz restarts.
-    12. User was unable to view the last explanation of the answer after quiz has ended becuase the button was disabled along with other buttons. It was resolved by enabling the View Explanation Button after displaying quiz result.
+    12. User was unable to view the last explanation of the answer after quiz has ended because the button was disabled along with other buttons. It was resolved by enabling the View Explanation Button after displaying quiz result.
 
 ## **Deployment** <a id="deployment"></a>
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:
@@ -235,16 +256,16 @@ The code for the customized confirmation window was adapted from [Tutorials Poin
 
 Some of the questions were copied from [Football Facts](https://www.myfootballfacts.com/question_of_the_day/best-120-football-quiz-questions-trivia-and-answers/#PL-Quiz-1), [Laws of the Game](https://drive.google.com/file/d/12czUEG7kdGvNh_vJ6MM-kas9qjsvRLqP/view), [Statista](https://www.statista.com/statistics/266464/number-of-world-cup-titles-won-by-country-since-1930/), [History](https://www.history.com/this-day-in-history/first-world-cup) and [888 Sport](https://www.888sport.com/blog/most-successful-football-club-in-england).
 
-The background for header, footer and modal windows was downloaded from [Toptal](https://www.toptal.com/designers/subtlepatterns/).
+The background image for the entire page was downloaded from [Toptal](https://www.toptal.com/designers/subtlepatterns/).
 
-The football logo was donloaded from [PikPng](https://www.pikpng.com/pngvi/Timbmx_soccer-ball-logo-clipart-world-cup-flag-ball/) and resized online using [online Image Resizer]https://online-image-resizer.com/).  
-
-The background image was downloaded from [PikPng](https://www.pikpng.com/downpngs/TimJRh_ball-in-the-football-stadium-background-free-vector/).
+The football logo was downloaded from [PikPng](https://www.pikpng.com/pngvi/Timbmx_soccer-ball-logo-clipart-world-cup-flag-ball/) and resized online using [online Image Resizer](https://online-image-resizer.com/).  
    
 ### **ii. Media** <a id="media"></a>
 
 The icons in the footer were copied from the Font Awesome. The sounds for the correct and wrong answers were downloaded from [Epidemic Sound](https://www.epidemicsound.com/sound-effects/user-interface/). The clap sound when a user wins was downloaded from [mixkit](https://mixkit.co/free-sound-effects/clap/). 
-    
-Credit to Code Institute for organizing two Hackathons that I attended between October and December 2021 where I learnt a lot from team members that also impacted this project. 
 
-I am grateful to my friend Dave Horrocks who took time to criticize and test the application which led to refinement of the color theme and finding of the last two bugs.
+### **iii. Acknowledgements**  <a id="acknowledgements"></a>
+
+Credit to Code Institute for organizing two Hackathons that I attended between October and December 2021 where I learnt a lot from team members that also impacted this project. I learnt the use of Grid and color schemes from the December Hackathon event and it led to my redesign of the color scheme for this application and change of some layout using Grid.
+
+I am grateful to my friend Dave Horrocks who took time to criticize and test the application, which led to refinement of the color theme and finding of the last two bugs.
