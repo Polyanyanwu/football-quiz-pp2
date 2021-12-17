@@ -239,6 +239,7 @@ The application is usable as it is but has limited set of questions. An API coul
     10. The placement of the footer at the bottom of the screen was challenging but finally resolved in the CSS by making the top of the footer 100vh.
     11. The user was able to click on the quiz level buttons after quiz had ended and continue playing. it was not desired as user should restart quiz to continue. The bug was fixed by disabling the quiz level buttons when quiz has ended and enabling them after quiz restarts.
     12. User was unable to view the last explanation of the answer after quiz has ended because the button was disabled along with other buttons. It was resolved by enabling the View Explanation Button after displaying quiz result.
+    13. A user could change the displayed correct answer total from the Chrome development tool and affect the displayed total correct/wrong answer. Fixed by maitaining an internal count, which is used to overwrite the totals displayed on the DOM elements.
 
 ## **Deployment** <a id="deployment"></a>
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:
