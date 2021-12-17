@@ -618,6 +618,8 @@ const displayQuizResult = function () {
     //disable next question and view answer buttons
     disablebCommandBtns();
     disableAnswerOptionsAndSubmit();
+    // enable explanation button for the last question if user desires to see the explanation after the result is displayed
+    enableCommandBtn(explanationBtnEl);
 };
 
 viewResultBtnEl.addEventListener('click', () => {

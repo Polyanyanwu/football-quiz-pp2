@@ -216,6 +216,8 @@ The application is usable as it is but has limited set of questions. An API coul
     8. After restarting the quiz the timer runs both the old and new timer displaying confusing numbers; fixed by creating a global duration time variable  and resetting it to 0 during quiz resets.
     9. Number of professional and amateur questions not resetting to 0 after resetting the quiz; resolved by assigning the variables holding the count to zero and displaying them on the DOM element after a restart of the quiz. 
     10. The placement of the footer at the bottom of the screen was challenging but finally resolved in the CSS by making the top of the footer 100vh.
+    11. The user was able to click on the quiz level buttons after quiz had ended and continue playing. it was not desired as user should restart quiz to continue. The bug was fixed by disabling the quiz level buttons when quiz has ended and enabling them after quiz restarts.
+    12. User was unable to view the last explanation of the answer after quiz has ended becuase the button was disabled along with other buttons. It was resolved by enabling the View Explanation Button after displaying quiz result.
 
 ## **Deployment** <a id="deployment"></a>
 The site was deployed to GitHub pages. The following steps were used to effect the deployment:
@@ -243,4 +245,4 @@ The background image was downloaded from [PikPng](https://www.pikpng.com/downpng
 
 The icons in the footer were copied from the Font Awesome. The sounds for the correct and wrong answers were downloaded from [Epidemic Sound](https://www.epidemicsound.com/sound-effects/user-interface/). The clap sound when a user wins was downloaded from [mixkit](https://mixkit.co/free-sound-effects/clap/). 
     
-Credit to Code Institute for organizing two Hackathons that I attended between October and December 2021 where I learnt a lot from team members that also impacted this project.
+Credit to Code Institute for organizing two Hackathons that I attended between October and December 2021 where I learnt a lot from team members that also impacted this project. I am grateful to my friend Dave Horrocks who took time to criticize and test the application which led to refinement of the color theme and finding of the last two bugs.
